@@ -1,0 +1,28 @@
+{
+  "name": "@redarrowlabs/strongback-react",
+  "version": "0.0.1",
+  "description": "Strong UI components, for React",
+  "license": "MIT",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
+    "publish": "lerna publish --skip-npm",
+    "test": "lerna run test",
+    "storybook": "start-storybook -p 9001",
+    "todo": "leasot --reporter markdown --tags hack --associate-parser .tsx,defaultParser packages/**/*.tsx > TODO.md || exit 0",
+    "check": "npm run bootstrap && npm run build && npm run todo"
+  },
+  "dependencies": {
+    "react": "15.3.2"
+  },
+  "devDependencies": {
+    "@kadira/storybook": "2.19.0",
+    "babel": "6.5.2",
+    "babel-preset-es2015": "6.14.0",
+    "babel-preset-react": "6.11.1",
+    "leasot": "4.0.1",
+    "lerna": "2.0.0-beta.29",
+    "ts-loader": "0.8.2",
+    "typescript": "2.1.0-dev.20160926"
+  }
+}

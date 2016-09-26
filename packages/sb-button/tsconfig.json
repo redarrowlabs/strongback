@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "es2015",
+        "target": "es2015",
+        "moduleResolution": "node",
+        "outDir": "bin",
+        "jsx": "react",
+        "declaration": true,
+        "noImplicitAny": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "compileOnSave": true,
+    "exclude": [
+        "node_modules",
+        "*.story.tsx",
+        "bin"
+    ]
+}
