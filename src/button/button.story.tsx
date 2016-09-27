@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf, action, module } from '@kadira/storybook';
 
-import { Button } from './index.tsx';
+import { Button } from './button';
 
 storiesOf('Button', module)
     .add('ideal', () => {

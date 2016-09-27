@@ -9,6 +9,9 @@ const webpackConfig = {
         loaders: [
             typescript
         ]
+    },
+    resolve:{
+        extensions: ['', '.ts', '.tsx', '.js']
     }
 }
 

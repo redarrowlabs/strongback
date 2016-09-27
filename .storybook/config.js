@@ -1,7 +1,8 @@
 const storybook = require('@kadira/storybook');
 
 function loadStories() {
-  require('../packages/sb-button/button.story.tsx');
+  require('../src/button/button.story.tsx');
+  require('../src/modal/modal.story.tsx');
   // require as many stories as you need.
 }
 

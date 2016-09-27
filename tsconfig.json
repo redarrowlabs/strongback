@@ -12,7 +12,7 @@
     "compileOnSave": true,
     "exclude": [
         "node_modules",
-        "*.story.tsx",
+        "./**/*.story.tsx",
         "bin"
     ]
 }
