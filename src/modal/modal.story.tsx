@@ -2,8 +2,84 @@ import * as React from 'react';
 import { storiesOf, action, module } from '@kadira/storybook';
 
 import { Modal } from './modal';
+import { Button } from '../button/button';
 
 storiesOf('Modal', module)
-    .add('ideal', () => {
-        return <Modal isOpen={true}/>
+    .add('open', () => {
+        const header = <h1>Modals</h1>;
+        const footer = <div>
+            <Button onClick={action('save')}>Save</Button>
+            <Button onClick={action('cancel')}>Cancel</Button>
+        </div>;
+
+        return <div>
+            <div tabIndex={0}>Can't tab outside modal</div>
+            <Modal
+                header={header}
+                footer={footer}
+                isOpen={true}>
+                <ol>
+                    <li tabIndex={0}>Fully</li>
+                    <li tabIndex={0}>Keyboard</li>
+                    <li tabIndex={0}>Accessible</li>
+                </ol>
+            </Modal>
+        </div>
     })
+    .add('behavior', () => {
+        return <ModalExample />
+    })
+
+class ModalExample extends React.Component<{}, any>{
+    constructor(props: {}) {
+        super(props);
+
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+
+        this.state = {
+            open: false
+        }
+    }
+    render() {
+        const header = <h1>Warning</h1>
+        const footer = <div>
+            <Button onClick={this.handleClose}>
+                Fire!
+            </Button>
+            <Button onClick={this.handleClose}>
+                Maybe not...
+            </Button>
+        </div>
+
+        return <div>
+            <Button
+                loading={this.state.loading}
+                onClick={this.handleOpen}>
+                Open
+            </Button>
+            <Modal
+                isOpen={this.state.open}
+                header={header}
+                footer={footer} >
+                Are you sure you want to fire the missles?
+            </Modal>
+        </div>
+    }
+
+    handleOpen(...args: any[]) {
+        action('click')(...args);
+
+        this.setState({
+            open: true
+        })
+    }
+
+    handleClose(...args: any[]) {
+        action('click')(...args);
+
+        this.setState({
+            open: false
+        })
+    }
+}
