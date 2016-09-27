@@ -1,13 +1,20 @@
 {
     "compilerOptions": {
+        //modules
         "module": "es2015",
         "target": "es2015",
         "moduleResolution": "node",
         "outDir": "bin",
         "jsx": "react",
         "declaration": true,
+        "allowSyntheticDefaultImports": true,
+        "pretty": true,
+        //styles
         "noImplicitAny": true,
-        "allowSyntheticDefaultImports": true
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": false,
+        "strictNullChecks": true
     },
     "compileOnSave": true,
     "exclude": [

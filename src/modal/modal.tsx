@@ -1,7 +1,5 @@
 import * as React from 'react';
 import ReactModal from 'react-modal';
-import classNames from 'classnames';
-import { Button } from '../button/button';
 
 export interface IModalProps {
     isOpen: boolean
