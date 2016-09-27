@@ -4,10 +4,17 @@ const typescript = {
     loaders: ['babel', 'ts-loader']
 }
 
+const css = {
+    test: /\.css$/,
+    exlcude: /(node_modules)/,
+    loaders: ['style', 'css']
+}
+
 const webpackConfig = {
     module: {
         loaders: [
-            typescript
+            typescript,
+            css
         ]
     },
     resolve:{

@@ -62,5 +62,5 @@ class LoadingExample extends React.Component<{}, any>{
 }
 
 function delay(ms: number) {
-    return new Promise<{}>((res, rej) => setTimeout(res, ms))
+    return new Promise<{}>(res => setTimeout(res, ms))
 }

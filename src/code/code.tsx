@@ -2,6 +2,7 @@ import * as React from 'react';
 import Highlight from 'react-syntax-highlighter';
 import { tomorrowNight } from 'react-syntax-highlighter/dist/styles';
 import Clipboard from 'react-clip';
+import { info } from '../toast/toast-service';
 
 export interface ICodeProps {
     language?: 'javascript' | 'cs'
@@ -9,7 +10,10 @@ export interface ICodeProps {
 }
 
 export class Code extends React.Component<ICodeProps, {}>{
-    constructor(props: ICodeProps) { super(props); }
+    constructor(props: ICodeProps) {
+        super(props);
+        this.handleCopy = this.handleCopy.bind(this);
+    }
     render() {
         const {
             language = 'javascript',
@@ -17,14 +21,21 @@ export class Code extends React.Component<ICodeProps, {}>{
         } = this.props;
 
         const copy = children
-            ? <Clipboard data-clipboard-text={children}>copy</Clipboard>
+            ? <Clipboard
+                data-clipboard-text={children}
+                onSuccess={this.handleCopy}
+                >copy</Clipboard>
             : null
 
         return <div>
             <Highlight language={language} style={tomorrowNight}>
-                {children || '[nothing]' }
+                {children || '[nothing]'}
             </Highlight>
             {copy}
         </div>
+    }
+
+    handleCopy() {
+        info('Copied');
     }
 }

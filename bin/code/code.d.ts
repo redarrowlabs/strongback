@@ -6,4 +6,5 @@ export interface ICodeProps {
 export declare class Code extends React.Component<ICodeProps, {}> {
     constructor(props: ICodeProps);
     render(): JSX.Element;
+    handleCopy(): void;
 }

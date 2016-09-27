@@ -4,6 +4,7 @@
         "module": "es2015",
         "target": "es2015",
         "moduleResolution": "node",
+        "baseUrl": "src",
         "outDir": "bin",
         "jsx": "react",
         "declaration": true,
@@ -19,7 +20,6 @@
     "compileOnSave": true,
     "exclude": [
         "node_modules",
-        "./**/*.story.tsx",
         "bin"
     ]
 }

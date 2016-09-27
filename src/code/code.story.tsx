@@ -1,11 +1,15 @@
 import * as React from 'react';
-import { storiesOf, action, module } from '@kadira/storybook';
+import { storiesOf, module } from '@kadira/storybook';
 
 import { Code } from './code';
+import Alert from 'react-s-alert';
 
 storiesOf('Code', module)
     .add('empty', () => {
         return <Code />
+    })
+    .add('toast', () => {
+        return <div><Code>{wilde}</Code><Alert /></div>
     })
     .add('language - c#', () => {
         return <div>
@@ -16,6 +20,8 @@ storiesOf('Code', module)
     .add('language - js', () => {
         return <Code>{js}</Code>
     })
+
+const wilde = 'Some cause happiness wherever they go; others whenever they go. - O. Wilde';
 
 const js = `const woah = fun => fun + 1;
 const dude = woah(2) + 3;
