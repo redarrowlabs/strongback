@@ -3,6 +3,8 @@ import ReactModal from 'react-modal';
 import classNames from 'classnames';
 import Highlight from 'react-syntax-highlighter';
 import { tomorrowNight } from 'react-syntax-highlighter/dist/styles';
+import Clipboard from 'react-clip';
+import {Button} from '../button/button';
 
 export interface ICodeProps {
     language?: 'javascript' | 'cs'
@@ -18,11 +20,18 @@ export class Code extends React.Component<ICodeProps, {}>{
 
         const {
             language = 'javascript',
-            children = 'No code.'
+            children = ''
         } = this.props;
 
-        return <Highlight language={language} style={tomorrowNight}>
-            {children}
-        </Highlight>
+        const copy = children
+            ? <Clipboard data-clipboard-text={children}>copy</Clipboard>
+            : null
+
+        return <div>
+            <Highlight language={language} style={tomorrowNight}>
+                {children || '[nothing]' }
+            </Highlight>
+            {copy}
+        </div>
     }
 }
