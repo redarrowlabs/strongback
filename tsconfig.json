@@ -8,7 +8,6 @@
         "outDir": "bin",
         "jsx": "react",
         "declaration": true,
-        "allowSyntheticDefaultImports": true,
         "pretty": true,
         //styles
         "noImplicitAny": true,

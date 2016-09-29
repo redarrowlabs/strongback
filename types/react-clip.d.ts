@@ -1,3 +1,3 @@
 declare module 'react-clip' {
-    export = {} as any;
+    export default {} as any;
 }

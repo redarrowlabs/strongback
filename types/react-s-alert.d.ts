@@ -1,3 +1,3 @@
 declare module 'react-s-alert' {
-    export = {} as any;
+    export default {} as any;
 }

@@ -9,7 +9,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 const React = require("react");
 const halogen_1 = require("halogen");
-const classnames_1 = require("classnames");
+const classNames = require("classnames");
 //TODO provide customization options
 const loaderColor = '#000000';
 const loaderSize = '0.75em';
@@ -17,7 +17,7 @@ const inactiveClass = defaultClasses(false);
 const loadingClass = defaultClasses(false);
 const activeClass = defaultClasses(true);
 function defaultClasses(active) {
-    return classnames_1.default({
+    return classNames({
         'f6 bw0 link dim br2 ph3 pv2 mb2 dib white': true,
         'bg-purple pointer': active,
         'bg-mid-gray ': !active

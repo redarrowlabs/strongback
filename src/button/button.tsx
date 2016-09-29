@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PulseLoader } from 'halogen';
-import classNames from 'classnames';
+import * as classNames from 'classnames';
 
 export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
     loading?: boolean

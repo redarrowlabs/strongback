@@ -1,5 +1,5 @@
 declare module 'react-syntax-highlighter' {
-    export = {} as any
+    export default {} as any
 }
 
 declare module 'react-syntax-highlighter/dist/styles' {
