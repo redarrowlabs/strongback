@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -6,9 +7,9 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-import * as React from 'react';
-import { PulseLoader } from 'halogen';
-import classNames from 'classnames';
+const React = require("react");
+const halogen_1 = require("halogen");
+const classnames_1 = require("classnames");
 //TODO provide customization options
 const loaderColor = '#000000';
 const loaderSize = '0.75em';
@@ -16,13 +17,13 @@ const inactiveClass = defaultClasses(false);
 const loadingClass = defaultClasses(false);
 const activeClass = defaultClasses(true);
 function defaultClasses(active) {
-    return classNames({
+    return classnames_1.default({
         'f6 bw0 link dim br2 ph3 pv2 mb2 dib white': true,
         'bg-purple pointer': active,
         'bg-mid-gray ': !active
     });
 }
-export class Button extends React.Component {
+class Button extends React.Component {
     constructor(props) { super(props); }
     render() {
         const { children, loading = false } = this.props;
@@ -30,13 +31,14 @@ export class Button extends React.Component {
         const buttonClass = getClasses(this.props);
         const disabled = loading || rest.disabled;
         const loader = loading
-            ? React.createElement(PulseLoader, { size: loaderSize, color: loaderColor })
+            ? React.createElement(halogen_1.PulseLoader, { size: loaderSize, color: loaderColor })
             : null;
         return React.createElement("button", __assign({ className: buttonClass }, rest, { disabled: disabled }),
             loader,
             children);
     }
 }
+exports.Button = Button;
 function getClasses(props) {
     if (props.loading) {
         return loadingClass;

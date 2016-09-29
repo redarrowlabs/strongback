@@ -1,9 +1,10 @@
-import * as React from 'react';
-import Highlight from 'react-syntax-highlighter';
-import { tomorrowNight } from 'react-syntax-highlighter/dist/styles';
-import Clipboard from 'react-clip';
-import { info } from '../toast/toast-service';
-export class Code extends React.Component {
+"use strict";
+const React = require("react");
+const react_syntax_highlighter_1 = require("react-syntax-highlighter");
+const styles_1 = require("react-syntax-highlighter/dist/styles");
+const react_clip_1 = require("react-clip");
+const toast_service_1 = require("../toast/toast-service");
+class Code extends React.Component {
     constructor(props) {
         super(props);
         this.handleCopy = this.handleCopy.bind(this);
@@ -11,13 +12,14 @@ export class Code extends React.Component {
     render() {
         const { language = 'javascript', children = '' } = this.props;
         const copy = children
-            ? React.createElement(Clipboard, { "data-clipboard-text": children, onSuccess: this.handleCopy }, "copy")
+            ? React.createElement(react_clip_1.default, { "data-clipboard-text": children, onSuccess: this.handleCopy }, "copy")
             : null;
         return React.createElement("div", null,
-            React.createElement(Highlight, { language: language, style: tomorrowNight }, children || '[nothing]'),
+            React.createElement(react_syntax_highlighter_1.default, { language: language, style: styles_1.tomorrowNight }, children || '[nothing]'),
             copy);
     }
     handleCopy() {
-        info('Copied');
+        toast_service_1.info('Copied');
     }
 }
+exports.Code = Code;
