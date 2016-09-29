@@ -1,12 +1,9 @@
 "use strict";
-const Button = require("./button/button");
-const Code = require("./code/code");
-const Modal = require("./modal/modal");
+const button_1 = require("./button/button");
+exports.Button = button_1.Button;
+const code_1 = require("./code/code");
+exports.Code = code_1.Code;
+const modal_1 = require("./modal/modal");
+exports.Modal = modal_1.Modal;
 const Toast = require("./toast/toast-service");
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
-    Button,
-    Code,
-    Modal,
-    Toast
-};
+exports.Toast = Toast;
