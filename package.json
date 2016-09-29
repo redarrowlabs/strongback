@@ -3,6 +3,8 @@
   "version": "0.0.8",
   "description": "Strong UI components, for React",
   "license": "MIT",
+  "main": "bin/index",
+  "typings": "bin/index",
   "scripts": {
     "bootstrap": "npm install",
     "build": "tsc",

@@ -1,11 +1,4 @@
-import { Button } from './button/button';
-import { Code } from './code/code';
-import { Modal } from './modal/modal';
-import * as Toast from './toast/toast-service';
-
-export {
-    Button,
-    Code,
-    Modal,
-    Toast
-}
+export { Button } from './button/button';
+export { Code } from './code/code';
+export { Modal } from './modal/modal';
+export * from './toast/toast-service';

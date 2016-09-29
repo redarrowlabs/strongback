@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Highlight from 'react-syntax-highlighter';
 import { tomorrowNight } from 'react-syntax-highlighter/dist/styles';
-import Clipboard from 'react-clip';
+import Clipboard from 'react-clip/dist/react-clipboard';
 import { info } from '../toast/toast-service';
 
 export interface ICodeProps {
