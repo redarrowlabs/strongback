@@ -3,6 +3,13 @@ const storybook = require('@kadira/storybook');
 require('react-s-alert/dist/s-alert-default.css');
 require('react-s-alert/dist/s-alert-css-effects/flip.css');
 
+const toast = require('../src/toast/toast-service.ts');
+
+function setup() {
+  toast.setInfo(toast.defaultInfo);
+}
+setup();
+
 function loadStories() {
   require('../src/button/button.story.tsx');
   require('../src/modal/modal.story.tsx');
