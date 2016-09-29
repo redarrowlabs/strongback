@@ -2,7 +2,7 @@
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(require("button/button"));
-__export(require("code/code"));
-__export(require("modal/modal"));
-__export(require("toast/toast-service"));
+__export(require("./button/button"));
+__export(require("./code/code"));
+__export(require("./modal/modal"));
+__export(require("./toast/toast-service"));
