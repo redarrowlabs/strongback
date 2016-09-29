@@ -3,7 +3,6 @@
   "version": "0.0.5",
   "description": "Strong UI components, for React",
   "license": "MIT",
-  "main": "./bin/index.js",
   "scripts": {
     "bootstrap": "npm install",
     "build": "tsc",
@@ -12,6 +11,7 @@
     "check": "npm run bootstrap && npm run build && npm run todo"
   },
   "dependencies": {
+    "classnames": "2.2.5",
     "halogen": "0.2.0",
     "react": "15.3.2",
     "react-clip": "0.1.4",
