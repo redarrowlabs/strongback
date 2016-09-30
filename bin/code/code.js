@@ -4,7 +4,6 @@ const react_syntax_highlighter_1 = require("react-syntax-highlighter");
 const styles_1 = require("react-syntax-highlighter/dist/styles");
 const toast_service_1 = require("../toast/toast-service");
 const clipboard_1 = require("../button/clipboard");
-console.log(clipboard_1.Clipboard);
 class Code extends React.Component {
     constructor(props) {
         super(props);

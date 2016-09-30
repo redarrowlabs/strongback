@@ -1,8 +1,6 @@
 "use strict";
 const React = require("react");
 const ReactModal = require("react-modal");
-console.log(ReactModal);
-debugger;
 class Modal extends React.Component {
     constructor(props) { super(props); }
     render() {
