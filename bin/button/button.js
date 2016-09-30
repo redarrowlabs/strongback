@@ -56,3 +56,4 @@ function restOp(props) {
     delete p.loading;
     return p;
 }
+//# sourceMappingURL=button.js.map

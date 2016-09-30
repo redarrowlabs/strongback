@@ -8,5 +8,5 @@ declare module 'react-modal' {
 
     class ReactModal extends React.Component<ModalProps, {}>{ }
 
-    export default ReactModal
+    export = ReactModal
 }

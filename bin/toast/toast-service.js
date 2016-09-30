@@ -16,3 +16,4 @@ function setInfo(fn) {
     infoFn = fn;
 }
 exports.setInfo = setInfo;
+//# sourceMappingURL=toast-service.js.map
