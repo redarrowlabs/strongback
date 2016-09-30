@@ -9,6 +9,7 @@
         "jsx": "react",
         "declaration": true,
         "pretty": true,
+        "sourceMap": true,
         //styles
         "noImplicitAny": true,
         "noUnusedLocals": true,

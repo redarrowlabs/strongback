@@ -4,11 +4,8 @@ import { tomorrowNight } from 'react-syntax-highlighter/dist/styles';
 import { info } from '../toast/toast-service';
 import { Clipboard } from '../button/clipboard';
 
-console.log(Clipboard)
-
 export interface ICodeProps {
     language?: 'javascript' | 'cs'
-
 }
 
 export class Code extends React.Component<ICodeProps, {}>{

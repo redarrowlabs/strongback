@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ReactModal from 'react-modal';
+import ReactModal = require('react-modal');
 
 export interface IModalProps {
     isOpen: boolean

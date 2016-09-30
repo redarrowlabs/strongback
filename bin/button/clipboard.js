@@ -7,3 +7,4 @@ function Clipboard(props) {
     return React.createElement(AnyClipboard, { "data-clipboard-text": props.text, onSuccess: props.onCopy }, "Copy");
 }
 exports.Clipboard = Clipboard;
+//# sourceMappingURL=clipboard.js.map
