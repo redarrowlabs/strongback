@@ -3,14 +3,16 @@
   "version": "0.0.11",
   "description": "Strong UI components, for React",
   "license": "MIT",
+  "repository": {
+    "url": "https://github.com/redarrowlabs/strongback.git"
+  },
   "main": "bin/index",
   "typings": "bin/index",
   "scripts": {
-    "bootstrap": "npm install",
     "build": "tsc",
     "storybook": "start-storybook -p 9001",
     "todo": "leasot --reporter markdown --tags hack --associate-parser .tsx,defaultParser src/**/*.tsx > TODO.md || exit 0",
-    "check": "npm run bootstrap && npm run build && npm run todo"
+    "check": "npm install && npm run build && npm run todo"
   },
   "dependencies": {
     "classnames": "2.2.5",
