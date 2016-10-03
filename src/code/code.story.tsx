@@ -2,6 +2,7 @@ import * as React from 'react';
 import { storiesOf, module } from '@kadira/storybook';
 
 import { Code } from './code';
+import { setInfo, defaultInfo } from '../toast/toast-service';
 import Alert from 'react-s-alert';
 
 storiesOf('Code', module)
@@ -9,6 +10,9 @@ storiesOf('Code', module)
         return <Code />
     })
     .add('toast', () => {
+        //Provide an implementation for toastin'
+        setInfo(defaultInfo);
+
         return <div><Code>{wilde}</Code><Alert /></div>
     })
     .add('language - c#', () => {
@@ -53,8 +57,8 @@ public Url(string baseUrl) {
 const ex = `FATAL Transaction not connected, or was disconnected NHibernate.TransactionException: Transaction not connected, or was disconnected
 at NHibernate.Transaction.AdoTransaction.CheckNotZombied()
 at NHibernate.Transaction.AdoTransaction.Commit()
-at DLSS.DirectToPatient.CommandQuery.Implementation.MutableQuerySession.Dispose() in E:\\7\\DLSS.DirectToPatient\\eMPoweRx Dev CI w Octo Release\\src\\code\\CommandQuery.Implementation\\MutableQuerySession.cs:line 59
-at DLSS.DirectToPatient.CommandQuery.Implementation.AbstractExecuteMutableQuery\`2.Execute(TQuery query) in E:\\7\\DLSS.DirectToPatient\\eMPoweRx Dev CI w Octo Release\\src\\code\\CommandQuery.Implementation\\AbstractExecuteMutableQuery.cs:line 32 at NHibernate.Transaction.AdoTransaction.CheckNotZombied()
+at RAL.CoolApp.CommandQuery.Implementation.MutableQuerySession.Dispose() in E:\\7\\RAL.CoolApp\\Release\\src\\code\\CommandQuery.Implementation\\MutableQuerySession.cs:line 59
+at RAL.CoolApp.CommandQuery.Implementation.AbstractExecuteMutableQuery\`2.Execute(TQuery query) in E:\\7\\RAL.CoolApp\\Release\\src\\code\\CommandQuery.Implementation\\AbstractExecuteMutableQuery.cs:line 32 at NHibernate.Transaction.AdoTransaction.CheckNotZombied()
 at NHibernate.Transaction.AdoTransaction.Commit()
-at DLSS.DirectToPatient.CommandQuery.Implementation.MutableQuerySession.Dispose() in E:\\7\\DLSS.DirectToPatient\\eMPoweRx Dev CI w Octo Release\\src\\code\\CommandQuery.Implementation\\MutableQuerySession.cs:line 59
-at DLSS.DirectToPatient.CommandQuery.Implementation.AbstractExecuteMutableQuery\`2.Execute(TQuery query) in E:\\7\\DLSS.DirectToPatient\\eMPoweRx Dev CI w Octo Release\\src\\code\\CommandQuery.Implementation\\AbstractExecuteMutableQuery.cs:line 32`;
+at RAL.CoolApp.CommandQuery.Implementation.MutableQuerySession.Dispose() in E:\\7\\RAL.CoolApp\\Release\\src\\code\\CommandQuery.Implementation\\MutableQuerySession.cs:line 59
+at RAL.CoolApp.CommandQuery.Implementation.AbstractExecuteMutableQuery\`2.Execute(TQuery query) in E:\\7\\RAL.CoolApp\\Release\\src\\code\\CommandQuery.Implementation\\AbstractExecuteMutableQuery.cs:line 32`;

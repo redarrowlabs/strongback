@@ -1,7 +1,8 @@
 # strongback-react
 Strongback is an implementation of the Red Arrow Labs pattern library.
 
-The goal: an opinionated, "Don't Make Me Think", batteries-included front-end toolkit focused on Developer Experience.
+The goal: an opinionated, "Don't Make Me Think", batteries-included front-end 
+toolkit focused on Developer Experience.
 
 The use case: enterprise applications, built by teams of developers who
 have varying amounts of front-end experience.
@@ -26,6 +27,10 @@ or
 TypeScript declarations are included, so intellisense should work
 out of the box. 
 
+## Examples
+Clone the repo and run the storybook, 
+or browse the sources at `/src/[package]/[package].story.tsx`
+
 # Developing
 - `npm run storybook` Launches a storybook server on `localhost:9001`
 
@@ -38,7 +43,8 @@ out of the box.
 1. `npm publish` (Must be logged in as RAL)
 
 # 🙋 Strongback?
-A strongback lifts a rocket from horizontal to vertical, and supplies it with power and chilled rocket fuel until it's time to launch.
+A strongback lifts a rocket from horizontal to vertical, and supplies it with 
+power and chilled rocket fuel until it's time to launch.
 
 [Picture](http://www.spacex.com/sites/spacex/files/crs-3_staticfire.jpg)
 
