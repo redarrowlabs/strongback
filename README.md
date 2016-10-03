@@ -1,6 +1,19 @@
 # strongback-react
+Strongback is an implementation of the Red Arrow Labs pattern library.
+
+The goal: an opinionated, "Don't Make Me Think", batteries-included front-end toolkit focused on Developer Experience.
+
+The use case: enterprise applications, built by teams of developers who
+have varying amounts of front-end experience.
 
 # Usage
+## Knowledge
+These tools are highly recommended for your app. (but not strictly required)
+- [TypeScript](www.typescriptlang.org) - A typed, compiled JavaScript variant.
+- [React](https://facebook.github.io/react/) - Declarative view library. Puts markup in your code.
+- [Redux](https://github.com/reactjs/redux) - Unidirectional, testable state management library.
+- [Webpack](http://webpack.github.io/docs/) - JavaScript bundler, pulling your imported code into one distributable file.
+
 ## Install
 `npm install --save @redarrowlabs/strongback-react`
 ## Import
