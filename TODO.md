@@ -3,3 +3,4 @@
 |:------|:------:|:------
 | src/button/button.tsx | 9 | provide customization options
 | src/button/button.tsx | 58 | Implement rest operator when it lands in typescript
+| src/form/number-field.tsx | 6 | Number fields are not supported well in redux-form and may never be

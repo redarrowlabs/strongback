@@ -35,6 +35,7 @@ or browse the sources at `/src/[package]/[package].story.tsx`
 - `npm run storybook` Launches a storybook server on `localhost:9001`
 
 # Contributing
+1. Create or discuss an [issue](https://github.com/redarrowlabs/strongback/issues)
 1. Develop on your feature branch.
 1. Pull and merge.
 1. `npm run check` to make sure everything's building.

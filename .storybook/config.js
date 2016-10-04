@@ -8,6 +8,7 @@ function loadStories() {
   require('../src/modal/modal.story.tsx');
   require('../src/code/code.story.tsx');
   require('../src/toast/toast.story.tsx');
+  require('../src/form/form.story.tsx');
   // require as many stories as you need.
 }
 
