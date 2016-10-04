@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { reduxForm } from 'redux-form';
 import { IForm } from './interfaces';
 import { Button } from '../button/button';
 
@@ -7,9 +6,11 @@ export default class Form extends React.Component<IForm, {}> {
     render() {
         const {handleSubmit, submitting, pristine, reset, valid} = this.props;
         const {submitValidation} = this.props;
-        const err = !pristine
-            && !valid
-            && <div>The form could not be completed</div>
+        const showError = !pristine && !valid
+
+        let err = showError
+            ? <div>The form could not be completed</div>
+            : null;
 
         return <div>
             {err}
@@ -22,14 +23,10 @@ export default class Form extends React.Component<IForm, {}> {
                         Submit
                 </Button>
                     <Button type="button" disabled={pristine || submitting} onClick={reset}>
-                        Clear Values
+                        Reset
                 </Button>
                 </div>
             </form>
         </div>
     }
-}
-
-export function makeForm(options: any, component: any) {
-    return reduxForm(options as any)(component);
 }

@@ -6,14 +6,14 @@ export interface IForm {
     submitting: boolean
     reset(): void
     submitValidation: any
-    valid: boolean
+    valid: boolean,
+    enableReinitialize: boolean
 }
 
 export interface IField {
     name: string
     label: string
 }
-
 
 export interface IFieldComponent<T> {
     input: {

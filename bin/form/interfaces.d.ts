@@ -7,6 +7,7 @@ export interface IForm {
     reset(): void;
     submitValidation: any;
     valid: boolean;
+    enableReinitialize: boolean;
 }
 export interface IField {
     name: string;
