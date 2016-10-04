@@ -7,7 +7,9 @@ export default class Form extends React.Component<IForm, {}> {
     render() {
         const {handleSubmit, submitting, pristine, reset, valid} = this.props;
         const {submitValidation} = this.props;
-        const err = !pristine && !valid && <div>The form could not be completed</div>
+        const err = !pristine
+            && !valid
+            && <div>The form could not be completed</div>
 
         return <div>
             {err}

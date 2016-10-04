@@ -42,25 +42,21 @@ function makeStore() {
     return createStore(reducer, devtools);
 }
 
-function validate(values: any) {
-    // In a functional app, you'd likely use async/await here.
-    // const res = await myClient.getRemoteData('/api/something')
+async function validate(values: any) {
+    await delay(3500);
     
-    return delay(3500)
-        .then(() => {
-            let errors: any = {};
-            if (values.text && values.text === values.text.toLocaleUpperCase()) {
-                errors['text'] = "No yelling"
-            }
+    let errors: any = {};
+    if (values.text && values.text === values.text.toLocaleUpperCase()) {
+        errors['text'] = "No yelling"
+    }
 
-            if (values.number && isNaN(parseFloat(values.number))) {
-                errors['number'] = "Not a number"
-            }
+    if (values.number && isNaN(parseFloat(values.number))) {
+        errors['number'] = "Not a number"
+    }
 
-            if (!isEmpty(errors)) {
-                throw new SubmissionError(errors)
-            }
-        })
+    if (!isEmpty(errors)) {
+        throw new SubmissionError(errors)
+    }
 }
 
 /** Promise that resolves after a set amount of time */
