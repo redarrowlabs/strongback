@@ -18,7 +18,7 @@ export function RadioStateless(props: RadioStatelessProps) {
         options,
     } = props;
 
-    return <FieldWrapper fieldProps={props}>
+    return <FieldWrapper fieldProps={props} mode="no-wrap">
         <SelectList
             data={options}
             value={value}

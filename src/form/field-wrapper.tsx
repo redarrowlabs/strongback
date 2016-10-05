@@ -8,6 +8,7 @@ export interface FieldWrapperProps {
             error: string
         }
     }
+    mode?: "no-wrap"
 }
 
 /** Wraps a field with a label and error message area. */
@@ -18,10 +19,22 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}>{
                 meta: {touched, error},
                 label,
             },
-            children
+            children,
+            mode
         } = this.props;
 
         const err = touched && error;
+
+        //For multiple inputs in children
+        if (mode === "no-wrap") {
+            return <div>
+                <label>
+                    <div>{label}</div>
+                </label>
+                {children}
+                <div>{err}</div>
+            </div>
+        }
 
         return <div>
             <label>
