@@ -11,6 +11,7 @@ function loadStories() {
   require('../src/code/code.story.tsx');
   require('../src/toast/toast.story.tsx');
   require('../src/form/form.story.tsx');
+  require('../src/date/date.story.tsx');
   // require as many stories as you need.
 }
 
