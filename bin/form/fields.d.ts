@@ -1,14 +1,5 @@
 /// <reference types="react" />
 import * as React from 'react';
-export interface IForm {
-    handleSubmit: any;
-    pristine: boolean;
-    submitting: boolean;
-    reset(): void;
-    submitValidation: any;
-    valid: boolean;
-    enableReinitialize: boolean;
-}
 export interface IField {
     name: string;
     label: string;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IField, IFieldComponent } from './interfaces';
+import { IField, IFieldComponent } from './fields';
 import { Field } from 'redux-form';
 import { FieldWrapper } from './field-wrapper';
 

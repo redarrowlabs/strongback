@@ -6,7 +6,7 @@ import { Provider, connect } from 'react-redux'
 
 import { Button } from '../button/button';
 
-import { Form } from './form'
+import { Form, IForm } from './form'
 import { TextField } from './text-field'
 import { NumberField } from './number-field'
 
@@ -22,7 +22,17 @@ storiesOf('Form', module)
         </Provider>
     })
 
-class SampleFormStateless extends React.Component<any, {}>{
+interface SampleFormProps extends IForm {
+    onValidSubmit(values: SampleFormValues): void
+    onInvalidSubmit(values: SampleFormValues, errors: Object): void
+}
+
+interface SampleFormValues {
+    text: string
+    number: string
+}
+
+class SampleFormStateless extends React.Component<SampleFormProps, {}>{
     constructor(props: any) {
         super(props);
         this.validate = this.validate.bind(this);
@@ -35,7 +45,7 @@ class SampleFormStateless extends React.Component<any, {}>{
         </Form>
     }
 
-    async validate(values: any) {
+    async validate(values: SampleFormValues) {
         //Simulate talking to a server
         await delay(3500);
 

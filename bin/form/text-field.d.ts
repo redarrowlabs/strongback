@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { IField, IFieldComponent } from './interfaces';
+import { IField, IFieldComponent } from './fields';
 export interface TextFieldStatelessProps extends IFieldComponent<string> {
     autoComplete: "on" | "off";
     label: string;

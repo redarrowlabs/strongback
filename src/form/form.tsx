@@ -1,6 +1,15 @@
 import * as React from 'react';
-import { IForm } from './interfaces';
 import { Button } from '../button/button';
+
+export interface IForm {
+    handleSubmit: any
+    pristine: boolean
+    submitting: boolean
+    reset(): void
+    submitValidation: any
+    valid: boolean,
+    enableReinitialize: boolean
+}
 
 export class Form extends React.Component<IForm, {}> {
     render() {
