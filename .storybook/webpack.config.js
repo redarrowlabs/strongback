@@ -10,11 +10,29 @@ const css = {
     loaders: ['style', 'css']
 }
 
+const gif = {
+    test: /\.gif$/,
+    loader: 'url-loader?mimetype=image/png'
+}
+
+const woff = {
+     test: /\.woff(2)?(\?v=[0-9].[0-9].[0-9])?$/, 
+     loader: "url-loader?mimetype=application/font-woff"
+}
+
+const ttf = {
+    test: /\.(ttf|eot|svg)(\?v=[0-9].[0-9].[0-9])?$/, 
+    loader: "url-loader"
+}
+
 const webpackConfig = {
     module: {
         loaders: [
             typescript,
-            css
+            css,
+            gif,
+            woff,
+            ttf
         ]
     },
     resolve:{

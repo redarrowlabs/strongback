@@ -4,7 +4,9 @@ import { Field } from 'redux-form';
 import { FieldWrapper } from './field-wrapper';
 
 // TODO Number fields are not supported well in redux-form and may never be
+// replace with a good solution like react-widgets number picker
 // https://github.com/erikras/redux-form/issues/1236
+// https://jquense.github.io/react-widgets/docs/#/numberpicker
 
 export interface NumberFieldProps extends IFieldComponent<string> {
     label: string

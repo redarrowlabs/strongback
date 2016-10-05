@@ -11,6 +11,7 @@ import { TextField } from './text-field'
 import { NumberField } from './number-field'
 import { SearchNSelect } from './search-n-select'
 import { Select } from './select';
+import { Radio } from './radio';
 
 storiesOf('Form', module)
     .add('Widgets', () => {
@@ -54,12 +55,20 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}>{
                 label="Select"
                 options={[
                     { label: 'One', value: 'one' },
-                    { label: 'Two', value: 'two' }]
-                } />
+                    { label: 'Two', value: 'two' }
+                ]} />
             <SearchNSelect
                 name="search"
                 label="Search n' Select"
                 onSearch={this.searchRemote} />
+            <Radio
+                name="radio"
+                label="Radio"
+                options={[
+                    { label: 'Hamburger', value: 'burg' },
+                    { label: 'Brat', value: 'brat' },
+                    { label: 'Veggie Patty', value: 'patty' }
+                ]} />
         </Form>
     }
 

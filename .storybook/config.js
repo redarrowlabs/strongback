@@ -3,6 +3,7 @@ const storybook = require('@kadira/storybook');
 require('react-s-alert/dist/s-alert-default.css');
 require('react-s-alert/dist/s-alert-css-effects/flip.css');
 require('react-select/dist/react-select.css');
+require('react-widgets/dist/css/react-widgets.css');
 
 function loadStories() {
   require('../src/button/button.story.tsx');
