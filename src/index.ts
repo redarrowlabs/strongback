@@ -9,6 +9,7 @@ export { Select } from './form/select';
 export { SearchNSelect } from './form/search-n-select';
 export { Radio } from './form/radio';
 export { Checkbox } from './form/checkbox';
+export { DateField } from './form/date';
 
 export { LocalDateView } from './date/local-date-view';
 export { LocalDateTimeView } from './date/local-date-time-view';
