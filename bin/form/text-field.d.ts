@@ -8,4 +8,4 @@ export declare function TextFieldStateless(props: TextFieldStatelessProps): JSX.
 export interface TextFieldProps extends IField {
     autoComplete?: "on" | "off";
 }
-export default function TextField(props: TextFieldProps): JSX.Element;
+export declare function TextField(props: TextFieldProps): JSX.Element;

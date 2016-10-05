@@ -35,7 +35,7 @@ export interface TextFieldProps extends IField {
     autoComplete?: "on" | "off"
 }
 
-export default function TextField(props: TextFieldProps) {
+export function TextField(props: TextFieldProps) {
     return <Field
         name={props.name}
         component={TextFieldStateless}

@@ -11,8 +11,7 @@ exports.NumberFieldStateless = NumberFieldStateless;
 function NumberField(props) {
     return React.createElement(redux_form_1.Field, { name: props.name, component: NumberFieldStateless, normalize: normalize, label: props.label });
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = NumberField;
+exports.NumberField = NumberField;
 /**
  * Expression to match numbers as they are typed
  * Allowed: '-', '-1', '-1.', '-1.2'

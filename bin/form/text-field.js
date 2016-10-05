@@ -11,6 +11,5 @@ exports.TextFieldStateless = TextFieldStateless;
 function TextField(props) {
     return React.createElement(redux_form_1.Field, { name: props.name, component: TextFieldStateless, autoComplete: props.autoComplete || "off", label: props.label });
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = TextField;
+exports.TextField = TextField;
 //# sourceMappingURL=text-field.js.map

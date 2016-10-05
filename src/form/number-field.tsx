@@ -31,7 +31,7 @@ export function NumberFieldStateless(props: NumberFieldProps) {
     </FieldWrapper>
 }
 
-export default function NumberField(props: IField) {
+export function NumberField(props: IField) {
     return <Field
         name={props.name}
         component={NumberFieldStateless}

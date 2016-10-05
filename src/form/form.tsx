@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IForm } from './interfaces';
 import { Button } from '../button/button';
 
-export default class Form extends React.Component<IForm, {}> {
+export class Form extends React.Component<IForm, {}> {
     render() {
         const {handleSubmit, submitting, pristine, reset, valid} = this.props;
         const {submitValidation} = this.props;
@@ -22,7 +22,7 @@ export default class Form extends React.Component<IForm, {}> {
                     <Button type="submit" loading={submitting}>
                         Submit
                 </Button>
-                    <Button type="button" disabled={pristine || submitting} onClick={reset}>
+                    <Button type="button" variant="secondary" disabled={pristine || submitting} onClick={reset}>
                         Reset
                 </Button>
                 </div>

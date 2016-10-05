@@ -6,9 +6,9 @@ import { Provider, connect } from 'react-redux'
 
 import { Button } from '../button/button';
 
-import Form from './form'
-import TextField from './text-field'
-import NumberField from './number-field'
+import { Form } from './form'
+import { TextField } from './text-field'
+import { NumberField } from './number-field'
 
 storiesOf('Form', module)
     .add('Widgets', () => {

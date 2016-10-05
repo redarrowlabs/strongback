@@ -15,9 +15,8 @@ class Form extends React.Component {
                 React.createElement("div", null, this.props.children),
                 React.createElement("div", null,
                     React.createElement(button_1.Button, { type: "submit", loading: submitting }, "Submit"),
-                    React.createElement(button_1.Button, { type: "button", disabled: pristine || submitting, onClick: reset }, "Reset"))));
+                    React.createElement(button_1.Button, { type: "button", variant: "secondary", disabled: pristine || submitting, onClick: reset }, "Reset"))));
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Form;
+exports.Form = Form;
 //# sourceMappingURL=form.js.map
