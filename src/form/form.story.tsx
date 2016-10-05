@@ -147,7 +147,8 @@ function dataReducer(state = initialData, action: any) {
         case LOAD_DATA_SUCCESS:
             return {
                 text: action.data.text,
-                number: action.data.number
+                number: action.data.number,
+                select: action.data.select
             }
     }
 
@@ -160,7 +161,7 @@ async function loadData() {
 
     AppStore.dispatch({
         type: LOAD_DATA_SUCCESS,
-        data: { text: 'World', number: '321', select: 'red' }
+        data: { text: 'World', number: '321', select: 'one' }
     });
 }
 
