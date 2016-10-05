@@ -13,6 +13,7 @@ import { SearchNSelect } from './search-n-select'
 import { Select } from './select';
 import { Radio } from './radio';
 import { Checkbox } from './checkbox';
+import { DateField } from './date';
 
 storiesOf('Form', module)
     .add('Widgets', () => {
@@ -78,6 +79,7 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}>{
                     { label: 'Onion', value: 'onion' },
                     { label: 'Tomato', value: 'tomato' }
                 ]} />
+            <DateField name="date" label="Date" />
         </Form>
     }
 
