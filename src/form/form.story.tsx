@@ -11,6 +11,8 @@ import { TextField } from './text-field'
 import { NumberField } from './number-field'
 import { SearchNSelect } from './search-n-select'
 import { Select } from './select';
+import { Radio } from './radio';
+import { Checkbox } from './checkbox';
 
 storiesOf('Form', module)
     .add('Widgets', () => {
@@ -54,12 +56,28 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}>{
                 label="Select"
                 options={[
                     { label: 'One', value: 'one' },
-                    { label: 'Two', value: 'two' }]
-                } />
+                    { label: 'Two', value: 'two' }
+                ]} />
             <SearchNSelect
                 name="search"
                 label="Search n' Select"
                 onSearch={this.searchRemote} />
+            <Radio
+                name="radio"
+                label="Radio"
+                options={[
+                    { label: 'Hamburger', value: 'burg' },
+                    { label: 'Brat', value: 'brat' },
+                    { label: 'Veggie Patty', value: 'patty' }
+                ]} />
+            <Checkbox
+                name="checkbox"
+                label="Checkbox"
+                options={[
+                    { label: 'Cheese', value: 'cheese' },
+                    { label: 'Onion', value: 'onion' },
+                    { label: 'Tomato', value: 'tomato' }
+                ]} />
         </Form>
     }
 
@@ -103,7 +121,10 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}>{
 const initialData = {
     text: '',
     number: '',
-    select: ''
+    select: '',
+    search: '',
+    radio: '',
+    checkbox: []
 }
 
 const AppStore = makeStore();

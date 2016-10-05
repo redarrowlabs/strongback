@@ -6,6 +6,8 @@ export { NumberField } from './form/number-field';
 export { TextField } from './form/text-field';
 export { Select } from './form/select';
 export { SearchNSelect } from './form/search-n-select';
+export { Radio } from './form/radio';
+export { Checkbox } from './form/checkbox';
 
 import * as ToastSvc from './toast/toast-service';
 export const Toast = ToastSvc;
