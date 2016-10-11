@@ -11,5 +11,7 @@ export { Checkbox } from './form/checkbox';
 export { DateField } from './form/date';
 export { LocalDateView } from './date/local-date-view';
 export { LocalDateTimeView } from './date/local-date-time-view';
+export { useDefaultImplementations } from './defaults';
+export { setLoader } from './loader/loader';
 import * as ToastSvc from './toast/toast-service';
 export declare const Toast: typeof ToastSvc;
