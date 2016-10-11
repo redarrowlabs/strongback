@@ -55,16 +55,16 @@ const secondLoadingClass = defaultSecondaryClasses(false);
 const secondActiveClass = defaultSecondaryClasses(true);
 function defaultPrimaryClasses(active) {
     return classNames({
-        'f6 link dim br3 ba bw1 ph3 pv2 mb2 dib white': true,
-        'bg-blue b--blue pointer': active,
-        'bg-mid-gray b--mid-grey ': !active
+        'o-button o-button--primary': true,
+        'o-button--active': active,
+        'o-button--disabled ': !active
     });
 }
 function defaultSecondaryClasses(active) {
     return classNames({
-        'f6 link dim br3 ba bw1 ph3 pv2 mb2 dib': true,
-        'bg-white blue b--blue pointer ': active,
-        'bg-light-gray b--mid-gray mid-gray ': !active
+        'o-button o-button--secondary': true,
+        'o-button--active': active,
+        'o-button--disabled ': !active
     });
 }
 function restOp(props) {
