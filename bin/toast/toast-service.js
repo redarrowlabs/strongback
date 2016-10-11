@@ -1,13 +1,12 @@
 "use strict";
-const react_s_alert_1 = require("react-s-alert");
-let infoFn = () => { throw new Error('No alert implementation'); };
-function defaultInfo(message) {
-    react_s_alert_1.default.info(message, {
-        position: 'bottom-right',
-        effect: 'flip'
-    });
-}
-exports.defaultInfo = defaultInfo;
+let infoFn = () => {
+    throw new Error(`
+        No toast implementation has been specified. To fix this:
+        A) call useDefaultImplementations
+        or
+        B) call setInfo to specify a toast function.
+        `);
+};
 function info(message) {
     infoFn(message);
 }

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { storiesOf, module } from '@kadira/storybook';
 
 import { Code } from './code';
-import { setInfo, defaultInfo } from '../toast/toast-service';
 import Alert from 'react-s-alert';
 
 storiesOf('Code', module)
@@ -10,9 +9,6 @@ storiesOf('Code', module)
         return <Code />
     })
     .add('toast', () => {
-        //Provide an implementation for toastin'
-        setInfo(defaultInfo);
-
         return <div><Code>{wilde}</Code><Alert /></div>
     })
     .add('language - c#', () => {

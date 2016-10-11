@@ -5,6 +5,9 @@ require('react-s-alert/dist/s-alert-css-effects/flip.css');
 require('react-select/dist/react-select.css');
 require('react-widgets/dist/css/react-widgets.css');
 
+const {useDefaultImplementations} = require('../src/defaults');
+useDefaultImplementations();
+
 function loadStories() {
   require('../src/button/button.story.tsx');
   require('../src/modal/modal.story.tsx');

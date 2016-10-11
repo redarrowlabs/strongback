@@ -1,14 +1,9 @@
-import Alert from 'react-s-alert';
-
-let infoFn: Function =
-    () => { throw new Error('No alert implementation'); }
-
-export function defaultInfo(message: string) {
-    Alert.info(message, {
-        position: 'bottom-right',
-        effect: 'flip'
-    });
-}
+let infoFn: Function = () => { throw new Error(`
+        No toast implementation has been specified. To fix this:
+        A) call useDefaultImplementations
+        or
+        B) call setInfo to specify a toast function.
+        `); }
 
 export function info(message: string) {
     infoFn(message);
