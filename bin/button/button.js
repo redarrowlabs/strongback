@@ -8,7 +8,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 const React = require("react");
-const halogen_1 = require("halogen");
+const loader_1 = require("../loader/loader");
 const classNames = require("classnames");
 class Button extends React.Component {
     constructor(props) { super(props); }
@@ -18,7 +18,7 @@ class Button extends React.Component {
         const buttonClass = getClasses(this.props);
         const disabled = loading || rest.disabled;
         const loader = loading
-            ? React.createElement(halogen_1.PulseLoader, { size: loaderSize, color: loaderColor })
+            ? React.createElement(loader_1.Loader, { size: loaderSize, color: loaderColor })
             : null;
         return React.createElement("button", __assign({ className: buttonClass }, rest, { disabled: disabled }),
             loader,

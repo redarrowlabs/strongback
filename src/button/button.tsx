@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PulseLoader } from 'halogen';
+import { Loader } from '../loader/loader';
 import * as classNames from 'classnames';
 
 export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
@@ -19,7 +19,7 @@ export class Button extends React.Component<IButtonProps, {}>{
         const buttonClass = getClasses(this.props);
         const disabled = loading || rest.disabled;
         const loader = loading
-            ? <PulseLoader
+            ? <Loader
                 size={loaderSize}
                 color={loaderColor} />
             : null
