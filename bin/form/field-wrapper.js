@@ -1,10 +1,19 @@
 "use strict";
-const React = require("react");
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var React = require("react");
 /** Wraps a field with a label and error message area. */
-class FieldWrapper extends React.Component {
-    render() {
-        const { fieldProps: { meta: { touched, error }, label, }, children, mode } = this.props;
-        const err = touched && error;
+var FieldWrapper = (function (_super) {
+    __extends(FieldWrapper, _super);
+    function FieldWrapper() {
+        _super.apply(this, arguments);
+    }
+    FieldWrapper.prototype.render = function () {
+        var _a = this.props, _b = _a.fieldProps, _c = _b.meta, touched = _c.touched, error = _c.error, label = _b.label, children = _a.children, mode = _a.mode;
+        var err = touched && error;
         //For multiple inputs in children
         if (mode === "no-wrap") {
             return React.createElement("div", null,
@@ -18,7 +27,8 @@ class FieldWrapper extends React.Component {
                 React.createElement("div", null, label),
                 children),
             React.createElement("div", null, err));
-    }
-}
+    };
+    return FieldWrapper;
+}(React.Component));
 exports.FieldWrapper = FieldWrapper;
 //# sourceMappingURL=field-wrapper.js.map

@@ -1,9 +1,9 @@
 "use strict";
-const React = require("react");
-const redux_form_1 = require("redux-form");
-const field_wrapper_1 = require("./field-wrapper");
+var React = require("react");
+var redux_form_1 = require("redux-form");
+var field_wrapper_1 = require("./field-wrapper");
 function NumberFieldStateless(props) {
-    const { input: { value, onChange, onBlur, onFocus } } = props;
+    var _a = props.input, value = _a.value, onChange = _a.onChange, onBlur = _a.onBlur, onFocus = _a.onFocus;
     return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props },
         React.createElement("input", { type: "text", value: value, onChange: onChange, onBlur: onBlur, onFocus: onFocus }));
 }
@@ -16,7 +16,7 @@ exports.NumberField = NumberField;
  * Expression to match numbers as they are typed
  * Allowed: '-', '-1', '-1.', '-1.2'
  */
-const typableNumbers = /^[-|\d|\.]\d*\.?\d*$/;
+var typableNumbers = /^[-|\d|\.]\d*\.?\d*$/;
 function normalize(value, previous) {
     if (value == '') {
         return '';

@@ -1,10 +1,10 @@
 "use strict";
-const loader_1 = require("./loader/loader");
-const halogen_1 = require("halogen");
-const toast_service_1 = require("./toast/toast-service");
-const react_s_alert_1 = require("react-s-alert");
+var loader_1 = require("./loader/loader");
+var halogen_1 = require("halogen");
+var toast_service_1 = require("./toast/toast-service");
+var react_s_alert_1 = require("react-s-alert");
 function defaultInfo(message) {
-    react_s_alert_1.default.info(message, {
+    react_s_alert_1["default"].info(message, {
         position: 'bottom-right',
         effect: 'flip'
     });

@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es2015",
+        "target": "es3",
         "moduleResolution": "node",
         "baseUrl": "src",
         "outDir": "bin",
@@ -14,7 +14,12 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noImplicitReturns": false,
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "lib": [
+            "es5",
+            "dom",
+            "es2015"
+        ]
     },
     "compileOnSave": true,
     "exclude": [

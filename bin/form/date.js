@@ -1,29 +1,36 @@
 "use strict";
-const React = require("react");
-const redux_form_1 = require("redux-form");
-const field_wrapper_1 = require("./field-wrapper");
-class DateFieldStateless extends React.Component {
-    constructor(props) {
-        super(props);
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var React = require("react");
+var redux_form_1 = require("redux-form");
+var field_wrapper_1 = require("./field-wrapper");
+var DateFieldStateless = (function (_super) {
+    __extends(DateFieldStateless, _super);
+    function DateFieldStateless(props) {
+        _super.call(this, props);
         this.handleChange = this.handleChange.bind(this);
     }
-    render() {
-        const { input: { value, onBlur, onFocus } } = this.props;
+    DateFieldStateless.prototype.render = function () {
+        var _a = this.props.input, value = _a.value, onBlur = _a.onBlur, onFocus = _a.onFocus;
         return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: this.props },
             React.createElement("input", { type: "date", value: value, onChange: this.handleChange, onBlur: onBlur, onFocus: onFocus }));
-    }
-    handleChange(e) {
-        const eventValue = e.target.value;
-        let value = '';
+    };
+    DateFieldStateless.prototype.handleChange = function (e) {
+        var eventValue = e.target.value;
+        var value = '';
         //limit years to 4 digits
         if (eventValue !== '') {
-            const arr = eventValue.split('-');
+            var arr = eventValue.split('-');
             arr[0] = arr[0].substr(0, 4);
             value = arr.join('-');
         }
         this.props.input.onChange(value);
-    }
-}
+    };
+    return DateFieldStateless;
+}(React.Component));
 exports.DateFieldStateless = DateFieldStateless;
 function DateField(props) {
     return React.createElement(redux_form_1.Field, { name: props.name, component: DateFieldStateless, label: props.label });

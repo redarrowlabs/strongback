@@ -29,6 +29,6 @@ var defaults_1 = require("./defaults");
 exports.useDefaultImplementations = defaults_1.useDefaultImplementations;
 var loader_1 = require("./loader/loader");
 exports.setLoader = loader_1.setLoader;
-const ToastSvc = require("./toast/toast-service");
+var ToastSvc = require("./toast/toast-service");
 exports.Toast = ToastSvc;
 //# sourceMappingURL=index.js.map
