@@ -1,15 +1,15 @@
 import * as React from 'react';
 import * as ReactSelect from 'react-select';
-import { IField, IFieldComponent } from './fields';
 import { Field } from 'redux-form';
-import { FieldWrapper } from './field-wrapper';
 import { debounce } from 'lodash';
+import { FieldWrapper } from './field-wrapper';
+import { IField, IFieldComponent } from './fields';
 
 export interface SearchNSelectStatelessProps extends IFieldComponent<any> {
-    label: string,
-    options: any[],
-    onSearch(search: string): void,
-    isLoading: boolean
+    label: string;
+    options: any[];
+    isLoading: boolean;
+    onSearch(search: string): void;
 }
 
 export function SearchNSelectStateless(props: SearchNSelectStatelessProps) {
@@ -18,11 +18,11 @@ export function SearchNSelectStateless(props: SearchNSelectStatelessProps) {
             value,
             onChange,
             onBlur,
-            onFocus
+            onFocus,
         },
         options,
         onSearch,
-        isLoading
+        isLoading,
     } = props;
 
     return <FieldWrapper fieldProps={props}>
@@ -36,30 +36,30 @@ export function SearchNSelectStateless(props: SearchNSelectStatelessProps) {
             filterOptions={identity}
             isLoading={isLoading}
             />
-    </FieldWrapper>
+    </FieldWrapper>;
 }
 
 export interface SearchNSelectProps extends IField {
-    onSearch(search: string): Promise<any>
+    onSearch(search: string): Promise<any>;
 }
 
 export interface SearchNSelectState {
-    options: any[]
-    isLoading: boolean
+    options: any[];
+    isLoading: boolean;
 }
 
 const initialState: SearchNSelectState = {
     options: [],
-    isLoading: false
-}
+    isLoading: false,
+};
 
 /**
  * Search-n-select is used to pick a value from a remote service.
  */
-export class SearchNSelect extends React.Component<SearchNSelectProps, SearchNSelectState>{
+export class SearchNSelect extends React.Component<SearchNSelectProps, SearchNSelectState> {
     constructor(props: SearchNSelectProps) {
         super(props);
-        this.state = initialState
+        this.state = initialState;
         this.handleSearch = this.handleSearch.bind(this);
         this.debouncedSearch = debounce(this.handleSearch, 200);
     }
@@ -72,24 +72,23 @@ export class SearchNSelect extends React.Component<SearchNSelectProps, SearchNSe
             onSearch={this.debouncedSearch}
             options={this.state.options}
             isLoading={this.state.isLoading}
-            />
+            />;
     }
 
-    async debouncedSearch(_: string) { }
+    async debouncedSearch(_: string) { /* will bind */ }
     async handleSearch(search: string) {
         console.log(search);
 
         this.setState({
-            isLoading: true
+            isLoading: true,
         } as any, async () => {
             const results = await this.props.onSearch(search);
 
             this.setState({
                 options: results,
-                isLoading: false
-            })
+                isLoading: false,
+            });
         });
-
 
     }
 }

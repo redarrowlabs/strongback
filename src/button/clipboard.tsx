@@ -5,8 +5,8 @@ import * as React from 'react';
 const AnyClipboard = ReactClipboard as any;
 
 export interface IClipboardProps {
-    text: string
-    onCopy(): void
+    text: string;
+    onCopy(): void;
 }
 
 export function Clipboard(props: IClipboardProps) {

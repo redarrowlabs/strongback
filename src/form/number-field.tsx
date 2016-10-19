@@ -9,7 +9,7 @@ import { FieldWrapper } from './field-wrapper';
 // https://jquense.github.io/react-widgets/docs/#/numberpicker
 
 export interface NumberFieldProps extends IFieldComponent<string> {
-    label: string
+    label: string;
 }
 
 export function NumberFieldStateless(props: NumberFieldProps) {
@@ -18,19 +18,19 @@ export function NumberFieldStateless(props: NumberFieldProps) {
             value,
             onChange,
             onBlur,
-            onFocus
-        }
+            onFocus,
+        },
     } = props;
 
     return <FieldWrapper fieldProps={props}>
         <input
-            type="text"
+            type='text'
             value={value}
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}
             />
-    </FieldWrapper>
+    </FieldWrapper>;
 }
 
 export function NumberField(props: IField) {
@@ -39,17 +39,17 @@ export function NumberField(props: IField) {
         component={NumberFieldStateless}
         normalize={normalize}
         label={props.label}
-        />
+        />;
 }
 
 /** 
  * Expression to match numbers as they are typed
  * Allowed: '-', '-1', '-1.', '-1.2'
  */
-const typableNumbers = /^[-|\d|\.]\d*\.?\d*$/
+const typableNumbers = /^[-|\d|\.]\d*\.?\d*$/;
 function normalize(value: string, previous: string) {
-    if (value == '') {
-        return ''
+    if (value === '') {
+        return '';
     }
 
     if (typableNumbers.test(value)) {

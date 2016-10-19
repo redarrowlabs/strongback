@@ -1,9 +1,10 @@
+/* tslint:disable max-line-length */
 import * as React from 'react';
 import { LocalDateTime, DateTimeFormatter } from 'js-joda';
 
 export interface LocalDateTimeViewProps {
-    date: string
-    pattern?: string
+    date: string;
+    pattern?: string;
 }
 
 /**

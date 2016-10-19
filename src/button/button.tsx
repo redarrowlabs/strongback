@@ -3,16 +3,16 @@ import { Loader } from '../loader/loader';
 import * as classNames from 'classnames';
 
 export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
-    loading?: boolean,
-    variant?: "primary" | "secondary"
+    loading?: boolean;
+    variant?: 'primary' | 'secondary';
 }
 
-export class Button extends React.Component<IButtonProps, {}>{
+export class Button extends React.Component<IButtonProps, {}> {
     constructor(props: IButtonProps) { super(props); }
     render() {
         const {
             children,
-            loading = false
+            loading = false,
         } = this.props;
         const rest = restOp(this.props);
 
@@ -22,7 +22,7 @@ export class Button extends React.Component<IButtonProps, {}>{
             ? <Loader
                 size={loaderSize}
                 color={loaderColor} />
-            : null
+            : null;
 
         return <button
             className={buttonClass}
@@ -30,20 +30,20 @@ export class Button extends React.Component<IButtonProps, {}>{
             disabled={disabled}>
             {loader}
             {children}
-        </button>
+        </button>;
     }
 }
 
 function getClasses(props: IButtonProps) {
-    if (props.variant === "secondary") {
-        if (props.loading) { return secondLoadingClass }
-        if (props.disabled) { return secondInactiveClass }
-        return secondActiveClass
+    if (props.variant === 'secondary') {
+        if (props.loading) { return secondLoadingClass; }
+        if (props.disabled) { return secondInactiveClass; }
+        return secondActiveClass;
     }
 
-    if (props.loading) { return loadingClass }
-    if (props.disabled) { return inactiveClass }
-    return activeClass
+    if (props.loading) { return loadingClass; }
+    if (props.disabled) { return inactiveClass; }
+    return activeClass;
 }
 
 //TODO provide customization options
@@ -60,16 +60,16 @@ function defaultPrimaryClasses(active: boolean): string {
     return classNames({
         'o-button o-button--primary': true,
         'o-button--active': active,
-        'o-button--disabled ': !active
-    })
+        'o-button--disabled ': !active,
+    });
 }
 
 function defaultSecondaryClasses(active: boolean): string {
     return classNames({
         'o-button o-button--secondary': true,
         'o-button--active': active,
-        'o-button--disabled ': !active
-    })
+        'o-button--disabled ': !active,
+    });
 }
 
 function restOp(props: IButtonProps): React.HTMLProps<HTMLButtonElement> {
@@ -82,4 +82,3 @@ function restOp(props: IButtonProps): React.HTMLProps<HTMLButtonElement> {
     delete p.variant;
     return p;
 }
-

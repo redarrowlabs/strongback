@@ -5,8 +5,8 @@ import { Field } from 'redux-form';
 import { FieldWrapper } from './field-wrapper';
 
 export interface RadioStatelessProps extends IFieldComponent<any> {
-    label: string,
-    options: any[],
+    label: string;
+    options: any[];
 }
 
 export function RadioStateless(props: RadioStatelessProps) {
@@ -18,7 +18,7 @@ export function RadioStateless(props: RadioStatelessProps) {
         options,
     } = props;
 
-    return <FieldWrapper fieldProps={props} mode="no-wrap">
+    return <FieldWrapper fieldProps={props} mode='no-wrap'>
         <SelectList
             data={options}
             value={value}
@@ -26,17 +26,17 @@ export function RadioStateless(props: RadioStatelessProps) {
             valueField='value'
             textField='label'
             />
-    </FieldWrapper>
+    </FieldWrapper>;
 }
 
 export interface RadioProps extends IField {
-    options: any[]
+    options: any[];
 }
 
 /**
  * Radio is used to pick a single from a known set of options.
  */
-export class Radio extends React.Component<RadioProps, {}>{
+export class Radio extends React.Component<RadioProps, {}> {
     constructor(props: RadioProps) {
         super(props);
     }
@@ -47,6 +47,6 @@ export class Radio extends React.Component<RadioProps, {}>{
             component={RadioStateless}
             label={this.props.label}
             options={this.props.options}
-            />
+            />;
     }
 }

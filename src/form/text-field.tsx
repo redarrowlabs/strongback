@@ -4,8 +4,8 @@ import { Field } from 'redux-form';
 import { FieldWrapper } from './field-wrapper';
 
 export interface TextFieldStatelessProps extends IFieldComponent<string> {
-    autoComplete: "on" | "off",
-    label: string
+    autoComplete: 'on' | 'off';
+    label: string;
 }
 
 export function TextFieldStateless(props: TextFieldStatelessProps) {
@@ -14,32 +14,32 @@ export function TextFieldStateless(props: TextFieldStatelessProps) {
             value,
             onChange,
             onBlur,
-            onFocus
+            onFocus,
         },
-        autoComplete
+        autoComplete,
     } = props;
 
     return <FieldWrapper fieldProps={props}>
         <input
-            type="text"
+            type='text'
             value={value}
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}
             autoComplete={autoComplete}
             />
-    </FieldWrapper>
+    </FieldWrapper>;
 }
 
 export interface TextFieldProps extends IField {
-    autoComplete?: "on" | "off"
+    autoComplete?: 'on' | 'off';
 }
 
 export function TextField(props: TextFieldProps) {
     return <Field
         name={props.name}
         component={TextFieldStateless}
-        autoComplete={props.autoComplete || "off"}
+        autoComplete={props.autoComplete || 'off'}
         label={props.label}
-        />
+        />;
 }

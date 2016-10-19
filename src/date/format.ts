@@ -5,5 +5,5 @@ export function format(isoDate: string, pattern: string = 'MM/dd/yyyy'): string 
     //so we can default to system date format.
     const formatter = DateTimeFormatter.ofPattern(pattern);
     const formattedDate = LocalDate.parse(isoDate).format(formatter);
-    return formattedDate
+    return formattedDate;
 }

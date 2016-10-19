@@ -5,8 +5,8 @@ import { Field } from 'redux-form';
 import { FieldWrapper } from './field-wrapper';
 
 export interface SelectStatelessProps extends IFieldComponent<any> {
-    label: string,
-    options: any[],
+    label: string;
+    options: any[];
 }
 
 export function SelectStateless(props: SelectStatelessProps) {
@@ -15,7 +15,7 @@ export function SelectStateless(props: SelectStatelessProps) {
             value,
             onChange,
             onBlur,
-            onFocus
+            onFocus,
         },
         options,
     } = props;
@@ -28,17 +28,17 @@ export function SelectStateless(props: SelectStatelessProps) {
             onBlur={() => onBlur(value)}
             onFocus={onFocus}
             />
-    </FieldWrapper>
+    </FieldWrapper>;
 }
 
 export interface SelectProps extends IField {
-    options: any[]
+    options: any[];
 }
 
 /**
  * Select is used to pick a value from a known set of options.
  */
-export class Select extends React.Component<SelectProps, {}>{
+export class Select extends React.Component<SelectProps, {}> {
     constructor(props: SelectProps) {
         super(props);
     }
@@ -49,6 +49,6 @@ export class Select extends React.Component<SelectProps, {}>{
             component={SelectStateless}
             label={this.props.label}
             options={this.props.options}
-            />
+            />;
     }
 }

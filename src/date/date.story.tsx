@@ -6,17 +6,16 @@ import { LocalDateTimeView } from './local-date-time-view';
 
 storiesOf('Date', module)
     .add('empty', () => {
-        return <LocalDateView date='' />
+        return <LocalDateView date='' />;
     })
     .add('ideal', () => {
-        return <LocalDateView date='2016-06-06' />
-    })
+        return <LocalDateView date='2016-06-06' />;
+    });
 
 storiesOf('DateTime', module)
     .add('empty', () => {
-        return <LocalDateTimeView date='' />
+        return <LocalDateTimeView date='' />;
     })
     .add('ideal', () => {
-        return <LocalDateTimeView date='2016-06-06T08:15:00Z' />
-    })
-
+        return <LocalDateTimeView date='2016-06-06T08:15:00Z' />;
+    });

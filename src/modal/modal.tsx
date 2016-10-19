@@ -2,19 +2,19 @@ import * as React from 'react';
 import ReactModal = require('react-modal');
 
 export interface IModalProps {
-    isOpen: boolean
-    header: JSX.Element
-    footer: JSX.Element
+    isOpen: boolean;
+    header: JSX.Element;
+    footer: JSX.Element;
 }
 
-export class Modal extends React.Component<IModalProps, {}>{
+export class Modal extends React.Component<IModalProps, {}> {
     constructor(props: IModalProps) { super(props); }
-    render() {
+    public render() {
         const {
             isOpen,
             header,
             children,
-            footer
+            footer,
         } = this.props;
 
         //className="sb-modal"
@@ -23,9 +23,9 @@ export class Modal extends React.Component<IModalProps, {}>{
         return <ReactModal
             isOpen={isOpen}
             shouldCloseOnOverlayClick={false}>
-            <div className="sb-modal__header">{header}</div>
-            <div className="sb-modal__body">{children}</div>
-            <div className="sb-modal__footer">{footer}</div>
-        </ReactModal>
+            <div className='sb-modal__header'>{header}</div>
+            <div className='sb-modal__body'>{children}</div>
+            <div className='sb-modal__footer'>{footer}</div>
+        </ReactModal>;
     }
 }

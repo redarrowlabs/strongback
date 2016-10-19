@@ -4,7 +4,7 @@ import { Field } from 'redux-form';
 import { FieldWrapper } from './field-wrapper';
 
 export interface DateFieldStatelessProps extends IFieldComponent<string> {
-    label: string
+    label: string;
 }
 
 export class DateFieldStateless extends React.Component<DateFieldStatelessProps, {}> {
@@ -18,19 +18,19 @@ export class DateFieldStateless extends React.Component<DateFieldStatelessProps,
             input: {
                 value,
                 onBlur,
-                onFocus
-            }
+                onFocus,
+            },
         } = this.props;
 
         return <FieldWrapper fieldProps={this.props}>
             <input
-                type="date"
+                type='date'
                 value={value}
                 onChange={this.handleChange}
                 onBlur={onBlur}
                 onFocus={onFocus}
                 />
-        </FieldWrapper>
+        </FieldWrapper>;
 
     }
 
@@ -55,5 +55,5 @@ export function DateField(props: IField) {
         name={props.name}
         component={DateFieldStateless}
         label={props.label}
-        />
+        />;
 }

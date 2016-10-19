@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 export interface IField {
-    name: string
-    label: string
+    name: string;
+    label: string;
 }
 
 export interface IFieldComponent<T> {
@@ -11,7 +11,7 @@ export interface IFieldComponent<T> {
         onChange(value: React.SyntheticEvent<any> | T): void
         onBlur(value: React.SyntheticEvent<any>): void
         onFocus(value: React.SyntheticEvent<any>): void
-    },
+    };
     meta: {
         active: boolean
         asyncValidating: boolean
@@ -24,5 +24,5 @@ export interface IFieldComponent<T> {
         touched: boolean
         valid: boolean
         visited: boolean
-    }
+    };
 }

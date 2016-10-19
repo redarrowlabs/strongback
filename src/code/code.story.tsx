@@ -1,3 +1,5 @@
+/* tslint:disable max-line-length */
+
 import * as React from 'react';
 import { storiesOf, module } from '@kadira/storybook';
 
@@ -6,20 +8,20 @@ import Alert from 'react-s-alert';
 
 storiesOf('Code', module)
     .add('empty', () => {
-        return <Code />
+        return <Code />;
     })
     .add('toast', () => {
-        return <div><Code>{wilde}</Code><Alert /></div>
+        return <div><Code>{wilde}</Code><Alert /></div>;
     })
     .add('language - c#', () => {
         return <div>
-            <Code language="cs">{csharp}</Code>
-            <Code language="cs">{ex}</Code>
-        </div>
+            <Code language='cs'>{csharp}</Code>
+            <Code language='cs'>{ex}</Code>
+        </div>;
     })
     .add('language - js', () => {
-        return <Code>{js}</Code>
-    })
+        return <Code>{js}</Code>;
+    });
 
 const wilde = 'Some cause happiness wherever they go; others whenever they go. - O. Wilde';
 

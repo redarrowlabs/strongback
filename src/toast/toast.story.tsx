@@ -8,11 +8,11 @@ import Alert from 'react-s-alert';
 storiesOf('Toast', module)
     .add('example', () => {
         const handleClick = () => {
-            info('Great job!')
-        }
+            info('Great job!');
+        };
 
         return <div>
             <Button onClick={handleClick}>Click</Button>
             <Alert />
-        </div>
-    })
+        </div>;
+    });

@@ -2,8 +2,8 @@ import * as React from 'react';
 import { format } from './format';
 
 export interface LocalDateViewProps {
-    date: string,
-    pattern?: string
+    date: string;
+    pattern?: string;
 }
 
 /**

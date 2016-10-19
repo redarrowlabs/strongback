@@ -5,8 +5,8 @@ import { Field } from 'redux-form';
 import { FieldWrapper } from './field-wrapper';
 
 export interface CheckboxStatelessProps extends IFieldComponent<any> {
-    label: string,
-    options: any[],
+    label: string;
+    options: any[];
 }
 
 export function CheckboxStateless(props: CheckboxStatelessProps) {
@@ -18,7 +18,7 @@ export function CheckboxStateless(props: CheckboxStatelessProps) {
         options,
     } = props;
 
-    return <FieldWrapper fieldProps={props} mode="no-wrap">
+    return <FieldWrapper fieldProps={props} mode='no-wrap'>
         <SelectList
             data={options}
             value={value}
@@ -27,17 +27,17 @@ export function CheckboxStateless(props: CheckboxStatelessProps) {
             valueField='value'
             textField='label'
             />
-    </FieldWrapper>
+    </FieldWrapper>;
 }
 
 export interface CheckboxProps extends IField {
-    options: any[]
+    options: any[];
 }
 
 /**
  * Checkbox is used to pick multiple values from a known set of options.
  */
-export class Checkbox extends React.Component<CheckboxProps, {}>{
+export class Checkbox extends React.Component<CheckboxProps, {}> {
     constructor(props: CheckboxProps) {
         super(props);
     }
@@ -48,6 +48,6 @@ export class Checkbox extends React.Component<CheckboxProps, {}>{
             component={CheckboxStateless}
             label={this.props.label}
             options={this.props.options}
-            />
+            />;
     }
 }

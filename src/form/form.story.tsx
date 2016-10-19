@@ -2,14 +2,14 @@ import * as React from 'react';
 import { storiesOf, action, module } from '@kadira/storybook';
 import { combineReducers, createStore } from 'redux';
 import { reducer as formReducer, SubmissionError, reduxForm } from 'redux-form';
-import { Provider, connect } from 'react-redux'
+import { Provider, connect } from 'react-redux';
 
 import { Button } from '../button/button';
 
-import { Form, IForm } from './form'
-import { TextField } from './text-field'
-import { NumberField } from './number-field'
-import { SearchNSelect } from './search-n-select'
+import { Form, IForm } from './form';
+import { TextField } from './text-field';
+import { NumberField } from './number-field';
+import { SearchNSelect } from './search-n-select';
 import { Select } from './select';
 import { Radio } from './radio';
 import { Checkbox } from './checkbox';
@@ -22,22 +22,22 @@ storiesOf('Form', module)
                 <SampleForm
                     onValidSubmit={action('submit')}
                     onInvalidSubmit={action('invalid')} />
-                <Button type="button" onClick={loadData}>Load Record</Button>
+                <Button type='button' onClick={loadData}>Load Record</Button>
             </div>
-        </Provider>
-    })
+        </Provider>;
+    });
 
 interface SampleFormProps extends IForm {
-    onValidSubmit(values: SampleFormValues): void
-    onInvalidSubmit(values: SampleFormValues, errors: Object): void
+    onValidSubmit(values: SampleFormValues): void;
+    onInvalidSubmit(values: SampleFormValues, errors: Object): void;
 }
 
 interface SampleFormValues {
-    text: string
-    number: string
+    text: string;
+    number: string;
 }
 
-class SampleFormStateless extends React.Component<SampleFormProps, {}>{
+class SampleFormStateless extends React.Component<SampleFormProps, {}> {
     constructor(props: any) {
         super(props);
         this.validate = this.validate.bind(this);
@@ -47,40 +47,40 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}>{
     render() {
         return <Form {...this.props} submitValidation={this.validate}>
             <TextField
-                name="text"
-                label="Text" />
+                name='text'
+                label='Text' />
             <NumberField
-                name="number"
-                label="Number" />
+                name='number'
+                label='Number' />
             <Select
-                name="select"
-                label="Select"
+                name='select'
+                label='Select'
                 options={[
                     { label: 'One', value: 'one' },
-                    { label: 'Two', value: 'two' }
+                    { label: 'Two', value: 'two' },
                 ]} />
             <SearchNSelect
-                name="search"
-                label="Search n' Select"
+                name='search'
+                label={`Search n' Select`}
                 onSearch={this.searchRemote} />
             <Radio
-                name="radio"
-                label="Radio"
+                name='radio'
+                label='Radio'
                 options={[
                     { label: 'Hamburger', value: 'burg' },
                     { label: 'Brat', value: 'brat' },
-                    { label: 'Veggie Patty', value: 'patty' }
+                    { label: 'Veggie Patty', value: 'patty' },
                 ]} />
             <Checkbox
-                name="checkbox"
-                label="Checkbox"
+                name='checkbox'
+                label='Checkbox'
                 options={[
                     { label: 'Cheese', value: 'cheese' },
                     { label: 'Onion', value: 'onion' },
-                    { label: 'Tomato', value: 'tomato' }
+                    { label: 'Tomato', value: 'tomato' },
                 ]} />
-            <DateField name="date" label="Date" />
-        </Form>
+            <DateField name='date' label='Date' />
+        </Form>;
     }
 
     async validate(values: SampleFormValues) {
@@ -90,16 +90,16 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}>{
         //Parse server errors or perform local validation.
         let errors: any = {};
         if (values.text && values.text === values.text.toLocaleUpperCase()) {
-            errors['text'] = "No yelling"
+            errors.text = 'No yelling';
         }
 
         if (values.number && isNaN(parseFloat(values.number))) {
-            errors['number'] = "Not a number"
+            errors.number = 'Not a number';
         }
 
         if (!isEmpty(errors)) {
-            this.props.onInvalidSubmit(values, errors)
-            throw new SubmissionError(errors)
+            this.props.onInvalidSubmit(values, errors);
+            throw new SubmissionError(errors);
         }
 
         this.props.onValidSubmit(values);
@@ -110,7 +110,7 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}>{
         await delay(randomBetween(200, 2000));
 
         const filter = (x: { label: string, value: string }) =>
-            x.label.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) !== -1
+            x.label.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) !== -1;
 
         return [
             { label: 'Red', value: 'red' },
@@ -126,14 +126,14 @@ const initialData = {
     select: '',
     search: '',
     radio: '',
-    checkbox: []
-}
+    checkbox: [],
+};
 
 const AppStore = makeStore();
 
 const stateToProps = (state: any) => ({
-    initialValues: state.data
-})
+    initialValues: state.data,
+});
 
 //TODO this is mighty complicated, with no typing...
 //Connect the stateless form to the Store and redux-forms internals.
@@ -141,9 +141,8 @@ const SampleForm = connect(
     stateToProps
 )(reduxForm({
     form: 'strongback-example',
-    enableReinitialize: true
+    enableReinitialize: true,
 })(SampleFormStateless)) as React.ComponentClass<any>;
-
 
 /**
  * Combine reducers from redux form and an app specific one.
@@ -152,8 +151,8 @@ const SampleForm = connect(
 function makeStore() {
     const reducers = {
         data: dataReducer,
-        form: formReducer
-    }
+        form: formReducer,
+    };
 
     const win = (window as any);
     const devtools = win.devToolsExtension
@@ -171,20 +170,21 @@ function dataReducer(state = initialData, action: any) {
             return {
                 text: action.data.text,
                 number: action.data.number,
-                select: action.data.select
-            }
+                select: action.data.select,
+            };
+        default:
+            return state;
     }
 
-    return state;
 }
 
 /** Simulate get response from server */
 async function loadData() {
-    await delay(randomBetween(200, 2000))
+    await delay(randomBetween(200, 2000));
 
     AppStore.dispatch({
         type: LOAD_DATA_SUCCESS,
-        data: { text: 'World', number: '321', select: 'one' }
+        data: { text: 'World', number: '321', select: 'one' },
     });
 }
 

@@ -5,10 +5,10 @@ import { info } from '../toast/toast-service';
 import { Clipboard } from '../button/clipboard';
 
 export interface ICodeProps {
-    language?: 'javascript' | 'cs'
+    language?: 'javascript' | 'cs';
 }
 
-export class Code extends React.Component<ICodeProps, {}>{
+export class Code extends React.Component<ICodeProps, {}> {
     constructor(props: ICodeProps) {
         super(props);
         this.handleCopy = this.handleCopy.bind(this);
@@ -16,7 +16,7 @@ export class Code extends React.Component<ICodeProps, {}>{
     render() {
         const {
             language = 'javascript',
-            children = ''
+            children = '',
         } = this.props;
 
         const code = children as string;
@@ -26,14 +26,14 @@ export class Code extends React.Component<ICodeProps, {}>{
                 text={code}
                 onCopy={this.handleCopy}
                 >copy</Clipboard>
-            : null
+            : null;
 
         return <div>
             <Highlight language={language} style={tomorrowNight}>
                 {code || '[nothing]'}
             </Highlight>
             {copy}
-        </div>
+        </div>;
     }
 
     handleCopy() {

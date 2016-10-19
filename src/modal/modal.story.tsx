@@ -9,7 +9,7 @@ storiesOf('Modal', module)
         const header = <h1>Modals</h1>;
         const footer = <div>
             <Button onClick={action('save')}>Save</Button>
-            <Button onClick={action('cancel')} variant="secondary">Cancel</Button>
+            <Button onClick={action('cancel')} variant='secondary'>Cancel</Button>
         </div>;
 
         return <div>
@@ -24,13 +24,13 @@ storiesOf('Modal', module)
                     <li tabIndex={0}>Accessible</li>
                 </ol>
             </Modal>
-        </div>
+        </div>;
     })
     .add('behavior', () => {
-        return <ModalExample />
-    })
+        return <ModalExample />;
+    });
 
-class ModalExample extends React.Component<{}, any>{
+class ModalExample extends React.Component<{}, any> {
     constructor(props: {}) {
         super(props);
 
@@ -38,19 +38,19 @@ class ModalExample extends React.Component<{}, any>{
         this.handleClose = this.handleClose.bind(this);
 
         this.state = {
-            open: false
-        }
+            open: false,
+        };
     }
     render() {
-        const header = <h1>Warning</h1>
+        const header = <h1>Warning</h1>;
         const footer = <div>
             <Button onClick={this.handleClose}>
                 Fire!
             </Button>
-            <Button onClick={this.handleClose} variant="secondary">
+            <Button onClick={this.handleClose} variant='secondary'>
                 Maybe not...
             </Button>
-        </div>
+        </div>;
 
         return <div>
             <Button
@@ -64,22 +64,22 @@ class ModalExample extends React.Component<{}, any>{
                 footer={footer} >
                 Are you sure you want to fire the missles?
             </Modal>
-        </div>
+        </div>;
     }
 
     handleOpen(...args: any[]) {
         action('click')(...args);
 
         this.setState({
-            open: true
-        })
+            open: true,
+        });
     }
 
     handleClose(...args: any[]) {
         action('click')(...args);
 
         this.setState({
-            open: false
-        })
+            open: false,
+        });
     }
 }
