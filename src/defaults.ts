@@ -1,10 +1,14 @@
+// This file conditionally requires dependencies.
+// This is because run-on-require code in some
+// third party packages can cause older/odd browsers 
+// to break. If the caller is requesting the defaults,
+// assume modern support.
 import { setLoader } from './loader/loader'
-import { PulseLoader } from 'halogen'
-
 import { setInfo } from './toast/toast-service';
-import Alert from 'react-s-alert';
 
 function defaultInfo(message: string) {
+    const Alert = require('react-s-alert');
+
     Alert.info(message, {
         position: 'bottom-right',
         effect: 'flip'
@@ -17,6 +21,7 @@ function defaultInfo(message: string) {
  */
 export function useDefaultImplementations() {
     //Loading spinner
+    const {PulseLoader} = require('halogen')
     setLoader(PulseLoader);
 
     //Info toast
