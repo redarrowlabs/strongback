@@ -4,8 +4,8 @@ import { IField, IFieldComponent } from './fields';
 export interface SearchNSelectStatelessProps extends IFieldComponent<any> {
     label: string;
     options: any[];
-    onSearch(search: string): void;
     isLoading: boolean;
+    onSearch(search: string): void;
 }
 export declare function SearchNSelectStateless(props: SearchNSelectStatelessProps): JSX.Element;
 export interface SearchNSelectProps extends IField {

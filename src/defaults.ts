@@ -6,6 +6,8 @@
 import { setLoader } from './loader/loader';
 import { setInfo } from './toast/toast-service';
 
+declare var require: any;
+
 function defaultInfo(message: string) {
     const Alert = require('react-s-alert');
 

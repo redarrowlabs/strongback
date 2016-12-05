@@ -8,7 +8,7 @@ export interface FieldWrapperProps {
             error: string;
         };
     };
-    mode?: "no-wrap";
+    mode?: 'no-wrap';
 }
 /** Wraps a field with a label and error message area. */
 export declare class FieldWrapper extends React.Component<FieldWrapperProps, {}> {

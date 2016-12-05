@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { format } from './format';
+import { warn } from '../dev';
 
 export interface LocalDateViewProps {
     date: string;
@@ -11,14 +12,20 @@ export interface LocalDateViewProps {
  * specific timezone)
  */
 export function LocalDateView(props: LocalDateViewProps) {
-    if (!props.date) { return <time>-</time>; }
+    const empty = <time>-</time>;
+
+    if (!props.date) { return empty; }
 
     const isoDate = props.date.substring(0, 10);
     if (!isoDate) {
-        return <label>-</label>;
+        return empty;
     }
 
-    const formattedDate = format(isoDate);
-
-    return <time dateTime={isoDate}>{formattedDate}</time>;
+    try {
+        const formattedDate = format(isoDate);
+        return <time dateTime={isoDate}>{formattedDate}</time>;
+    } catch (e) {
+        warn(`Provided date was not in ISO8061 format (yyyy-MM-dd): ${props.date}`);
+        return empty;
+    }
 }

@@ -16,9 +16,9 @@ var Modal = (function (_super) {
         //className="sb-modal"
         //overlayClassName="sb-modal__overlay"
         return React.createElement(ReactModal, { isOpen: isOpen, shouldCloseOnOverlayClick: false },
-            React.createElement("div", { className: "sb-modal__header" }, header),
-            React.createElement("div", { className: "sb-modal__body" }, children),
-            React.createElement("div", { className: "sb-modal__footer" }, footer));
+            React.createElement("div", { className: 'sb-modal__header' }, header),
+            React.createElement("div", { className: 'sb-modal__body' }, children),
+            React.createElement("div", { className: 'sb-modal__footer' }, footer));
     };
     return Modal;
 }(React.Component));

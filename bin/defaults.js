@@ -9,8 +9,8 @@ var toast_service_1 = require("./toast/toast-service");
 function defaultInfo(message) {
     var Alert = require('react-s-alert');
     Alert.info(message, {
-        position: 'bottom-right',
-        effect: 'flip'
+        effect: 'flip',
+        position: 'bottom-right'
     });
 }
 /**
@@ -18,10 +18,10 @@ function defaultInfo(message) {
  * These can be overridden.
  */
 function useDefaultImplementations() {
-    //Loading spinner
+    // Loading spinner
     var PulseLoader = require('halogen').PulseLoader;
     loader_1.setLoader(PulseLoader);
-    //Info toast
+    // Info toast
     toast_service_1.setInfo(defaultInfo);
 }
 exports.useDefaultImplementations = useDefaultImplementations;
