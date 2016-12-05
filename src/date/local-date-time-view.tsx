@@ -1,6 +1,7 @@
 /* tslint:disable max-line-length */
 import * as React from 'react';
 import { LocalDateTime, DateTimeFormatter } from 'js-joda';
+import { warn } from '../dev';
 
 export interface LocalDateTimeViewProps {
     date: string;
@@ -12,11 +13,12 @@ export interface LocalDateTimeViewProps {
  * not tied to any specific timezone)
  */
 export function LocalDateTimeView(props: LocalDateTimeViewProps) {
-    if (!props.date) { return <time>-</time>; }
+    const empty = <time>-</time>;
+    if (!props.date) { return empty; }
 
     const isoDate = props.date.substring(0, 19);
     if (!isoDate) {
-        return <label>-</label>;
+        return empty;
     }
 
     //Control characters:
@@ -26,14 +28,20 @@ export function LocalDateTimeView(props: LocalDateTimeViewProps) {
     //so we can default to system date format.
     const pattern = props.pattern || 'MM/dd/yyyy h:mm';
     const formatter = DateTimeFormatter.ofPattern(pattern);
-    const localDate = LocalDateTime.parse(isoDate);
 
-    //In addition, AM/PM (a) can't be localized yet, so we'll
-    //do it here until joda supports that.
-    const ampm = localDate.hour() < 12 ? 'AM' : 'PM';
+    try {
+        const localDate = LocalDateTime.parse(isoDate);
 
-    const formattedDate = localDate.format(formatter);
-    const dateTime = `${formattedDate} ${ampm}`;
+        //In addition, AM/PM (a) can't be localized yet, so we'll
+        //do it here until joda supports that.
+        const ampm = localDate.hour() < 12 ? 'AM' : 'PM';
 
-    return <time dateTime={isoDate}>{dateTime}</time>;
+        const formattedDate = localDate.format(formatter);
+        const dateTime = `${formattedDate} ${ampm}`;
+
+        return <time dateTime={isoDate}>{dateTime}</time>;
+    } catch (e) {
+        warn(`Provided datetime was not in ISO8061 format (yyyy-MM-ddTHH:mm:ss): ${props.date}`);
+        return empty;
+    }
 }

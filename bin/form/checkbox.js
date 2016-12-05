@@ -10,7 +10,7 @@ var redux_form_1 = require("redux-form");
 var field_wrapper_1 = require("./field-wrapper");
 function CheckboxStateless(props) {
     var _a = props.input, value = _a.value, onChange = _a.onChange, options = props.options;
-    return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props, mode: "no-wrap" },
+    return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props, mode: 'no-wrap' },
         React.createElement(react_widgets_1.SelectList, { data: options, value: value, onChange: onChange, multiple: true, valueField: 'value', textField: 'label' }));
 }
 exports.CheckboxStateless = CheckboxStateless;

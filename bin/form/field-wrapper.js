@@ -15,7 +15,7 @@ var FieldWrapper = (function (_super) {
         var _a = this.props, _b = _a.fieldProps, _c = _b.meta, touched = _c.touched, error = _c.error, label = _b.label, children = _a.children, mode = _a.mode;
         var err = touched && error;
         //For multiple inputs in children
-        if (mode === "no-wrap") {
+        if (mode === 'no-wrap') {
             return React.createElement("div", null,
                 React.createElement("label", null,
                     React.createElement("div", null, label)),

@@ -36,7 +36,7 @@ var Button = (function (_super) {
 }(React.Component));
 exports.Button = Button;
 function getClasses(props) {
-    if (props.variant === "secondary") {
+    if (props.variant === 'secondary') {
         if (props.loading) {
             return secondLoadingClass;
         }

@@ -42,8 +42,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var React = require("react");
 var ReactSelect = require("react-select");
 var redux_form_1 = require("redux-form");
-var field_wrapper_1 = require("./field-wrapper");
 var lodash_1 = require("lodash");
+var field_wrapper_1 = require("./field-wrapper");
 function SearchNSelectStateless(props) {
     var _a = props.input, value = _a.value, onChange = _a.onChange, onBlur = _a.onBlur, onFocus = _a.onFocus, options = props.options, onSearch = props.onSearch, isLoading = props.isLoading;
     return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props },

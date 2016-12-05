@@ -16,7 +16,7 @@ var DateFieldStateless = (function (_super) {
     DateFieldStateless.prototype.render = function () {
         var _a = this.props.input, value = _a.value, onBlur = _a.onBlur, onFocus = _a.onFocus;
         return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: this.props },
-            React.createElement("input", { type: "date", value: value, onChange: this.handleChange, onBlur: onBlur, onFocus: onFocus }));
+            React.createElement("input", { type: 'date', value: value, onChange: this.handleChange, onBlur: onBlur, onFocus: onFocus }));
     };
     DateFieldStateless.prototype.handleChange = function (e) {
         var eventValue = e.target.value;
