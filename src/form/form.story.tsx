@@ -4,16 +4,18 @@ import { combineReducers, createStore } from 'redux';
 import { reducer as formReducer, SubmissionError, reduxForm } from 'redux-form';
 import { Provider, connect } from 'react-redux';
 
-import { Button } from '../button/button';
-
-import { Form, IForm } from './form';
-import { TextField } from './text-field';
-import { NumberField } from './number-field';
-import { SearchNSelect } from './search-n-select';
-import { Select } from './select';
-import { Radio } from './radio';
-import { Checkbox } from './checkbox';
-import { DateField } from './date';
+import {
+    Button,
+    Form,
+    IStrongbackForm,
+    TextField,
+    NumberField,
+    SearchNSelect,
+    Select,
+    Radio,
+    Checkbox,
+    DateField,
+} from '../index';
 
 storiesOf('Form', module)
     .add('Widgets', () => {
@@ -27,7 +29,7 @@ storiesOf('Form', module)
         </Provider>;
     });
 
-interface SampleFormProps extends IForm {
+interface SampleFormProps extends IStrongbackForm {
     onValidSubmit(values: SampleFormValues): void;
     onInvalidSubmit(values: SampleFormValues, errors: Object): void;
 }
@@ -40,12 +42,12 @@ interface SampleFormValues {
 class SampleFormStateless extends React.Component<SampleFormProps, {}> {
     constructor(props: any) {
         super(props);
-        this.validate = this.validate.bind(this);
+        this.myValidation = this.myValidation.bind(this);
         this.searchRemote = this.searchRemote.bind(this);
     }
 
     render() {
-        return <Form {...this.props} submitValidation={this.validate}>
+        return <Form {...this.props} onSubmit={this.myValidation}>
             <TextField
                 name='text'
                 label='Text' />
@@ -83,7 +85,7 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
         </Form>;
     }
 
-    async validate(values: SampleFormValues) {
+    async myValidation(values: SampleFormValues) {
         //Simulate talking to a server
         await delay(randomBetween(200, 2000));
 
@@ -97,6 +99,10 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
             errors.number = 'Not a number';
         }
 
+        // The onValidSubmit and onInvalidSubmit props
+        // are arbitrary and not a required part of the API -
+        // you could just as easily pass through the submit step
+        // without any validation.
         if (!isEmpty(errors)) {
             this.props.onInvalidSubmit(values, errors);
             throw new SubmissionError(errors);

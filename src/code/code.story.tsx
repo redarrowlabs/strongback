@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { storiesOf, module } from '@kadira/storybook';
 
-import { Code } from './code';
+import { Code } from '../index';
 import Alert from 'react-s-alert';
 
 storiesOf('Code', module)

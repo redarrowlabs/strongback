@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { storiesOf, action, module } from '@kadira/storybook';
 
-import { Modal } from './modal';
-import { Button } from '../button/button';
+import { Modal, Button } from '../index';
 
 storiesOf('Modal', module)
     .add('open', () => {
