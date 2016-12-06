@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { storiesOf, module } from '@kadira/storybook';
 
-import { LocalDateView } from './local-date-view';
-import { LocalDateTimeView } from './local-date-time-view';
+import { LocalDateView, LocalDateTimeView } from '../index';
 
 storiesOf('Date', module)
     .add('empty', () => {

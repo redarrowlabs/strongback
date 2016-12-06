@@ -6,14 +6,17 @@ import { Provider, connect } from 'react-redux';
 
 import { Button } from '../button/button';
 
-import { Form, IForm } from './form';
-import { TextField } from './text-field';
-import { NumberField } from './number-field';
-import { SearchNSelect } from './search-n-select';
-import { Select } from './select';
-import { Radio } from './radio';
-import { Checkbox } from './checkbox';
-import { DateField } from './date';
+import {
+    Form,
+    IForm,
+    TextField,
+    NumberField,
+    SearchNSelect,
+    Select,
+    Radio,
+    Checkbox,
+    DateField,
+} from '../index';
 
 storiesOf('Form', module)
     .add('Widgets', () => {

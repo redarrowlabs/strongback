@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { storiesOf, module } from '@kadira/storybook';
 
-import { Button } from '../button/button';
-import { info } from './toast-service';
+import { Button, Toast } from '../index';
 import Alert from 'react-s-alert';
 
 storiesOf('Toast', module)
     .add('example', () => {
         const handleClick = () => {
-            info('Great job!');
+            Toast.info('Great job!');
         };
 
         return <div>
