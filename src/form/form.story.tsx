@@ -4,9 +4,8 @@ import { combineReducers, createStore } from 'redux';
 import { reducer as formReducer, SubmissionError, reduxForm } from 'redux-form';
 import { Provider, connect } from 'react-redux';
 
-import { Button } from '../button/button';
-
 import {
+    Button,
     Form,
     IForm,
     TextField,
