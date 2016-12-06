@@ -7,7 +7,7 @@ import { Provider, connect } from 'react-redux';
 import {
     Button,
     Form,
-    IForm,
+    IStrongbackForm,
     TextField,
     NumberField,
     SearchNSelect,
@@ -29,7 +29,7 @@ storiesOf('Form', module)
         </Provider>;
     });
 
-interface SampleFormProps extends IForm {
+interface SampleFormProps extends IStrongbackForm {
     onValidSubmit(values: SampleFormValues): void;
     onInvalidSubmit(values: SampleFormValues, errors: Object): void;
 }
@@ -42,12 +42,12 @@ interface SampleFormValues {
 class SampleFormStateless extends React.Component<SampleFormProps, {}> {
     constructor(props: any) {
         super(props);
-        this.validate = this.validate.bind(this);
+        this.myValidation = this.myValidation.bind(this);
         this.searchRemote = this.searchRemote.bind(this);
     }
 
     render() {
-        return <Form {...this.props} submitValidation={this.validate}>
+        return <Form {...this.props} onSubmit={this.myValidation}>
             <TextField
                 name='text'
                 label='Text' />
@@ -85,7 +85,7 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
         </Form>;
     }
 
-    async validate(values: SampleFormValues) {
+    async myValidation(values: SampleFormValues) {
         //Simulate talking to a server
         await delay(randomBetween(200, 2000));
 
@@ -99,6 +99,10 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
             errors.number = 'Not a number';
         }
 
+        // The onValidSubmit and onInvalidSubmit props
+        // are arbitrary and not a required part of the API -
+        // you could just as easily pass through the submit step
+        // without any validation.
         if (!isEmpty(errors)) {
             this.props.onInvalidSubmit(values, errors);
             throw new SubmissionError(errors);
