@@ -14,7 +14,7 @@ var button_1 = require("../button/button");
 var Form = (function (_super) {
     __extends(Form, _super);
     function Form() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     Form.prototype.render = function () {
         var _a = this.props, handleSubmit = _a.handleSubmit, submitting = _a.submitting, pristine = _a.pristine, reset = _a.reset, valid = _a.valid;

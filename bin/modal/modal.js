@@ -9,7 +9,7 @@ var ReactModal = require("react-modal");
 var Modal = (function (_super) {
     __extends(Modal, _super);
     function Modal(props) {
-        _super.call(this, props);
+        return _super.call(this, props) || this;
     }
     Modal.prototype.render = function () {
         var _a = this.props, isOpen = _a.isOpen, header = _a.header, children = _a.children, footer = _a.footer;

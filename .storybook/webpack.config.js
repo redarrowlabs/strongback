@@ -1,43 +1,55 @@
+const genDefaultConfig = require('@kadira/storybook/dist/server/config/defaults/webpack.config.js');
+
+const tsConfig = JSON.stringify({
+    configFileName: 'tsconfig.storybook.json'
+});
+
 const typescript = {
     test: /\.tsx?$/,
-    exlcude: /(node_modules)/,
-    loaders: ['babel', 'ts-loader']
-}
+    exclude: /(node_modules)/,
+    loaders: ['babel', `ts-loader?${tsConfig}`]
+};
 
-const css = {
-    test: /\.css$/,
-    exlcude: /(node_modules)/,
-    loaders: ['style', 'css']
-}
 
+/** A loader to compile Sass files and inject them into a document. */
+const sass = {
+    test: /\.scss$/,
+    loaders: ['style-loader', 'css-loader', 'sass-loader']
+};
+
+/** Used to load font-awesome fonts. */
+const woff = {
+    test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+    loader: 'url-loader?mimetype=application/font-woff&name=/Scripts/app/[name].[ext]'
+};
+
+/** Used to load font-awesome fonts. */
+const icon = {
+    test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+    loader: 'url-loader?name=/Scripts/app/[name].[ext]'
+};
+
+/** Used to load images. */
 const gif = {
     test: /\.gif$/,
-    loader: 'url-loader?mimetype=image/png'
+    loader: 'url-loader?name=/Scripts/app/[name].[ext]'
+};
+
+const png = {
+    test: /\.png$/,
+    loader: 'file-loader'
 }
 
-const woff = {
-     test: /\.woff(2)?(\?v=[0-9].[0-9].[0-9])?$/, 
-     loader: "url-loader?mimetype=application/font-woff"
-}
+module.exports = function (config, env) {
+    const storybookDefaults = genDefaultConfig(config, env);
 
-const ttf = {
-    test: /\.(ttf|eot|svg)(\?v=[0-9].[0-9].[0-9])?$/, 
-    loader: "url-loader"
-}
+    const loaders = storybookDefaults.module
+        .loaders
+        .concat([typescript, sass]);
+    const extensions = storybookDefaults.resolve.extensions.concat(['.ts', '.tsx']);
 
-const webpackConfig = {
-    module: {
-        loaders: [
-            typescript,
-            css,
-            gif,
-            woff,
-            ttf
-        ]
-    },
-    resolve:{
-        extensions: ['', '.ts', '.tsx', '.js']
-    }
-}
+    storybookDefaults.module.loaders = loaders;
+    storybookDefaults.resolve.extensions = extensions;
 
-module.exports = webpackConfig
+    return storybookDefaults;
+}

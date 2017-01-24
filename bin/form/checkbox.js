@@ -20,7 +20,7 @@ exports.CheckboxStateless = CheckboxStateless;
 var Checkbox = (function (_super) {
     __extends(Checkbox, _super);
     function Checkbox(props) {
-        _super.call(this, props);
+        return _super.call(this, props) || this;
     }
     Checkbox.prototype.render = function () {
         return React.createElement(redux_form_1.Field, { name: this.props.name, component: CheckboxStateless, label: this.props.label, options: this.props.options });

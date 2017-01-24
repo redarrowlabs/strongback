@@ -7,7 +7,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
@@ -60,10 +60,11 @@ var initialState = {
 var SearchNSelect = (function (_super) {
     __extends(SearchNSelect, _super);
     function SearchNSelect(props) {
-        _super.call(this, props);
-        this.state = initialState;
-        this.handleSearch = this.handleSearch.bind(this);
-        this.debouncedSearch = lodash_1.debounce(this.handleSearch, 200);
+        var _this = _super.call(this, props) || this;
+        _this.state = initialState;
+        _this.handleSearch = _this.handleSearch.bind(_this);
+        _this.debouncedSearch = lodash_1.debounce(_this.handleSearch, 200);
+        return _this;
     }
     SearchNSelect.prototype.render = function () {
         return React.createElement(redux_form_1.Field, { name: this.props.name, component: SearchNSelectStateless, label: this.props.label, onSearch: this.debouncedSearch, options: this.state.options, isLoading: this.state.isLoading });

@@ -13,18 +13,8 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 var React = require("react");
-var DefaultLoader = (function (_super) {
-    __extends(DefaultLoader, _super);
-    function DefaultLoader() {
-        _super.apply(this, arguments);
-    }
-    DefaultLoader.prototype.render = function () {
-        throw new Error("\n        No loader implementation has been specified. To fix this:\n        A) call useDefaultImplementations\n        or\n        B) call setLoader to specify a loader component.\n        ");
-    };
-    return DefaultLoader;
-}(React.Component));
-;
-var Implementation = DefaultLoader;
+var default_loader_1 = require("./default-loader");
+var Implementation = default_loader_1.Loader;
 function setLoader(component) {
     Implementation = component;
 }
@@ -32,7 +22,7 @@ exports.setLoader = setLoader;
 var Loader = (function (_super) {
     __extends(Loader, _super);
     function Loader() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     Loader.prototype.render = function () {
         return React.createElement(Implementation, __assign({}, this.props));

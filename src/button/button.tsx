@@ -2,9 +2,11 @@ import * as React from 'react';
 import { Loader } from '../loader/loader';
 import * as classNames from 'classnames';
 
+export type ButtonVariants = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+
 export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
     loading?: boolean;
-    variant?: 'primary' | 'secondary';
+    variant?: ButtonVariants;
 }
 
 export class Button extends React.Component<IButtonProps, {}> {
@@ -13,15 +15,17 @@ export class Button extends React.Component<IButtonProps, {}> {
         const {
             children,
             loading = false,
+            ...rest,
         } = this.props;
-        const rest = restOp(this.props);
+
+        //TODO: cleaner way to do this?
+        //React complains about unknown <button> prop variant
+        delete rest.variant;
 
         const buttonClass = getClasses(this.props);
         const disabled = loading || rest.disabled;
         const loader = loading
-            ? <Loader
-                size={loaderSize}
-                color={loaderColor} />
+            ? <Loader />
             : null;
 
         return <button
@@ -35,50 +39,14 @@ export class Button extends React.Component<IButtonProps, {}> {
 }
 
 function getClasses(props: IButtonProps) {
-    if (props.variant === 'secondary') {
-        if (props.loading) { return secondLoadingClass; }
-        if (props.disabled) { return secondInactiveClass; }
-        return secondActiveClass;
-    }
-
-    if (props.loading) { return loadingClass; }
-    if (props.disabled) { return inactiveClass; }
-    return activeClass;
-}
-
-//TODO provide customization options
-const loaderColor = '#ffffff';
-const loaderSize = '0.75em';
-const inactiveClass = defaultPrimaryClasses(false);
-const loadingClass = defaultPrimaryClasses(false);
-const activeClass = defaultPrimaryClasses(true);
-const secondInactiveClass = defaultSecondaryClasses(false);
-const secondLoadingClass = defaultSecondaryClasses(false);
-const secondActiveClass = defaultSecondaryClasses(true);
-
-function defaultPrimaryClasses(active: boolean): string {
     return classNames({
-        'o-button o-button--primary': true,
-        'o-button--active': active,
-        'o-button--disabled ': !active,
+        'c-button': true,
+        'c-button--primary': !props.variant || props.variant === 'primary',
+        'c-button--secondary': props.variant === 'secondary',
+        'c-button--info': props.variant === 'info',
+        'c-button--success': props.variant === 'success',
+        'c-button--warning': props.variant === 'warning',
+        'c-button--danger': props.variant === 'danger',
+        'disabled': !!(props.loading || props.disabled),
     });
-}
-
-function defaultSecondaryClasses(active: boolean): string {
-    return classNames({
-        'o-button o-button--secondary': true,
-        'o-button--active': active,
-        'o-button--disabled ': !active,
-    });
-}
-
-function restOp(props: IButtonProps): React.HTMLProps<HTMLButtonElement> {
-    //TODO Implement rest operator when it lands in typescript
-    //https://github.com/Microsoft/TypeScript/issues/10727
-    //https://github.com/Microsoft/TypeScript/pull/11150
-
-    const p = Object.assign({}, props);
-    delete p.loading;
-    delete p.variant;
-    return p;
 }

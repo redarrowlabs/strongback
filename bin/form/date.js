@@ -10,8 +10,9 @@ var field_wrapper_1 = require("./field-wrapper");
 var DateFieldStateless = (function (_super) {
     __extends(DateFieldStateless, _super);
     function DateFieldStateless(props) {
-        _super.call(this, props);
-        this.handleChange = this.handleChange.bind(this);
+        var _this = _super.call(this, props) || this;
+        _this.handleChange = _this.handleChange.bind(_this);
+        return _this;
     }
     DateFieldStateless.prototype.render = function () {
         var _a = this.props.input, value = _a.value, onBlur = _a.onBlur, onFocus = _a.onFocus;

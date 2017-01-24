@@ -9,7 +9,7 @@ var React = require("react");
 var FieldWrapper = (function (_super) {
     __extends(FieldWrapper, _super);
     function FieldWrapper() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     FieldWrapper.prototype.render = function () {
         var _a = this.props, _b = _a.fieldProps, _c = _b.meta, touched = _c.touched, error = _c.error, label = _b.label, children = _a.children, mode = _a.mode;
