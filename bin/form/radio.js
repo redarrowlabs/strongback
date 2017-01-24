@@ -20,7 +20,7 @@ exports.RadioStateless = RadioStateless;
 var Radio = (function (_super) {
     __extends(Radio, _super);
     function Radio(props) {
-        _super.call(this, props);
+        return _super.call(this, props) || this;
     }
     Radio.prototype.render = function () {
         return React.createElement(redux_form_1.Field, { name: this.props.name, component: RadioStateless, label: this.props.label, options: this.props.options });

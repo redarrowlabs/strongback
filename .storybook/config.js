@@ -1,21 +1,22 @@
-const storybook = require('@kadira/storybook');
+console.log('configuring storybook');
+import { configure } from '@kadira/storybook';
 
-require('react-s-alert/dist/s-alert-default.css');
-require('react-s-alert/dist/s-alert-css-effects/flip.css');
-require('react-select/dist/react-select.css');
-require('react-widgets/dist/css/react-widgets.css');
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/flip.css';
+import 'react-select/dist/react-select.css';
+import 'react-widgets/dist/css/react-widgets.css';
+import '@redarrowlabs/strongback-css/dist/app.css';
+
+const requireContext = require.context('../src', true, /.story.tsx$/);
 
 const {useDefaultImplementations} = require('../src/defaults');
 useDefaultImplementations();
 
 function loadStories() {
-  require('../src/button/button.story.tsx');
-  require('../src/modal/modal.story.tsx');
-  require('../src/code/code.story.tsx');
-  require('../src/toast/toast.story.tsx');
-  require('../src/form/form.story.tsx');
-  require('../src/date/date.story.tsx');
-  // require as many stories as you need.
+    requireContext.keys().forEach(filename => {
+        console.log('requiring ' + filename)
+        return requireContext(filename);
+    });
 }
 
-storybook.configure(loadStories, module);
+configure(loadStories, module);

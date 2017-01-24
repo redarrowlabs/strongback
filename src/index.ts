@@ -1,5 +1,4 @@
 export { Button } from './button/button';
-export { Code } from './code/code';
 export { Modal } from './modal/modal';
 
 export { Form, IStrongbackForm } from './form/form';
