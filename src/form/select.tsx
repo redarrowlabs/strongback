@@ -24,7 +24,7 @@ export function SelectStateless(props: SelectStatelessProps) {
         <ReactSelect
             options={options}
             value={value}
-            onChange={onChange}
+            onChange={(v: ReactSelect.Option) => onChange(v.value)}
             onBlur={() => onBlur(value)}
             onFocus={onFocus}
             />
