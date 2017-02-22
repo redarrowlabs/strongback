@@ -24,11 +24,16 @@ export function SelectStateless(props: SelectStatelessProps) {
         <ReactSelect
             options={options}
             value={value}
-            onChange={(v: ReactSelect.Option) => onChange(v.value)}
+            onChange={(v: ReactSelect.Option) => onChange(valueOrDefault(v))}
             onBlur={() => onBlur(value)}
             onFocus={onFocus}
-            />
+        />
     </FieldWrapper>;
+}
+
+function valueOrDefault(option: ReactSelect.Option | null) {
+    if (!option) { return ''; }
+    return option.value as string;
 }
 
 export interface SelectProps extends IField {
@@ -49,6 +54,6 @@ export class Select extends React.Component<SelectProps, {}> {
             component={SelectStateless}
             label={this.props.label}
             options={this.props.options}
-            />;
+        />;
     }
 }

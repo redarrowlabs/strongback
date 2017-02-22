@@ -11,9 +11,15 @@ var field_wrapper_1 = require("./field-wrapper");
 function SelectStateless(props) {
     var _a = props.input, value = _a.value, onChange = _a.onChange, onBlur = _a.onBlur, onFocus = _a.onFocus, options = props.options;
     return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props },
-        React.createElement(ReactSelect, { options: options, value: value, onChange: function (v) { return onChange(v.value); }, onBlur: function () { return onBlur(value); }, onFocus: onFocus }));
+        React.createElement(ReactSelect, { options: options, value: value, onChange: function (v) { return onChange(valueOrDefault(v)); }, onBlur: function () { return onBlur(value); }, onFocus: onFocus }));
 }
 exports.SelectStateless = SelectStateless;
+function valueOrDefault(option) {
+    if (!option) {
+        return '';
+    }
+    return option.value;
+}
 /**
  * Select is used to pick a value from a known set of options.
  */
