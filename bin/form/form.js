@@ -17,10 +17,9 @@ var Form = (function (_super) {
         return _super.apply(this, arguments) || this;
     }
     Form.prototype.render = function () {
-        var _a = this.props, handleSubmit = _a.handleSubmit, submitting = _a.submitting, pristine = _a.pristine, reset = _a.reset, valid = _a.valid;
+        var _a = this.props, handleSubmit = _a.handleSubmit, submitting = _a.submitting, pristine = _a.pristine, submitFailed = _a.submitFailed, reset = _a.reset;
         var onSubmit = this.props.onSubmit;
-        var showError = !pristine && !valid;
-        var err = showError
+        var err = submitFailed
             ? React.createElement("div", null, "The form could not be completed")
             : null;
         return React.createElement("div", null,

@@ -32,6 +32,7 @@ var Button = (function (_super) {
     Button.prototype.render = function () {
         var _a = this.props, children = _a.children, _b = _a.loading, loading = _b === void 0 ? false : _b, rest = __rest(_a, ["children", "loading"]);
         //TODO: cleaner way to do this?
+        //React complains about unknown <button> prop variant
         delete rest.variant;
         var buttonClass = getClasses(this.props);
         var disabled = loading || rest.disabled;
