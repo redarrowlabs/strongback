@@ -1,4 +1,5 @@
 "use strict";
+exports.__esModule = true;
 var js_joda_1 = require("js-joda");
 function format(isoDate, pattern) {
     if (pattern === void 0) { pattern = 'MM/dd/yyyy'; }

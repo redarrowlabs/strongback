@@ -1,4 +1,5 @@
 "use strict";
+exports.__esModule = true;
 /**
  * Let the developers know they are doing it wrong.
  */

@@ -1,4 +1,5 @@
 "use strict";
+exports.__esModule = true;
 var React = require("react");
 var format_1 = require("./format");
 var dev_1 = require("../dev");

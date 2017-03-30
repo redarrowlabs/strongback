@@ -1,4 +1,5 @@
 "use strict";
+exports.__esModule = true;
 var infoFn = function () {
     throw new Error("\n        No toast implementation has been specified. To fix this:\n        A) call useDefaultImplementations\n        or\n        B) call setInfo to specify a toast function.\n        ");
 };
