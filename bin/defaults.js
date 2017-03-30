@@ -1,4 +1,5 @@
 "use strict";
+exports.__esModule = true;
 // This file conditionally requires dependencies.
 // This is because run-on-require code in some
 // third party packages can cause older/odd browsers 

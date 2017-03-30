@@ -1,4 +1,5 @@
 "use strict";
+exports.__esModule = true;
 var React = require("react");
 var redux_form_1 = require("redux-form");
 var field_wrapper_1 = require("./field-wrapper");

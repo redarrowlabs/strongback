@@ -1,4 +1,5 @@
 "use strict";
+exports.__esModule = true;
 /* tslint:disable max-line-length */
 var React = require("react");
 var js_joda_1 = require("js-joda");

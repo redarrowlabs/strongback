@@ -15,12 +15,9 @@ export class Button extends React.Component<IButtonProps, {}> {
         const {
             children,
             loading = false,
+            variant,
             ...rest,
         } = this.props;
-
-        //TODO: cleaner way to do this?
-        //React complains about unknown <button> prop variant
-        delete rest.variant;
 
         const buttonClass = getClasses(this.props);
         const disabled = loading || rest.disabled;
