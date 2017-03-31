@@ -8,6 +8,7 @@ export interface IReduxForm {
     valid: boolean;
     enableReinitialize: boolean;
     submitFailed: boolean;
+    initialValues: any;
     reset(): void;
 }
 
