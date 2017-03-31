@@ -12,7 +12,8 @@
     "build": "tsc",
     "storybook": "start-storybook -p 9001",
     "todo": "leasot --reporter markdown --tags hack --associate-parser .tsx,defaultParser src/**/*.tsx > TODO.md || exit 0",
-    "check": "npm prune && npm install && npm run build && npm run todo",
+    "lint:fix": "tslint --fix --config tslint.json src",
+    "check": "npm prune && npm install && npm run lint:fix && npm run todo && npm run build",
     "update": "npm-check -u"
   },
   "dependencies": {

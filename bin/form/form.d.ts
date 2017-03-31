@@ -7,6 +7,7 @@ export interface IReduxForm {
     valid: boolean;
     enableReinitialize: boolean;
     submitFailed: boolean;
+    initialValues: any;
     reset(): void;
 }
 export interface IStrongbackForm extends IReduxForm {
