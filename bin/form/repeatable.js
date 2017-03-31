@@ -19,14 +19,17 @@ var RepeatableStateless = (function (_super) {
     RepeatableStateless.prototype.render = function () {
         var dataKeys = this.props.dataKeys;
         var titleRepeat = this.props.titleRepeat;
-        var repeatedItems = this.props.repeatedItems;
-        var addElement = this.getActionElement(this.props.handleAdd, 'Add');
-        var removeElement = this.getActionElement(this.props.handleRemove, 'Remove');
+        //TODO: don't like this cast
+        var children = this.props.children;
+        //For each of the collection items, show all of the controls provided as children.
+        var userControls = dataKeys.map(function (dataKey) { return React.createElement(DataItemGroup, { key: dataKey, dataKey: dataKey, titleRepeat: titleRepeat, items: children }); });
+        var addElement = this.getActionElement(this.props.onAdd, 'Add');
+        var removeElement = this.getActionElement(this.props.onRemove, 'Remove');
         // This is brittle in handling children with nested elements
-        return (React.createElement("div", null,
-            dataKeys.map(function (dataKey) { return makeDataItemGroups(dataKey, titleRepeat, repeatedItems); }),
+        return React.createElement("div", null,
+            userControls,
             addElement,
-            removeElement));
+            removeElement);
     };
     RepeatableStateless.prototype.getActionElement = function (handleAdd, text) {
         return handleAdd
@@ -36,15 +39,19 @@ var RepeatableStateless = (function (_super) {
     return RepeatableStateless;
 }(React.Component));
 exports.RepeatableStateless = RepeatableStateless;
-function makeDataItemGroups(dataKey, titleRepeat, repeatedItems) {
-    return repeatedItems.map(function (itemGroup) { return makeDataItemGroup(dataKey, titleRepeat, itemGroup); });
-}
-function makeDataItemGroup(dataKey, titleRepeat, itemGroup) {
-    return (React.createElement("fieldset", { key: dataKey + "-fieldset" },
+function DataItemGroup(props) {
+    var dataKey = props.dataKey, titleRepeat = props.titleRepeat, items = props.items;
+    var fieldsWithKeys = items.map(function (x) { return provideKey(dataKey, x); });
+    return React.createElement("fieldset", { key: dataKey + "-fieldset" },
         React.createElement("legend", null, titleRepeat),
-        itemGroup.map(function (item) { return makeDataItem(dataKey, item); })));
+        fieldsWithKeys);
 }
-function makeDataItem(dataKey, item) {
+/**
+ * Namespaces the element under a certain data key, by cloning it and applying a new name / key.
+ * @param dataKey
+ * @param item
+ */
+function provideKey(dataKey, item) {
     var name = item.props.name;
     var properties = {
         name: dataKey + "." + name,
@@ -52,14 +59,16 @@ function makeDataItem(dataKey, item) {
     };
     return React.cloneElement(item, properties);
 }
+//TODO: functional set state
 var Repeatable = (function (_super) {
     __extends(Repeatable, _super);
     function Repeatable(props) {
         var _this = _super.call(this, props) || this;
         _this.onAdd = _this.onAdd.bind(_this);
         _this.onRemove = _this.onRemove.bind(_this);
+        var keys = Object.keys(_this.props.initialData);
         _this.state = {
-            dataKeys: _this.props.dataKeys
+            dataKeys: keys
         };
         return _this;
     }
@@ -67,10 +76,11 @@ var Repeatable = (function (_super) {
         if (!this.props.additive) {
             return;
         }
-        var allowInfinite = !(this.props.additive && this.props.additive.maxRepeat);
-        var maxRepeat = (this.props.additive && this.props.additive.maxRepeat) || 0;
+        var allowInfinite = !this.props.additive.maxRepeat;
+        var maxRepeat = this.props.additive.maxRepeat || 0;
         var dataKeys = this.state.dataKeys;
-        if (allowInfinite || dataKeys.length < maxRepeat) {
+        var canAdd = allowInfinite || (dataKeys.length < maxRepeat);
+        if (allowInfinite || canAdd) {
             dataKeys.push(this.props.additive.newDataKey());
         }
         this.setState({
@@ -78,10 +88,16 @@ var Repeatable = (function (_super) {
         });
     };
     Repeatable.prototype.onRemove = function () {
-        var allowInfinite = !(this.props.removable && this.props.removable.minRepeat);
-        var minRepeat = (this.props.removable && this.props.removable.minRepeat) || 0;
+        if (!this.props.removable) {
+            return;
+        }
+        var allowInfinite = !this.props.removable.minRepeat;
+        var minRepeat = this.props.removable.minRepeat || 0;
         var dataKeys = this.state.dataKeys;
-        if (dataKeys.length > 0 && (allowInfinite || dataKeys.length > minRepeat)) {
+        var hasKeys = dataKeys.length > 0;
+        var hasEnough = dataKeys.length > minRepeat;
+        var canRemove = hasKeys && (allowInfinite || hasEnough);
+        if (canRemove) {
             dataKeys.splice(-1, 1);
         }
         this.setState({
@@ -89,14 +105,9 @@ var Repeatable = (function (_super) {
         });
     };
     Repeatable.prototype.render = function () {
-        var repeatedItems = [new Array().concat(this.props.children)];
-        var handleAdd = this.props.additive
-            ? this.onAdd
-            : null;
-        var handleRemove = this.props.removable
-            ? this.onRemove
-            : null;
-        return React.createElement(RepeatableStateless, { titleRepeat: this.props.titleRepeat, repeatedItems: repeatedItems, dataKeys: this.state.dataKeys, handleAdd: handleAdd, handleRemove: handleRemove });
+        var handleAdd = this.props.additive && this.onAdd;
+        var handleRemove = this.props.removable && this.onRemove;
+        return React.createElement(RepeatableStateless, { titleRepeat: this.props.titleRepeat, dataKeys: this.state.dataKeys, onAdd: handleAdd, onRemove: handleRemove }, this.props.children);
     };
     return Repeatable;
 }(React.Component));

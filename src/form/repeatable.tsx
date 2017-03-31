@@ -2,10 +2,9 @@ import * as React from 'react';
 
 export interface RepeatableStatelessProps {
     titleRepeat: string;
-    repeatedItems: Array<any>;  // child form elements
     dataKeys: Array<string>;    // bound data property names
-    handleAdd?: any;
-    handleRemove?: any;
+    onAdd?: () => void;
+    onRemove?: () => void;
 }
 
 export class RepeatableStateless extends React.Component<RepeatableStatelessProps, {}> {
@@ -13,44 +12,59 @@ export class RepeatableStateless extends React.Component<RepeatableStatelessProp
     render() {
         const dataKeys = this.props.dataKeys;
         const titleRepeat = this.props.titleRepeat;
-        const repeatedItems = this.props.repeatedItems;
 
-        const addElement = this.getActionElement(this.props.handleAdd, 'Add');
-        const removeElement = this.getActionElement(this.props.handleRemove, 'Remove');
+        //TODO: don't like this cast
+        const children = this.props.children as React.ReactElement<any>[];
+
+        //For each of the collection items, show all of the controls provided as children.
+        const userControls = dataKeys.map(dataKey => <DataItemGroup
+            key={dataKey}
+            dataKey={dataKey}
+            titleRepeat={titleRepeat}
+            items={children} />);
+
+        const addElement = this.getActionElement(
+            this.props.onAdd, 'Add');
+        const removeElement = this.getActionElement(
+            this.props.onRemove, 'Remove');
 
         // This is brittle in handling children with nested elements
-        return (
-            <div>
-                {dataKeys.map(dataKey => makeDataItemGroups(dataKey, titleRepeat, repeatedItems))}
-                {/* User controls */}
-                {addElement}
-                {removeElement}
-            </div>
-        );
+        return <div>
+            {userControls}
+            {addElement}
+            {removeElement}
+        </div>;
     }
 
-    getActionElement(handleAdd: any, text: string) {
+    getActionElement(handleAdd: (() => void) | undefined, text: string) {
         return handleAdd
             ? (<a onClick={handleAdd}>{text}</a>)
             : null;
     }
 }
 
-function makeDataItemGroups(dataKey: string, titleRepeat: string, repeatedItems: Array<any>) {
-    return repeatedItems.map((itemGroup: any) => makeDataItemGroup(dataKey, titleRepeat, itemGroup));
+interface DataItemGroupProps {
+    dataKey: string;
+    items: React.ReactElement<any>[];
+    titleRepeat: string;
 }
 
-function makeDataItemGroup(dataKey: string, titleRepeat: string, itemGroup: any) {
-    return (
-        <fieldset key={`${dataKey}-fieldset`}>
-            <legend>{titleRepeat}</legend>
+function DataItemGroup(props: DataItemGroupProps) {
+    const { dataKey, titleRepeat, items } = props;
+    const fieldsWithKeys = items.map(x => provideKey(dataKey, x));
 
-            {itemGroup.map((item: any) => makeDataItem(dataKey, item))}
-        </fieldset>
-    );
+    return <fieldset key={`${dataKey}-fieldset`}>
+        <legend>{titleRepeat}</legend>
+        {fieldsWithKeys}
+    </fieldset>;
 }
 
-function makeDataItem(dataKey: string, item: any) {
+/**
+ * Namespaces the element under a certain data key, by cloning it and applying a new name / key.
+ * @param dataKey 
+ * @param item 
+ */
+function provideKey(dataKey: string, item: React.ReactElement<any>) {
     var name = item.props.name;
     var properties = {
         name: `${dataKey}.${name}`,
@@ -68,17 +82,20 @@ export interface RemovableRepeatableProps {
     minRepeat?: number;
 }
 
+export type Dict = { [idx: string]: any }
+
 export interface RepeatableProps {
     titleRepeat: string;
-    dataKeys: Array<string>;    // bound data property names
+    initialData: Dict;
     additive?: AddtiveRepeatableProps;
     removable?: RemovableRepeatableProps;
 }
 
 export interface RepeatableState {
-    dataKeys: Array<string>;    // bound data property names
+    dataKeys: Array<string>;
 }
 
+//TODO: functional set state
 export class Repeatable extends React.Component<RepeatableProps, RepeatableState> {
     constructor(props: RepeatableProps) {
         super(props);
@@ -86,8 +103,10 @@ export class Repeatable extends React.Component<RepeatableProps, RepeatableState
         this.onAdd = this.onAdd.bind(this);
         this.onRemove = this.onRemove.bind(this);
 
+        const keys = Object.keys(this.props.initialData);
+
         this.state = {
-            dataKeys: this.props.dataKeys
+            dataKeys: keys
         };
     }
 
@@ -96,14 +115,15 @@ export class Repeatable extends React.Component<RepeatableProps, RepeatableState
             return;
         }
 
-        const allowInfinite = !(this.props.additive && this.props.additive.maxRepeat);
-        const maxRepeat = (this.props.additive && this.props.additive.maxRepeat) || 0;
+        const allowInfinite = !this.props.additive.maxRepeat;
+        const maxRepeat = this.props.additive.maxRepeat || 0;
 
         const dataKeys = this.state.dataKeys;
-        if (allowInfinite ||  dataKeys.length < maxRepeat) {
+        const canAdd = allowInfinite || (dataKeys.length < maxRepeat);
+
+        if (allowInfinite || canAdd) {
             dataKeys.push(this.props.additive.newDataKey());
         }
-
 
         this.setState({
             dataKeys: dataKeys
@@ -111,11 +131,17 @@ export class Repeatable extends React.Component<RepeatableProps, RepeatableState
     }
 
     onRemove() {
-        const allowInfinite = !(this.props.removable && this.props.removable.minRepeat);
-        const minRepeat = (this.props.removable && this.props.removable.minRepeat) || 0;
+        if (!this.props.removable) { return; }
+
+        const allowInfinite = !this.props.removable.minRepeat;
+        const minRepeat = this.props.removable.minRepeat || 0;
 
         const dataKeys = this.state.dataKeys;
-        if (dataKeys.length > 0 && (allowInfinite || dataKeys.length > minRepeat)) {
+        const hasKeys = dataKeys.length > 0;
+        const hasEnough = dataKeys.length > minRepeat;
+        const canRemove = hasKeys && (allowInfinite || hasEnough);
+
+        if (canRemove) {
             dataKeys.splice(-1, 1);
         }
 
@@ -125,21 +151,15 @@ export class Repeatable extends React.Component<RepeatableProps, RepeatableState
     }
 
     render() {
-        const repeatedItems = [new Array().concat(this.props.children)];
-
-        const handleAdd = this.props.additive
-            ? this.onAdd
-            : null;
-        const handleRemove = this.props.removable
-            ? this.onRemove
-            : null;
+        const handleAdd = this.props.additive && this.onAdd;
+        const handleRemove = this.props.removable && this.onRemove;
 
         return <RepeatableStateless
             titleRepeat={this.props.titleRepeat}
-            repeatedItems={repeatedItems}
             dataKeys={this.state.dataKeys}
-            handleAdd={handleAdd}
-            handleRemove={handleRemove}
-        />;
+            onAdd={handleAdd}
+            onRemove={handleRemove}>
+            {this.props.children}
+        </RepeatableStateless>
     }
 }

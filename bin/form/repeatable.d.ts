@@ -2,14 +2,13 @@
 import * as React from 'react';
 export interface RepeatableStatelessProps {
     titleRepeat: string;
-    repeatedItems: Array<any>;
     dataKeys: Array<string>;
-    handleAdd?: any;
-    handleRemove?: any;
+    onAdd?: () => void;
+    onRemove?: () => void;
 }
 export declare class RepeatableStateless extends React.Component<RepeatableStatelessProps, {}> {
     render(): JSX.Element;
-    getActionElement(handleAdd: any, text: string): JSX.Element | null;
+    getActionElement(handleAdd: (() => void) | undefined, text: string): JSX.Element | null;
 }
 export interface AddtiveRepeatableProps {
     newDataKey: () => string;
@@ -18,9 +17,12 @@ export interface AddtiveRepeatableProps {
 export interface RemovableRepeatableProps {
     minRepeat?: number;
 }
+export declare type Dict = {
+    [idx: string]: any;
+};
 export interface RepeatableProps {
     titleRepeat: string;
-    dataKeys: Array<string>;
+    initialData: Dict;
     additive?: AddtiveRepeatableProps;
     removable?: RemovableRepeatableProps;
 }
