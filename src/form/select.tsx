@@ -13,9 +13,9 @@ export function SelectStateless(props: SelectStatelessProps) {
     const {
         input: {
             value,
-            onChange,
-            onBlur,
-            onFocus,
+        onChange,
+        onBlur,
+        onFocus,
         },
         options,
     } = props;
@@ -25,7 +25,7 @@ export function SelectStateless(props: SelectStatelessProps) {
             options={options}
             value={value}
             onChange={(v: ReactSelect.Option) => onChange(valueOrDefault(v))}
-            onBlur={() => onBlur(value)}
+            onBlur={e => onBlur(e)}
             onFocus={onFocus}
         />
     </FieldWrapper>;
@@ -54,6 +54,7 @@ export class Select extends React.Component<SelectProps, {}> {
             component={SelectStateless}
             label={this.props.label}
             options={this.props.options}
+            onBlur={this.props.onBlur}
         />;
     }
 }

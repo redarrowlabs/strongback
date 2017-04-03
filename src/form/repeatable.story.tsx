@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { storiesOf, action, module } from '@kadira/storybook';
 import { combineReducers, createStore } from 'redux';
-import { reducer as formReducer, SubmissionError, reduxForm } from 'redux-form';
+import {
+    reducer as formReducer,
+    SubmissionError,
+    reduxForm,
+    getFormValues,
+} from 'redux-form';
 import { Provider, connect } from 'react-redux';
 
 import {
@@ -9,14 +14,10 @@ import {
     Form,
     IStrongbackForm,
     TextField,
-    NumberField,
-    SearchNSelect,
-    Select,
-    Radio,
-    Checkbox,
-    DateField,
-    Repeatable,
+    NumberField
 } from '../index';
+
+import { Repeater } from './repeater';
 
 storiesOf('Form', module)
     .add('Repeatable Widgets', () => {
@@ -30,14 +31,17 @@ storiesOf('Form', module)
         </Provider>;
     });
 
+type Dict<T> = { [idx: string]: T };
+
 interface SampleFormProps extends IStrongbackForm {
     onValidSubmit(values: SampleFormValues): void;
     onInvalidSubmit(values: SampleFormValues, errors: Object): void;
+    formValues?: Dict<any>;
 }
 
 interface SampleFormValues {
-    text: string;
-    number: string;
+    topText: string;
+    datas: Dict<any>;
 }
 
 class RepeatableFormStateless extends React.Component<SampleFormProps, {}> {
@@ -48,58 +52,31 @@ class RepeatableFormStateless extends React.Component<SampleFormProps, {}> {
     }
 
     render() {
-        const additive = {
-            newDataKey: generateNewDataKey,
-            maxRepeat: 5
-        };
-
-        const removable = {
-            minRepeat: 1
-        };
+        const repeaterItemsEntry = (this.props.formValues && this.props.formValues['datas']) || {};
 
         return <Form {...this.props} onSubmit={this.myValidation}>
-            <Repeatable
-                titleRepeat='Repeatable Field'
-                initialData={this.props.initialValues}
-                additive={additive}
-                removable={removable}>
+            <TextField
+                name={`topText`}
+                label='TopLevelText' />
+            <Repeater
+                collectionKey='datas'
+                itemKeys={Object.keys(repeaterItemsEntry)}
+                handler={{
+                    type: 'managed',
+                    form: this.props.form,
+                    formValues: this.props.formValues,
+                    dispatch: this.props.dispatch
+                }}>
+                {/* onBlur? See the comments in repeater.tsx */}
                 <TextField
+                    onBlur={(e: any) => e.preventDefault()}
                     name={`text`}
                     label='Text' />
                 <NumberField
+                    onBlur={(e: any) => e.preventDefault()}
                     name={`number`}
                     label='Number' />
-                <Select
-                    name={`select`}
-                    label='Select'
-                    options={[
-                        { label: 'One', value: 'one' },
-                        { label: 'Two', value: 'two' },
-                    ]} />
-                <SearchNSelect
-                    name={`search`}
-                    label={`Search n' Select`}
-                    onSearch={this.searchRemote} />
-                <Radio
-                    name={`radio`}
-                    label='Radio'
-                    options={[
-                        { label: 'Hamburger', value: 'burg' },
-                        { label: 'Brat', value: 'brat' },
-                        { label: 'Veggie Patty', value: 'patty' },
-                    ]} />
-                <Checkbox
-                    name={`checkbox`}
-                    label='Checkbox'
-                    options={[
-                        { label: 'Cheese', value: 'cheese' },
-                        { label: 'Onion', value: 'onion' },
-                        { label: 'Tomato', value: 'tomato' },
-                    ]} />
-                <DateField
-                    name={`date`}
-                    label='Date' />
-            </Repeatable>
+            </Repeater>
         </Form>;
     }
 
@@ -109,12 +86,18 @@ class RepeatableFormStateless extends React.Component<SampleFormProps, {}> {
 
         //Parse server errors or perform local validation.
         let errors: any = {};
-        if (values.text && values.text === values.text.toLocaleUpperCase()) {
-            errors.text = 'No yelling';
+
+        if (values.topText
+            && values.topText === values.topText.toLocaleUpperCase()) {
+            errors.topText = 'No yelling';
         }
 
-        if (values.number && isNaN(parseFloat(values.number))) {
-            errors.number = 'Not a number';
+        const repeatTextValues = dictToArray(values.datas)
+            .filter(x => x.value.text === x.value.text.toLocaleUpperCase())
+
+        for (let section of repeatTextValues) {
+            if (!errors.datas) { errors.datas = {} }
+            errors.datas[section.key] = { text: 'No yelling' };
         }
 
         // The onValidSubmit and onInvalidSubmit props
@@ -144,34 +127,31 @@ class RepeatableFormStateless extends React.Component<SampleFormProps, {}> {
     }
 }
 
-function generateNewDataKey() {
-    let d = new Date().getTime();
-    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        const r = (d + Math.random() * 16) % 16 | 0;
-        d = Math.floor(d / 16);
-        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-    });
-    return uuid;
+function dictToArray<T>(o: Dict<T>) {
+    return Object.keys(o).map(x => ({ key: x, value: o[x] }));
 }
 
 const initialRepeatableData = {
-    data1: {
-        id: '1',
-        text: 'a',
-        number: '',
-        select: '',
-        search: '',
-        radio: '',
-        checkbox: [],
-    },
-    data2: {
-        id: '2',
-        text: 'b',
-        number: '',
-        select: '',
-        search: '',
-        radio: '',
-        checkbox: [],
+    topText: 'abc',
+    datas: {
+        data1: {
+            id: '1',
+            text: 'a',
+            number: '',
+            select: '',
+            search: '',
+            radio: '',
+            checkbox: [],
+        },
+        data2: {
+            id: '2',
+            text: 'b',
+            number: '',
+            select: '',
+            search: '',
+            radio: '',
+            checkbox: [],
+        }
     }
 };
 
@@ -179,6 +159,7 @@ const AppStore = makeStore();
 
 const stateToRepeatableProps = (state: any) => ({
     initialValues: state.repeatable,
+    formValues: getFormValues('strongback-repeatable-example')(state),
 });
 
 const RepeatableForm = connect(
@@ -206,12 +187,25 @@ function makeStore() {
     return createStore(reducer, devtools);
 }
 
-const LOAD_REPEATABLE_DATA_SUCCESS = 'redarrowlabs/LOAD_REPEATABLE_DATA_SUCCESS';
+interface LOAD_REPEATABLE_DATA_SUCCESS {
+    type: 'redarrowlabs/LOAD_REPEATABLE_DATA_SUCCESS';
+    payload: any;
+}
 
-function repeatableDataReducer(state = initialRepeatableData, action: any) {
+interface DELETE_KEY {
+    type: 'redarrowlabs/DELETE_KEY'
+    payload: {
+        form: string;
+        name: string;
+    }
+}
+
+type Action = LOAD_REPEATABLE_DATA_SUCCESS | DELETE_KEY;
+
+function repeatableDataReducer(state = initialRepeatableData, action: Action) {
     switch (action.type) {
-        case LOAD_REPEATABLE_DATA_SUCCESS:
-            return action.data;
+        case 'redarrowlabs/LOAD_REPEATABLE_DATA_SUCCESS':
+            return action.payload;
         default:
             return state;
     }
@@ -222,8 +216,11 @@ async function loadRepeatableData() {
     await delay(randomBetween(200, 2000));
 
     AppStore.dispatch({
-        type: LOAD_REPEATABLE_DATA_SUCCESS,
-        data: { data1: { text: 'World', number: '321', select: 'one' } },
+        type: 'redarrowlabs/LOAD_REPEATABLE_DATA_SUCCESS',
+        payload: {
+            topText: 'Hello',
+            datas: { dataNew: { text: 'World', number: '321', select: 'one' } }
+        }
     });
 }
 

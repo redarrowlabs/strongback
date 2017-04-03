@@ -4,8 +4,8 @@ export interface FieldWrapperProps {
     fieldProps: {
         label: string;
         meta: {
-            touched: boolean,
-            error: string
+            touched: boolean;
+            error: string;
         }
     };
     mode?: 'no-wrap';
@@ -16,8 +16,8 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
     render() {
         const {
             fieldProps: {
-                meta: {touched, error},
-                label,
+                meta: { touched, error },
+            label,
             },
             children,
             mode,

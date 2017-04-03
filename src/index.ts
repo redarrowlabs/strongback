@@ -9,7 +9,7 @@ export { SearchNSelect } from './form/search-n-select';
 export { Radio } from './form/radio';
 export { Checkbox } from './form/checkbox';
 export { DateField } from './form/date';
-export { Repeatable } from './form/repeatable';
+export { Repeater } from './form/repeater';
 
 export { LocalDateView } from './date/local-date-view';
 export { LocalDateTimeView } from './date/local-date-time-view';

@@ -12,9 +12,9 @@ export function TextFieldStateless(props: TextFieldStatelessProps) {
     const {
         input: {
             value,
-            onChange,
-            onBlur,
-            onFocus,
+        onChange,
+        onBlur,
+        onFocus,
         },
         autoComplete,
     } = props;
@@ -27,7 +27,7 @@ export function TextFieldStateless(props: TextFieldStatelessProps) {
             onBlur={onBlur}
             onFocus={onFocus}
             autoComplete={autoComplete}
-            />
+        />
     </FieldWrapper>;
 }
 
@@ -41,5 +41,6 @@ export function TextField(props: TextFieldProps) {
         component={TextFieldStateless}
         autoComplete={props.autoComplete || 'off'}
         label={props.label}
-        />;
+        onBlur={props.onBlur}
+    />;
 }

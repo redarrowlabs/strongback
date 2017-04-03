@@ -16,9 +16,9 @@ export function SearchNSelectStateless(props: SearchNSelectStatelessProps) {
     const {
         input: {
             value,
-            onChange,
-            onBlur,
-            onFocus,
+        onChange,
+        onBlur,
+        onFocus,
         },
         options,
         onSearch,
@@ -30,12 +30,12 @@ export function SearchNSelectStateless(props: SearchNSelectStatelessProps) {
             options={options}
             value={value}
             onChange={onChange}
-            onBlur={() => onBlur(value)}
+            onBlur={e => onBlur(e)}
             onFocus={onFocus}
             onInputChange={onSearch}
             filterOptions={identity}
             isLoading={isLoading}
-            />
+        />
     </FieldWrapper>;
 }
 
@@ -72,7 +72,8 @@ export class SearchNSelect extends React.Component<SearchNSelectProps, SearchNSe
             onSearch={this.debouncedSearch}
             options={this.state.options}
             isLoading={this.state.isLoading}
-            />;
+            onBlur={this.props.onBlur}
+        />;
     }
 
     async debouncedSearch(_: string) { /* will bind */ }
