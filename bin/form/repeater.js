@@ -24,9 +24,10 @@ var Repeater = (function (_super) {
     Repeater.prototype.render = function () {
         var _this = this;
         var _a = this.props, collectionKey = _a.collectionKey, collection = _a.collection;
+        var userControls = this.props.children;
         var itemKeys = Object.keys(collection);
         var sections = itemKeys.map(function (itemKey) {
-            return React.createElement(RepeaterSection, { key: collectionKey + "." + itemKey, itemKey: itemKey, collectionKey: collectionKey, onRemove: _this.handleRemove }, _this.props.children);
+            return React.createElement(RepeaterSection, { key: collectionKey + "." + itemKey, itemKey: itemKey, collectionKey: collectionKey, onRemove: _this.handleRemove }, userControls);
         });
         return React.createElement("div", null,
             React.createElement("div", null, sections),
