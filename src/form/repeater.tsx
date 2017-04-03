@@ -70,8 +70,8 @@ export type ManagedHandler = {
 export type ChangeHandler = CustomHandler | ManagedHandler
 
 export interface RepeaterProps {
+    collection: object;
     collectionKey: string;
-    itemKeys: string[];
     handler: ChangeHandler;
 }
 
@@ -83,9 +83,10 @@ export class Repeater extends React.Component<RepeaterProps, {}>{
         this.handleAdd = this.handleAdd.bind(this);
     }
     render() {
-        const { collectionKey } = this.props;
+        const { collectionKey, collection } = this.props;
+        const itemKeys = Object.keys(collection);
 
-        const sections = this.props.itemKeys.map(itemKey =>
+        const sections = itemKeys.map(itemKey =>
             <RepeaterSection
                 key={`${collectionKey}.${itemKey}`}
                 itemKey={itemKey}

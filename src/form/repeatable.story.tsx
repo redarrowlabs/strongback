@@ -59,8 +59,8 @@ class RepeatableFormStateless extends React.Component<SampleFormProps, {}> {
                 name={`topText`}
                 label='TopLevelText' />
             <Repeater
+                collection={repeaterItemsEntry}
                 collectionKey='datas'
-                itemKeys={Object.keys(repeaterItemsEntry)}
                 handler={{
                     type: 'managed',
                     form: this.props.form,
@@ -93,6 +93,7 @@ class RepeatableFormStateless extends React.Component<SampleFormProps, {}> {
         }
 
         const repeatTextValues = dictToArray(values.datas)
+            .filter(x => !!x.value.text)
             .filter(x => x.value.text === x.value.text.toLocaleUpperCase())
 
         for (let section of repeatTextValues) {
@@ -135,22 +136,12 @@ const initialRepeatableData = {
     topText: 'abc',
     datas: {
         data1: {
-            id: '1',
             text: 'a',
-            number: '',
-            select: '',
-            search: '',
-            radio: '',
-            checkbox: [],
+            number: '1',
         },
         data2: {
-            id: '2',
             text: 'b',
-            number: '',
-            select: '',
-            search: '',
-            radio: '',
-            checkbox: [],
+            number: '2',
         }
     }
 };
