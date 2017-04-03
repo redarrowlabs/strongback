@@ -13,7 +13,7 @@ export function CheckboxStateless(props: CheckboxStatelessProps) {
     const {
         input: {
             value,
-            onChange,
+        onChange,
         },
         options,
     } = props;
@@ -26,7 +26,7 @@ export function CheckboxStateless(props: CheckboxStatelessProps) {
             multiple={true}
             valueField='value'
             textField='label'
-            />
+        />
     </FieldWrapper>;
 }
 
@@ -48,6 +48,6 @@ export class Checkbox extends React.Component<CheckboxProps, {}> {
             component={CheckboxStateless}
             label={this.props.label}
             options={this.props.options}
-            />;
+        />;
     }
 }

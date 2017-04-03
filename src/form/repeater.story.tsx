@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { storiesOf, action, module } from '@kadira/storybook';
 import { combineReducers, createStore } from 'redux';
-import { reducer as formReducer, SubmissionError, reduxForm } from 'redux-form';
+import {
+    reducer as formReducer,
+    SubmissionError,
+    reduxForm,
+    getFormValues,
+} from 'redux-form';
 import { Provider, connect } from 'react-redux';
 
 import {
@@ -9,37 +14,37 @@ import {
     Form,
     IStrongbackForm,
     TextField,
-    NumberField,
-    SearchNSelect,
-    Select,
-    Radio,
-    Checkbox,
-    DateField,
+    NumberField
 } from '../index';
 
+import { Repeater } from './repeater';
+
 storiesOf('Form', module)
-    .add('Widgets', () => {
+    .add('Repeatable Widgets', () => {
         return <Provider store={AppStore}>
             <div>
-                <SampleForm
+                <RepeatableForm
                     onValidSubmit={action('submit')}
                     onInvalidSubmit={action('invalid')} />
-                <Button type='button' onClick={loadData}>Load Record</Button>
+                <Button type='button' onClick={loadRepeatableData}>Load Record</Button>
             </div>
         </Provider>;
     });
 
+type Dict<T> = { [idx: string]: T };
+
 interface SampleFormProps extends IStrongbackForm {
     onValidSubmit(values: SampleFormValues): void;
     onInvalidSubmit(values: SampleFormValues, errors: Object): void;
+    formValues?: Dict<any>;
 }
 
 interface SampleFormValues {
-    text: string;
-    number: string;
+    topText: string;
+    datas: Dict<any>;
 }
 
-class SampleFormStateless extends React.Component<SampleFormProps, {}> {
+class RepeatableFormStateless extends React.Component<SampleFormProps, {}> {
     constructor(props: any) {
         super(props);
         this.myValidation = this.myValidation.bind(this);
@@ -47,41 +52,31 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
     }
 
     render() {
+        const repeaterItemsEntry = (this.props.formValues && this.props.formValues['datas']) || {};
+
         return <Form {...this.props} onSubmit={this.myValidation}>
             <TextField
-                name='text'
-                label='Text' />
-            <NumberField
-                name='number'
-                label='Number' />
-            <Select
-                name='select'
-                label='Select'
-                options={[
-                    { label: 'One', value: 'one' },
-                    { label: 'Two', value: 'two' },
-                ]} />
-            <SearchNSelect
-                name='search'
-                label={`Search n' Select`}
-                onSearch={this.searchRemote} />
-            <Radio
-                name='radio'
-                label='Radio'
-                options={[
-                    { label: 'Hamburger', value: 'burg' },
-                    { label: 'Brat', value: 'brat' },
-                    { label: 'Veggie Patty', value: 'patty' },
-                ]} />
-            <Checkbox
-                name='checkbox'
-                label='Checkbox'
-                options={[
-                    { label: 'Cheese', value: 'cheese' },
-                    { label: 'Onion', value: 'onion' },
-                    { label: 'Tomato', value: 'tomato' },
-                ]} />
-            <DateField name='date' label='Date' />
+                name={`topText`}
+                label='TopLevelText' />
+            <Repeater
+                collection={repeaterItemsEntry}
+                collectionKey='datas'
+                handler={{
+                    type: 'managed',
+                    form: this.props.form,
+                    formValues: this.props.formValues,
+                    dispatch: this.props.dispatch
+                }}>
+                {/* onBlur? See the comments in repeater.tsx */}
+                <TextField
+                    onBlur={(e: any) => e.preventDefault()}
+                    name={`text`}
+                    label='Text' />
+                <NumberField
+                    onBlur={(e: any) => e.preventDefault()}
+                    name={`number`}
+                    label='Number' />
+            </Repeater>
         </Form>;
     }
 
@@ -91,12 +86,19 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
 
         //Parse server errors or perform local validation.
         let errors: any = {};
-        if (values.text && values.text === values.text.toLocaleUpperCase()) {
-            errors.text = 'No yelling';
+
+        if (values.topText
+            && values.topText === values.topText.toLocaleUpperCase()) {
+            errors.topText = 'No yelling';
         }
 
-        if (values.number && isNaN(parseFloat(values.number))) {
-            errors.number = 'Not a number';
+        const repeatTextValues = dictToArray(values.datas)
+            .filter(x => !!x.value.text)
+            .filter(x => x.value.text === x.value.text.toLocaleUpperCase())
+
+        for (let section of repeatTextValues) {
+            if (!errors.datas) { errors.datas = {} }
+            errors.datas[section.key] = { text: 'No yelling' };
         }
 
         // The onValidSubmit and onInvalidSubmit props
@@ -126,29 +128,37 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
     }
 }
 
-const initialData = {
-    text: '',
-    number: '',
-    select: '',
-    search: '',
-    radio: '',
-    checkbox: [],
+function dictToArray<T>(o: Dict<T>) {
+    return Object.keys(o).map(x => ({ key: x, value: o[x] }));
+}
+
+const initialRepeatableData = {
+    topText: 'abc',
+    datas: {
+        data1: {
+            text: 'a',
+            number: '1',
+        },
+        data2: {
+            text: 'b',
+            number: '2',
+        }
+    }
 };
 
 const AppStore = makeStore();
 
-const stateToProps = (state: any) => ({
-    initialValues: state.data,
+const stateToRepeatableProps = (state: any) => ({
+    initialValues: state.repeatable,
+    formValues: getFormValues('strongback-repeatable-example')(state),
 });
 
-//TODO this is mighty complicated, with no typing...
-//Connect the stateless form to the Store and redux-forms internals.
-const SampleForm = connect(
-    stateToProps
+const RepeatableForm = connect(
+    stateToRepeatableProps
 )(reduxForm({
-    form: 'strongback-example',
+    form: 'strongback-repeatable-example',
     enableReinitialize: true
-})(SampleFormStateless)) as React.ComponentClass<any>;
+})(RepeatableFormStateless)) as React.ComponentClass<any>;
 
 /**
  * Combine reducers from redux form and an app specific one.
@@ -156,7 +166,7 @@ const SampleForm = connect(
  */
 function makeStore() {
     const reducers = {
-        data: dataReducer,
+        repeatable: repeatableDataReducer,
         form: formReducer,
     };
 
@@ -168,28 +178,32 @@ function makeStore() {
     return createStore(reducer, devtools);
 }
 
-const LOAD_DATA_SUCCESS = 'redarrowlabs/LOAD_DATA_SUCCESS';
+interface LOAD_REPEATABLE_DATA_SUCCESS {
+    type: 'redarrowlabs/LOAD_REPEATABLE_DATA_SUCCESS';
+    payload: any;
+}
 
-function dataReducer(state = initialData, action: any) {
+type Action = LOAD_REPEATABLE_DATA_SUCCESS;
+
+function repeatableDataReducer(state = initialRepeatableData, action: Action) {
     switch (action.type) {
-        case LOAD_DATA_SUCCESS:
-            return {
-                text: action.data.text,
-                number: action.data.number,
-                select: action.data.select,
-            };
+        case 'redarrowlabs/LOAD_REPEATABLE_DATA_SUCCESS':
+            return action.payload;
         default:
             return state;
     }
 }
 
 /** Simulate get response from server */
-async function loadData() {
+async function loadRepeatableData() {
     await delay(randomBetween(200, 2000));
 
     AppStore.dispatch({
-        type: LOAD_DATA_SUCCESS,
-        data: { text: 'World', number: '321', select: 'one' },
+        type: 'redarrowlabs/LOAD_REPEATABLE_DATA_SUCCESS',
+        payload: {
+            topText: 'Hello',
+            datas: { dataNew: { text: 'World', number: '321', select: 'one' } }
+        }
     });
 }
 

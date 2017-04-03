@@ -17,8 +17,8 @@ export class DateFieldStateless extends React.Component<DateFieldStatelessProps,
         const {
             input: {
                 value,
-                onBlur,
-                onFocus,
+            onBlur,
+            onFocus,
             },
         } = this.props;
 
@@ -29,7 +29,7 @@ export class DateFieldStateless extends React.Component<DateFieldStatelessProps,
                 onChange={this.handleChange}
                 onBlur={onBlur}
                 onFocus={onFocus}
-                />
+            />
         </FieldWrapper>;
 
     }
@@ -55,5 +55,6 @@ export function DateField(props: IField) {
         name={props.name}
         component={DateFieldStateless}
         label={props.label}
-        />;
+        onBlur={props.onBlur}
+    />;
 }

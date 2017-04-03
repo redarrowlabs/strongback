@@ -16,6 +16,7 @@ export class Button extends React.Component<IButtonProps, {}> {
             children,
             loading = false,
             variant,
+            type = 'button',
             ...rest,
         } = this.props;
 
@@ -27,6 +28,7 @@ export class Button extends React.Component<IButtonProps, {}> {
 
         return <button
             className={buttonClass}
+            type={type}
             {...rest}
             disabled={disabled}>
             {loader}

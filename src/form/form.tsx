@@ -8,6 +8,9 @@ export interface IReduxForm {
     valid: boolean;
     enableReinitialize: boolean;
     submitFailed: boolean;
+    initialValues: any;
+    form: string;
+    dispatch(action: any): void;
     reset(): void;
 }
 
@@ -28,8 +31,8 @@ export interface IStrongbackForm extends IReduxForm {
  */
 export class Form extends React.Component<IStrongbackForm, {}> {
     render() {
-        const {handleSubmit, submitting, pristine, submitFailed, reset} = this.props;
-        const {onSubmit} = this.props;
+        const { handleSubmit, submitting, pristine, submitFailed, reset } = this.props;
+        const { onSubmit } = this.props;
 
         const err = submitFailed
             ? <div>The form could not be completed</div>

@@ -16,9 +16,9 @@ export function NumberFieldStateless(props: NumberFieldProps) {
     const {
         input: {
             value,
-            onChange,
-            onBlur,
-            onFocus,
+        onChange,
+        onBlur,
+        onFocus,
         },
     } = props;
 
@@ -29,7 +29,7 @@ export function NumberFieldStateless(props: NumberFieldProps) {
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}
-            />
+        />
     </FieldWrapper>;
 }
 
@@ -39,7 +39,8 @@ export function NumberField(props: IField) {
         component={NumberFieldStateless}
         normalize={normalize}
         label={props.label}
-        />;
+        onBlur={props.onBlur}
+    />;
 }
 
 /** 
