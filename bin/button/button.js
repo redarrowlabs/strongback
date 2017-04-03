@@ -36,13 +36,13 @@ var Button = (function (_super) {
         return _super.call(this, props) || this;
     }
     Button.prototype.render = function () {
-        var _a = this.props, children = _a.children, _b = _a.loading, loading = _b === void 0 ? false : _b, variant = _a.variant, rest = __rest(_a, ["children", "loading", "variant"]);
+        var _a = this.props, children = _a.children, _b = _a.loading, loading = _b === void 0 ? false : _b, variant = _a.variant, _c = _a.type, type = _c === void 0 ? 'button' : _c, rest = __rest(_a, ["children", "loading", "variant", "type"]);
         var buttonClass = getClasses(this.props);
         var disabled = loading || rest.disabled;
         var loader = loading
             ? React.createElement(loader_1.Loader, null)
             : null;
-        return React.createElement("button", __assign({ className: buttonClass }, rest, { disabled: disabled }),
+        return React.createElement("button", __assign({ className: buttonClass, type: type }, rest, { disabled: disabled }),
             loader,
             children);
     };

@@ -40,7 +40,7 @@ var DateFieldStateless = (function (_super) {
 }(React.Component));
 exports.DateFieldStateless = DateFieldStateless;
 function DateField(props) {
-    return React.createElement(redux_form_1.Field, { name: props.name, component: DateFieldStateless, label: props.label });
+    return React.createElement(redux_form_1.Field, { name: props.name, component: DateFieldStateless, label: props.label, onBlur: props.onBlur });
 }
 exports.DateField = DateField;
 //# sourceMappingURL=date.js.map

@@ -3,6 +3,7 @@ import * as React from 'react';
 export interface IField {
     name: string;
     label: string;
+    onBlur?: (e: any) => void;
 }
 export interface IFieldComponent<T> {
     input: {
@@ -23,5 +24,6 @@ export interface IFieldComponent<T> {
         touched: boolean;
         valid: boolean;
         visited: boolean;
+        submitFailed: boolean;
     };
 }
