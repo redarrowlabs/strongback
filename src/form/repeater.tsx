@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { } from './fields';
 import { FormSection, change } from 'redux-form';
-import { } from './field-wrapper';
 import { Button } from '../button/button';
 
 /*
@@ -84,6 +82,7 @@ export class Repeater extends React.Component<RepeaterProps, {}>{
     }
     render() {
         const { collectionKey, collection } = this.props;
+        const userControls = this.props.children;
         const itemKeys = Object.keys(collection);
 
         const sections = itemKeys.map(itemKey =>
@@ -92,7 +91,7 @@ export class Repeater extends React.Component<RepeaterProps, {}>{
                 itemKey={itemKey}
                 collectionKey={collectionKey}
                 onRemove={this.handleRemove}>
-                {this.props.children}
+                {userControls}
             </RepeaterSection>);
 
         return <div>

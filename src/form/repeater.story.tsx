@@ -183,15 +183,7 @@ interface LOAD_REPEATABLE_DATA_SUCCESS {
     payload: any;
 }
 
-interface DELETE_KEY {
-    type: 'redarrowlabs/DELETE_KEY'
-    payload: {
-        form: string;
-        name: string;
-    }
-}
-
-type Action = LOAD_REPEATABLE_DATA_SUCCESS | DELETE_KEY;
+type Action = LOAD_REPEATABLE_DATA_SUCCESS;
 
 function repeatableDataReducer(state = initialRepeatableData, action: Action) {
     switch (action.type) {
