@@ -50,12 +50,30 @@ var ReactSelect = require("react-select");
 var redux_form_1 = require("redux-form");
 var lodash_1 = require("lodash");
 var field_wrapper_1 = require("./field-wrapper");
+var react_select_util_1 = require("./react-select-util");
 function SearchNSelectStateless(props) {
-    var _a = props.input, value = _a.value, onChange = _a.onChange, onBlur = _a.onBlur, onFocus = _a.onFocus, options = props.options, onSearch = props.onSearch, isLoading = props.isLoading;
+    var _a = props.input, value = _a.value, onChange = _a.onChange, onBlur = _a.onBlur, onFocus = _a.onFocus, options = props.options, onSearch = props.onSearch, isLoading = props.isLoading, multi = props.multi;
     return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props },
-        React.createElement(ReactSelect, { options: options, value: value, onChange: onChange, onBlur: function (e) { return onBlur(e); }, onFocus: onFocus, onInputChange: onSearch, filterOptions: identity, isLoading: isLoading }));
+        React.createElement(ReactSelect, { options: options, value: value, multi: multi, onChange: onChangeUnique(onChange), onBlur: function (e) { return onBlur(e); }, onFocus: onFocus, onInputChange: onSearch, filterOptions: identity, isLoading: isLoading }));
 }
 exports.SearchNSelectStateless = SearchNSelectStateless;
+function onChangeUnique(onChange) {
+    return function (x) {
+        if (react_select_util_1.isOptArray(x)) {
+            //References from different search results can
+            //cause duplicates, so filter them out after
+            //converting to value types
+            var uniq = unique(x.map(function (o) { return JSON.stringify(o); }));
+            var asObjects = uniq.map(function (x) { return JSON.parse(x); });
+            onChange(asObjects);
+            return;
+        }
+        onChange(x);
+    };
+}
+function unique(arr) {
+    return Array.from(new Set(arr));
+}
 var initialState = {
     options: [],
     isLoading: false
@@ -73,7 +91,7 @@ var SearchNSelect = (function (_super) {
         return _this;
     }
     SearchNSelect.prototype.render = function () {
-        return React.createElement(redux_form_1.Field, { name: this.props.name, component: SearchNSelectStateless, label: this.props.label, onSearch: this.debouncedSearch, options: this.state.options, isLoading: this.state.isLoading, onBlur: this.props.onBlur });
+        return React.createElement(redux_form_1.Field, { name: this.props.name, multi: this.props.multi, component: SearchNSelectStateless, label: this.props.label, onSearch: this.debouncedSearch, options: this.state.options, isLoading: this.state.isLoading, onBlur: this.props.onBlur });
     };
     SearchNSelect.prototype.debouncedSearch = function (_) {
         return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {

@@ -6,10 +6,12 @@ export interface SearchNSelectStatelessProps extends IFieldComponent<any> {
     options: any[];
     isLoading: boolean;
     onSearch(search: string): void;
+    multi?: boolean;
 }
 export declare function SearchNSelectStateless(props: SearchNSelectStatelessProps): JSX.Element;
 export interface SearchNSelectProps extends IField {
     onSearch(search: string): Promise<any>;
+    multi?: boolean;
 }
 export interface SearchNSelectState {
     options: any[];
