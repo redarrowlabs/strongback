@@ -4,12 +4,14 @@ import { Field } from 'redux-form';
 import { debounce } from 'lodash';
 import { FieldWrapper } from './field-wrapper';
 import { IField, IFieldComponent } from './fields';
+import { isOptArray, ReactSelectValue } from './react-select-util';
 
 export interface SearchNSelectStatelessProps extends IFieldComponent<any> {
     label: string;
     options: any[];
     isLoading: boolean;
     onSearch(search: string): void;
+    multi?: boolean;
 }
 
 export function SearchNSelectStateless(props: SearchNSelectStatelessProps) {
@@ -23,13 +25,15 @@ export function SearchNSelectStateless(props: SearchNSelectStatelessProps) {
         options,
         onSearch,
         isLoading,
+        multi
     } = props;
 
     return <FieldWrapper fieldProps={props}>
         <ReactSelect
             options={options}
             value={value}
-            onChange={onChange}
+            multi={multi}
+            onChange={onChangeUnique(onChange)}
             onBlur={e => onBlur(e)}
             onFocus={onFocus}
             onInputChange={onSearch}
@@ -39,8 +43,29 @@ export function SearchNSelectStateless(props: SearchNSelectStatelessProps) {
     </FieldWrapper>;
 }
 
+function onChangeUnique(onChange: (value: any) => void) {
+    return (x: ReactSelectValue) => {
+        if (isOptArray(x)) {
+            //References from different search results can
+            //cause duplicates, so filter them out after
+            //converting to value types
+            const uniq = unique(x.map(o => JSON.stringify(o)));
+            const asObjects = uniq.map(x => JSON.parse(x));
+            onChange(asObjects);
+            return;
+        }
+
+        onChange(x);
+    }
+}
+
+function unique<T>(arr: T[]) {
+    return Array.from(new Set(arr));
+}
+
 export interface SearchNSelectProps extends IField {
     onSearch(search: string): Promise<any>;
+    multi?: boolean;
 }
 
 export interface SearchNSelectState {
@@ -67,6 +92,7 @@ export class SearchNSelect extends React.Component<SearchNSelectProps, SearchNSe
     render() {
         return <Field
             name={this.props.name}
+            multi={this.props.multi}
             component={SearchNSelectStateless}
             label={this.props.label}
             onSearch={this.debouncedSearch}
