@@ -3,10 +3,12 @@ import * as ReactSelect from 'react-select';
 import { IField, IFieldComponent } from './fields';
 import { Field } from 'redux-form';
 import { FieldWrapper } from './field-wrapper';
+import { isOptArray } from './react-select-util';
 
 export interface SelectStatelessProps extends IFieldComponent<any> {
     label: string;
     options: any[];
+    multi?: boolean;
 }
 
 export function SelectStateless(props: SelectStatelessProps) {
@@ -18,26 +20,34 @@ export function SelectStateless(props: SelectStatelessProps) {
         onFocus,
         },
         options,
+        multi,
     } = props;
 
     return <FieldWrapper fieldProps={props}>
         <ReactSelect
             options={options}
             value={value}
-            onChange={(v: ReactSelect.Option) => onChange(valueOrDefault(v))}
+            multi={multi}
+            onChange={v => onChange(valueOrDefault(v))}
             onBlur={e => onBlur(e)}
             onFocus={onFocus}
         />
     </FieldWrapper>;
 }
 
-function valueOrDefault(option: ReactSelect.Option | null) {
+function valueOrDefault(option: ReactSelect.Option | ReactSelect.Option[] | null) {
     if (!option) { return ''; }
+
+    if (isOptArray(option)) {
+        return option.map(x => x.value);
+    }
+
     return option.value as string;
 }
 
 export interface SelectProps extends IField {
     options: any[];
+    multi?: boolean;
 }
 
 /**
@@ -54,6 +64,7 @@ export class Select extends React.Component<SelectProps, {}> {
             component={SelectStateless}
             label={this.props.label}
             options={this.props.options}
+            multi={this.props.multi}
             onBlur={this.props.onBlur}
         />;
     }

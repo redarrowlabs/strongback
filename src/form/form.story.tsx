@@ -55,15 +55,32 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 name='number'
                 label='Number' />
             <Select
+                onBlur={(e: any) => e.preventDefault()}
                 name='select'
                 label='Select'
                 options={[
                     { label: 'One', value: 'one' },
                     { label: 'Two', value: 'two' },
                 ]} />
+            <Select
+                onBlur={(e: any) => e.preventDefault()}
+                name='multiselect'
+                label='Multi Select'
+                multi={true}
+                options={[
+                    { label: 'One', value: 'one' },
+                    { label: 'Two', value: 'two' },
+                ]} />
             <SearchNSelect
+                onBlur={(e: any) => e.preventDefault()}
                 name='search'
                 label={`Search n' Select`}
+                onSearch={this.searchRemote} />
+            <SearchNSelect
+                onBlur={(e: any) => e.preventDefault()}
+                multi={true}
+                name='multisearch'
+                label={`Multi Search n' Select`}
                 onSearch={this.searchRemote} />
             <Radio
                 name='radio'
@@ -177,6 +194,7 @@ function dataReducer(state = initialData, action: any) {
                 text: action.data.text,
                 number: action.data.number,
                 select: action.data.select,
+                multiselect: action.data.multiselect
             };
         default:
             return state;
@@ -189,7 +207,7 @@ async function loadData() {
 
     AppStore.dispatch({
         type: LOAD_DATA_SUCCESS,
-        data: { text: 'World', number: '321', select: 'one' },
+        data: { text: 'World', number: '321', select: 'one', multiselect: ['one', 'two'] },
     });
 }
 
