@@ -51,6 +51,11 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
             <TextField
                 name='text'
                 label='Text' />
+            <TextField
+                name='area'
+                label='Text Area'
+                multiline={true}
+            />
             <NumberField
                 name='number'
                 label='Number' />

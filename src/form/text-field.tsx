@@ -6,6 +6,7 @@ import { FieldWrapper } from './field-wrapper';
 export interface TextFieldStatelessProps extends IFieldComponent<string> {
     autoComplete: 'on' | 'off';
     label: string;
+    multiline?: boolean;
 }
 
 export function TextFieldStateless(props: TextFieldStatelessProps) {
@@ -17,22 +18,31 @@ export function TextFieldStateless(props: TextFieldStatelessProps) {
         onFocus,
         },
         autoComplete,
+        multiline,
     } = props;
 
-    return <FieldWrapper fieldProps={props}>
-        <input
+    const control = multiline
+        ? <textarea
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            onFocus={onFocus} />
+        : <input
             type='text'
             value={value}
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}
-            autoComplete={autoComplete}
-        />
+            autoComplete={autoComplete} />;
+
+    return <FieldWrapper fieldProps={props}>
+        {control}
     </FieldWrapper>;
 }
 
 export interface TextFieldProps extends IField {
     autoComplete?: 'on' | 'off';
+    multiline?: boolean;
 }
 
 export function TextField(props: TextFieldProps) {
@@ -42,5 +52,6 @@ export function TextField(props: TextFieldProps) {
         autoComplete={props.autoComplete || 'off'}
         label={props.label}
         onBlur={props.onBlur}
+        multiline={props.multiline}
     />;
 }
