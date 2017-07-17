@@ -12,7 +12,7 @@ function TextFieldStateless(props) {
 }
 exports.TextFieldStateless = TextFieldStateless;
 function TextField(props) {
-    return React.createElement(redux_form_1.Field, { name: props.name, component: TextFieldStateless, autoComplete: props.autoComplete || 'off', label: props.label, onBlur: props.onBlur, multiline: props.multiline });
+    return React.createElement(redux_form_1.Field, { name: props.name, component: TextFieldStateless, autoComplete: props.autoComplete || 'off', label: props.label, onBlur: props.onBlur, multiline: props.multiline, help: props.help });
 }
 exports.TextField = TextField;
 //# sourceMappingURL=text-field.js.map

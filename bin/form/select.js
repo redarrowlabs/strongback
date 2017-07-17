@@ -39,7 +39,7 @@ var Select = (function (_super) {
         return _super.call(this, props) || this;
     }
     Select.prototype.render = function () {
-        return React.createElement(redux_form_1.Field, { name: this.props.name, component: SelectStateless, label: this.props.label, options: this.props.options, multi: this.props.multi, onBlur: this.props.onBlur });
+        return React.createElement(redux_form_1.Field, { name: this.props.name, component: SelectStateless, label: this.props.label, options: this.props.options, multi: this.props.multi, onBlur: this.props.onBlur, help: this.props.help });
     };
     return Select;
 }(React.Component));

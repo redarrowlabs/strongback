@@ -18,8 +18,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -91,7 +91,7 @@ var SearchNSelect = (function (_super) {
         return _this;
     }
     SearchNSelect.prototype.render = function () {
-        return React.createElement(redux_form_1.Field, { name: this.props.name, multi: this.props.multi, component: SearchNSelectStateless, label: this.props.label, onSearch: this.debouncedSearch, options: this.state.options, isLoading: this.state.isLoading, onBlur: this.props.onBlur });
+        return React.createElement(redux_form_1.Field, { name: this.props.name, multi: this.props.multi, component: SearchNSelectStateless, label: this.props.label, onSearch: this.debouncedSearch, options: this.state.options, isLoading: this.state.isLoading, onBlur: this.props.onBlur, help: this.props.help });
     };
     SearchNSelect.prototype.debouncedSearch = function (_) {
         return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {

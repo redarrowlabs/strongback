@@ -6,7 +6,9 @@ export interface FieldWrapperProps {
         meta: {
             touched: boolean;
             error: string;
-        }
+        },
+        /** Text to display when hovering over the label. */
+        help?: string;
     };
     mode?: 'no-wrap';
 }
@@ -17,7 +19,8 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
         const {
             fieldProps: {
                 meta: { touched, error },
-            label,
+                help,
+                label,
             },
             children,
             mode,
@@ -28,7 +31,7 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
         //For multiple inputs in children
         if (mode === 'no-wrap') {
             return <div>
-                <label>
+                <label title={help}>
                     <div>{label}</div>
                 </label>
                 {children}
@@ -37,7 +40,7 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
         }
 
         return <div>
-            <label>
+            <label title={help}>
                 <div>{label}</div>
                 {children}
             </label>

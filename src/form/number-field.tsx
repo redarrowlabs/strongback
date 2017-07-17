@@ -40,6 +40,7 @@ export function NumberField(props: IField) {
         normalize={normalize}
         label={props.label}
         onBlur={props.onBlur}
+        help={props.help}
     />;
 }
 

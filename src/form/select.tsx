@@ -66,6 +66,7 @@ export class Select extends React.Component<SelectProps, {}> {
             options={this.props.options}
             multi={this.props.multi}
             onBlur={this.props.onBlur}
+            help={this.props.help}
         />;
     }
 }

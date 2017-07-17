@@ -50,15 +50,19 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
         return <Form {...this.props} onSubmit={this.myValidation}>
             <TextField
                 name='text'
-                label='Text' />
+                label='Text'
+                help='You can define help text as well!'
+                 />
             <TextField
                 name='area'
                 label='Text Area'
+                help='Enter lots of text.'
                 multiline={true}
             />
             <NumberField
                 name='number'
-                label='Number' />
+                label='Number'
+                help='Enter a number.' />
             <Select
                 onBlur={(e: any) => e.preventDefault()}
                 name='select'
@@ -66,7 +70,8 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 options={[
                     { label: 'One', value: 'one' },
                     { label: 'Two', value: 'two' },
-                ]} />
+                ]} 
+                help='Pick one of many options.'/>
             <Select
                 onBlur={(e: any) => e.preventDefault()}
                 name='multiselect'
@@ -75,12 +80,14 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 options={[
                     { label: 'One', value: 'one' },
                     { label: 'Two', value: 'two' },
-                ]} />
+                ]} 
+                help='Pick any of these many options.'/>
             <SearchNSelect
                 onBlur={(e: any) => e.preventDefault()}
                 name='search'
                 label={`Search n' Select`}
-                onSearch={this.searchRemote} />
+                onSearch={this.searchRemote} 
+                help='This loads async.'/>
             <SearchNSelect
                 onBlur={(e: any) => e.preventDefault()}
                 multi={true}
@@ -94,7 +101,8 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                     { label: 'Hamburger', value: 'burg' },
                     { label: 'Brat', value: 'brat' },
                     { label: 'Veggie Patty', value: 'patty' },
-                ]} />
+                ]} 
+                help='Pick one option.'/>
             <Checkbox
                 name='checkbox'
                 label='Checkbox'
@@ -102,8 +110,9 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                     { label: 'Cheese', value: 'cheese' },
                     { label: 'Onion', value: 'onion' },
                     { label: 'Tomato', value: 'tomato' },
-                ]} />
-            <DateField name='date' label='Date' />
+                ]} 
+                help='Pick any number of options.'/>
+            <DateField name='date' label='Date' help='When do you want it?' />
         </Form>;
     }
 

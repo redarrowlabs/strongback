@@ -99,6 +99,7 @@ export class SearchNSelect extends React.Component<SearchNSelectProps, SearchNSe
             options={this.state.options}
             isLoading={this.state.isLoading}
             onBlur={this.props.onBlur}
+            help={this.props.help}
         />;
     }
 

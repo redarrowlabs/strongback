@@ -56,5 +56,6 @@ export function DateField(props: IField) {
         component={DateFieldStateless}
         label={props.label}
         onBlur={props.onBlur}
+        help={props.help}
     />;
 }

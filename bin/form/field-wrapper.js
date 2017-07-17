@@ -18,18 +18,18 @@ var FieldWrapper = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     FieldWrapper.prototype.render = function () {
-        var _a = this.props, _b = _a.fieldProps, _c = _b.meta, touched = _c.touched, error = _c.error, label = _b.label, children = _a.children, mode = _a.mode;
+        var _a = this.props, _b = _a.fieldProps, _c = _b.meta, touched = _c.touched, error = _c.error, help = _b.help, label = _b.label, children = _a.children, mode = _a.mode;
         var err = touched && error;
         //For multiple inputs in children
         if (mode === 'no-wrap') {
             return React.createElement("div", null,
-                React.createElement("label", null,
+                React.createElement("label", { title: help },
                     React.createElement("div", null, label)),
                 children,
                 React.createElement("div", null, err));
         }
         return React.createElement("div", null,
-            React.createElement("label", null,
+            React.createElement("label", { title: help },
                 React.createElement("div", null, label),
                 children),
             React.createElement("div", null, err));

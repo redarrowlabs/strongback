@@ -53,5 +53,6 @@ export function TextField(props: TextFieldProps) {
         label={props.label}
         onBlur={props.onBlur}
         multiline={props.multiline}
+        help={props.help}
     />;
 }
