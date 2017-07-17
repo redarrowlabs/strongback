@@ -48,6 +48,7 @@ export class Checkbox extends React.Component<CheckboxProps, {}> {
             component={CheckboxStateless}
             label={this.props.label}
             options={this.props.options}
+            help={this.props.help}
         />;
     }
 }

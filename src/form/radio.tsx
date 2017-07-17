@@ -47,6 +47,7 @@ export class Radio extends React.Component<RadioProps, {}> {
             component={RadioStateless}
             label={this.props.label}
             options={this.props.options}
+            help={this.props.help}
             />;
     }
 }
