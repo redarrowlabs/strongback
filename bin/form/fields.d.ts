@@ -3,6 +3,8 @@ import * as React from 'react';
 export interface IField {
     name: string;
     label: string;
+    /** A help tooltip to display. */
+    help?: string;
     onBlur?: (e: any) => void;
 }
 export interface IFieldComponent<T> {
@@ -26,4 +28,5 @@ export interface IFieldComponent<T> {
         visited: boolean;
         submitFailed: boolean;
     };
+    help?: string;
 }

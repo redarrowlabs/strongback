@@ -29,7 +29,7 @@ var Radio = (function (_super) {
         return _super.call(this, props) || this;
     }
     Radio.prototype.render = function () {
-        return React.createElement(redux_form_1.Field, { name: this.props.name, component: RadioStateless, label: this.props.label, options: this.props.options });
+        return React.createElement(redux_form_1.Field, { name: this.props.name, component: RadioStateless, label: this.props.label, options: this.props.options, help: this.props.help });
     };
     return Radio;
 }(React.Component));

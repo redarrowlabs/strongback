@@ -7,6 +7,8 @@ export interface FieldWrapperProps {
             touched: boolean;
             error: string;
         };
+        /** Text to display when hovering over the label. */
+        help?: string;
     };
     mode?: 'no-wrap';
 }

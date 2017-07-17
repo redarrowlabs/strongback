@@ -10,7 +10,7 @@ function NumberFieldStateless(props) {
 }
 exports.NumberFieldStateless = NumberFieldStateless;
 function NumberField(props) {
-    return React.createElement(redux_form_1.Field, { name: props.name, component: NumberFieldStateless, normalize: normalize, label: props.label, onBlur: props.onBlur });
+    return React.createElement(redux_form_1.Field, { name: props.name, component: NumberFieldStateless, normalize: normalize, label: props.label, onBlur: props.onBlur, help: props.help });
 }
 exports.NumberField = NumberField;
 /**
