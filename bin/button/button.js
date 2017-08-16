@@ -52,8 +52,8 @@ exports.Button = Button;
 function getClasses(props) {
     return classNames({
         'c-button': true,
-        'c-button--primary': !props.variant || props.variant === 'primary',
-        'c-button--secondary': props.variant === 'secondary',
+        'c-button--primary': props.variant === 'primary',
+        'c-button--default': !props.variant || props.variant === 'default',
         'c-button--info': props.variant === 'info',
         'c-button--success': props.variant === 'success',
         'c-button--warning': props.variant === 'warning',

@@ -48,7 +48,7 @@ export class Form extends React.Component<IStrongbackForm, {}> {
                     <Button type='submit' loading={submitting}>
                         Submit
                 </Button>
-                    <Button type='button' variant='secondary' disabled={pristine || submitting} onClick={reset}>
+                    <Button type='button' variant='default' disabled={pristine || submitting} onClick={reset}>
                         Reset
                 </Button>
                 </div>
