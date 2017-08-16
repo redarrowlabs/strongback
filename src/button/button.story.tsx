@@ -11,7 +11,7 @@ storiesOf('Button', module)
                 Hello World
             </Button>
             <Button
-                variant='secondary'
+                variant='primary'
                 onClick={action('click')}>
                 Cancel
             </Button>

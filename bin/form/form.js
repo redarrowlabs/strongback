@@ -34,7 +34,7 @@ var Form = (function (_super) {
                 React.createElement("div", null, this.props.children),
                 React.createElement("div", null,
                     React.createElement(button_1.Button, { type: 'submit', loading: submitting }, "Submit"),
-                    React.createElement(button_1.Button, { type: 'button', variant: 'secondary', disabled: pristine || submitting, onClick: reset }, "Reset"))));
+                    React.createElement(button_1.Button, { type: 'button', variant: 'default', disabled: pristine || submitting, onClick: reset }, "Reset"))));
     };
     return Form;
 }(React.Component));

@@ -8,7 +8,7 @@ storiesOf('Modal', module)
         const header = <h1>Modals</h1>;
         const footer = <div>
             <Button onClick={action('save')}>Save</Button>
-            <Button onClick={action('cancel')} variant='secondary'>Cancel</Button>
+            <Button onClick={action('cancel')} variant='default'>Cancel</Button>
         </div>;
 
         return <div>
@@ -46,7 +46,7 @@ class ModalExample extends React.Component<{}, any> {
             <Button onClick={this.handleClose}>
                 Fire!
             </Button>
-            <Button onClick={this.handleClose} variant='secondary'>
+            <Button onClick={this.handleClose} variant='default'>
                 Maybe not...
             </Button>
         </div>;
