@@ -1,12 +1,11 @@
 console.log('configuring storybook');
-import { configure } from '@kadira/storybook';
+import { configure } from '@storybook/react';
 
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/flip.css';
 import 'react-select/dist/react-select.css';
 import 'react-widgets/dist/css/react-widgets.css';
-import '../src/app.css';
-import '../src/styles.css';
+import '../bin/styles.css';
 const requireContext = require.context('../src', true, /.story.tsx$/);
 
 const {useDefaultImplementations} = require('../src/defaults');

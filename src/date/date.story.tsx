@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { storiesOf, module } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 
 import { LocalDateView, LocalDateTimeView } from '../index';
 

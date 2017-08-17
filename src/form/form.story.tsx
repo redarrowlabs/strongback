@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { storiesOf, action, module } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { combineReducers, createStore } from 'redux';
 import { reducer as formReducer, SubmissionError, reduxForm } from 'redux-form';
 import { Provider, connect } from 'react-redux';
