@@ -9,7 +9,10 @@
   "main": "bin/index",
   "typings": "bin/index",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build:ts && npm run build:css",
+    "build:css": "postcss src/styles.css --use postcss-import autoprefixer --dir ./bin",
+    "watch:css": "postcss src/styles.css --use postcss-import autoprefixer --dir ./bin --watch",
+    "build:ts": "tsc",
     "storybook": "start-storybook -p 9001",
     "todo": "leasot --reporter markdown --tags hack --associate-parser .tsx,defaultParser src/**/*.tsx > TODO.md || exit 0",
     "lint:fix": "tslint --fix --config tslint.json src",
@@ -33,7 +36,6 @@
   },
   "devDependencies": {
     "@kadira/storybook": "^2.35.3",
-    "@redarrowlabs/strongback-css": "0.0.4",
     "@types/classnames": "0.0.32",
     "@types/lodash": "^4.14.59",
     "@types/node": "^7.0.12",
@@ -49,6 +51,8 @@
     "babel-runtime": "^6.23.0",
     "css-loader": "^0.28.0",
     "leasot": "^4.3.1",
+    "postcss-cli": "^4.1.0",
+    "postcss-import": "^10.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "style-loader": "^0.16.1",

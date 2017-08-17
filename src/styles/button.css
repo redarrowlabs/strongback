@@ -1,0 +1,67 @@
+
+.c-button{
+    border-radius: .125rem;
+    position:relative;
+}
+
+.c-button .loader {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right:0;
+    bottom: 0;
+    left: 0;
+}
+
+.c-button .loader + div {
+    visibility: hidden;
+}
+
+.c-button--primary,
+.c-button--primary:disabled:hover{
+    transition: background-color 0.125s ease;
+    background-color: var(--color-brand-primary-500);
+    border: none;
+}
+
+.c-button--primary:hover,
+.c-button--primary:not(:disabled):hover{
+    background-color: var(--color-brand-primary-600); 
+}
+
+/*
+TODO strongback-css bug?
+Show not allowed cursor on disabled buttons.
+*/
+.c-button:disabled{
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+
+.c-button--secondary,
+.c-button--secondary:disabled:hover{
+    transition: border-color 0.125s ease;
+    background-color: white;
+    color: black;
+    border-color: var(--color-gray-400);
+}
+
+.c-button--secondary:hover,
+.c-button--secondary:not(:disabled):hover{
+    border-color: var(--color-brand-primary-500);
+}
+
+.c-button--danger,
+.c-button--danger:disabled:hover{
+    transition: background-color color border-color 0.125s ease;
+    background-color: white;
+    color: var(--color-ui-error-text);
+    border-color: var(--color-gray-400);
+}
+
+.c-button--danger:hover,
+.c-button--danger:not(:disabled):hover{
+    background-color: var(--color-ui-error-text);
+    color: white;
+    border-color: var(--color-ui-error-text);
+}

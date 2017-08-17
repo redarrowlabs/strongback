@@ -1,0 +1,47 @@
+:root{
+    /* Brand Colors */
+    --color-brand-primary-100: #F4FAFE;
+    --color-brand-primary-200: #C8E8FC;
+    --color-brand-primary-300: #90D1FA;
+    --color-brand-primary-400: #55BBFB;
+    --color-brand-primary-500: #1CA4FA;
+    --color-brand-primary-600: #047ACC;
+    --color-brand-primary-700: #145B93;
+    --color-brand-primary-800: #154368;
+    --color-brand-primary-900: #122B42;
+
+    --color-brand-secondary: #648CA5;
+
+    /* Grays */
+    --color-gray-100: #FAFAFA;
+    --color-gray-200: #F0F1F1;
+    --color-gray-300: #E6E7E8;
+    --color-gray-400: #C3C6CA;
+    --color-gray-500: #9FA5AB;
+    --color-gray-600: #7F868D;
+    --color-gray-700: #5B636C;
+    --color-gray-800: #333C45;
+    --color-gray-900: #242C35;
+    
+
+    /* UI colors */
+    --color-ui-error: #FC4E36;
+    --color-ui-error-text: #E21E03;
+
+    --color-ui-success: #37B55A;
+    --color-ui-success-text: #298643;
+
+    --color-ui-warning: #FBCE1E;
+    --color-ui-warning-text: #927503;
+    
+    --color-ui-info: #1CA4FA;
+    --color-ui-info-text: #047ACC;
+
+    /* Sizing */
+    --size-step-1: 0.125rem;
+    --size-step-2: 0.25rem;
+    --size-step-3: 0.5rem;
+    --size-step-4: 0.75rem;
+    --size-step-5: 1rem;
+    --size-step-6: 3rem;
+}
