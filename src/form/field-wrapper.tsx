@@ -16,7 +16,7 @@ export interface FieldWrapperProps {
         indicator?: FieldIndicator;
     };
     mode?: 'no-wrap';
-    
+
 }
 
 /** Wraps a field with a label and error message area. */
@@ -33,64 +33,97 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
             mode,
         } = this.props;
 
-        const indicatorClass = getClasses(this.props);
-
-        let errorEl:React.ReactNode = null;
-        let labelClass = '';
-        if (touched && error) {
-            errorEl = <div className='error-message'>{error}</div>;
-            labelClass = 'error'
-        }
-
-        let indicatorEl:React.ReactNode = null;
-        if (indicator === 'optional') {
-            indicatorEl = <span>(optional)</span>
-        }
-
-        if (indicator === 'required') {
-            indicatorEl = <span>*</span>
-        }
-
-        let helpEl:React.ReactNode = null;
-
-        var helpTextLength = (help || '').length;
-        if (helpTextLength > 50) {
-            helpEl = <div><span className='help-icon'></span><div className='helper-text'>{help}</div></div>
-        }
-
-        else {
-            helpEl = <div className='helper-text'>{help}</div>
-        }
-        
+        const labelClass = classNames({
+            'error': touched && (error !== '')
+        });
 
         //For multiple inputs in children
         if (mode === 'no-wrap') {
             return <div>
                 <label className={labelClass}>
-                    <div className={indicatorClass}>{label} {indicatorEl}</div>
+                    <FieldLabel
+                        label={label}
+                        indicator={indicator} />
                 </label>
                 {children}
-                {helpEl}
-                {errorEl}
-                
+                <HelpArea text={help} />
+                <FieldError error={error} touched={touched} />
             </div>;
         }
 
         return <div>
             <label className={labelClass}>
-                <div className={indicatorClass}>{label} {indicatorEl}</div>
+                <FieldLabel
+                    label={label}
+                    indicator={indicator} />
                 {children}
-                
             </label>
-            {helpEl}
-            {errorEl}
+            <HelpArea text={help} />
+            <FieldError error={error} touched={touched} />
         </div>;
     }
 }
 
-function getClasses(props: FieldWrapperProps) {
-    return classNames({
-        'optional': props.fieldProps.indicator === 'optional',
-        'required': props.fieldProps.indicator === 'required'
+interface FieldLabelProps {
+    label: string;
+    indicator: FieldIndicator | undefined;
+}
+
+/** The label of the field, including indicators. */
+function FieldLabel(props: FieldLabelProps) {
+    const { label, indicator } = props;
+
+
+    let indicatorEl: React.ReactNode = null;
+    if (indicator === 'optional') {
+        indicatorEl = <span>(optional)</span>
+    }
+
+    if (indicator === 'required') {
+        indicatorEl = <span>*</span>
+    }
+
+    const indicatorClass = classNames({
+        'optional': props.indicator === 'optional',
+        'required': props.indicator === 'required'
     });
+
+    return <div className={indicatorClass}>
+        {label} {indicatorEl}
+    </div>;
+}
+
+interface FieldErrorProps {
+    touched: boolean;
+    error: string;
+}
+
+/** The error message section of a field. */
+function FieldError(props: FieldErrorProps) {
+    const { touched, error } = props;
+    if (touched && error) {
+        return <div className='error-message'>{error}</div>;
+    }
+
+    return null;
+}
+
+interface HelpAreaProps {
+    text: string | undefined;
+}
+
+/** An element that shows some helper text or an info tip. */
+function HelpArea(props: HelpAreaProps) {
+    const { text } = props;
+
+    var helpTextLength = (text || '').length;
+
+    if (helpTextLength > 50) {
+        return <div>
+            <span className='help-icon'></span>
+            <div className='helper-text'>{text}</div>
+        </div>
+    }
+
+    return <div className='helper-text'>{text}</div>
 }
