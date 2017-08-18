@@ -3,7 +3,6 @@ import * as classNames from 'classnames';
 
 export type FieldIndicator = 'optional' | 'required';
 
-
 export interface FieldWrapperProps {
     fieldProps: {
         label: string;

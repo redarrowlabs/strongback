@@ -2,6 +2,7 @@ import * as React from 'react';
 import { IField, IFieldComponent } from './fields';
 import { Field } from 'redux-form';
 import { FieldWrapper } from './field-wrapper';
+import * as classNames from 'classnames';
 
 export interface TextFieldStatelessProps extends IFieldComponent<string> {
     autoComplete: 'on' | 'off';
@@ -15,10 +16,10 @@ export function TextFieldStateless(props: TextFieldStatelessProps) {
     const {
         input: {
             value,
-            onChange,
-            onBlur,
-            onFocus,
-            
+        onChange,
+        onBlur,
+        onFocus,
+
         },
         suffix,
         prefix,
@@ -30,20 +31,17 @@ export function TextFieldStateless(props: TextFieldStatelessProps) {
     } = props;
 
 
-    let invalidClassName = '';
-    if (invalid) {
-        invalidClassName = 'error'
-    }
+    let inputClass = classNames({
+        'error': invalid
+    });
 
-    let suf:React.ReactNode = null;
-    if (suffix != null) {
-        suf = <span className="suffix">{suffix}</span>
-    }
+    let suffixEl = suffix
+        ? <span className="suffix">{suffix}</span>
+        : null;
 
-    let pre:React.ReactNode = null;
-    if (prefix != null) {
-        pre = <span className="prefix">{prefix}</span>
-    }
+    let prefixEl = prefix
+        ? <span className="prefix">{prefix}</span>
+        : null;
 
     const control = multiline
         ? <textarea
@@ -51,24 +49,27 @@ export function TextFieldStateless(props: TextFieldStatelessProps) {
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}
-            className={invalidClassName}/>
+            className={inputClass} />
         : <input
             type='text'
             value={value}
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}
-            autoComplete={autoComplete} 
-            className={invalidClassName}/>
+            autoComplete={autoComplete}
+            className={inputClass} />
 
     return <FieldWrapper fieldProps={props}>
-        {pre}{control}{suf}
+        {prefixEl}{control}{suffixEl}
     </FieldWrapper>;
 }
 
 export interface TextFieldProps extends IField {
     autoComplete?: 'on' | 'off';
     multiline?: boolean;
+    suffix?: string;
+    prefix?: string;
+
 }
 
 export function TextField(props: TextFieldProps) {
@@ -80,7 +81,6 @@ export function TextField(props: TextFieldProps) {
         onBlur={props.onBlur}
         multiline={props.multiline}
         help={props.help}
-        indicator={props.indicator}
         suffix={props.suffix}
         prefix={props.prefix}
     />;
