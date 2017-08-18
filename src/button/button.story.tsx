@@ -46,7 +46,7 @@ storiesOf('Button', module)
             </Button>;
     })
     .add('loading', () => {
-        return <Button loading={true}><div>Saving</div></Button>;
+        return <Button loading={true}>Saving</Button>;
     })
     .add('loading behavior', () => {
         return <LoadingExample />;

@@ -72,7 +72,6 @@ interface FieldLabelProps {
 function FieldLabel(props: FieldLabelProps) {
     const { label, indicator } = props;
 
-
     let indicatorEl: React.ReactNode = null;
     if (indicator === 'optional') {
         indicatorEl = <span>(optional)</span>
