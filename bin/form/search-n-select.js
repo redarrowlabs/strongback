@@ -91,7 +91,7 @@ var SearchNSelect = (function (_super) {
         return _this;
     }
     SearchNSelect.prototype.render = function () {
-        return React.createElement(redux_form_1.Field, { name: this.props.name, multi: this.props.multi, component: SearchNSelectStateless, label: this.props.label, onSearch: this.debouncedSearch, options: this.state.options, isLoading: this.state.isLoading, onBlur: this.props.onBlur, help: this.props.help });
+        return React.createElement(redux_form_1.Field, { name: this.props.name, multi: this.props.multi, component: SearchNSelectStateless, label: this.props.label, onSearch: this.debouncedSearch, options: this.state.options, isLoading: this.state.isLoading, onBlur: this.props.onBlur, help: this.props.help, indicator: this.props.indicator });
     };
     SearchNSelect.prototype.debouncedSearch = function (_) {
         return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
