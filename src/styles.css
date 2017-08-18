@@ -5,6 +5,8 @@
 @import './styles/lists.css';
 @import './styles/size.css';
 @import './styles/text.css';
+@import './styles/button.css';
+@import './styles/forms.css';
 
 
 /* Example styling */
@@ -45,8 +47,9 @@ h6 {
   font-size: 1rem; }
 
 a {
-  color: #047acc;
+  color: var(--color-brand-primary-500);
   text-decoration: none; }
+  
   a:active, a:focus, a:hover {
     text-decoration: underline; }
 
@@ -59,15 +62,3 @@ hr {
   border-right: 0;
   border-top: 0;
   margin: 1em 0; }
-
-label {
-  font-size: 0.8125em;
-  font-weight: 300;
-  color: #697179; }
-
-/* Button Styles */
-/* 
-TODO make strongback more functional based.
-*/
-
-

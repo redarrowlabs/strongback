@@ -7,36 +7,62 @@ export interface TextFieldStatelessProps extends IFieldComponent<string> {
     autoComplete: 'on' | 'off';
     label: string;
     multiline?: boolean;
+    suffix?: string;
+    prefix?: string;
 }
 
 export function TextFieldStateless(props: TextFieldStatelessProps) {
     const {
         input: {
             value,
-        onChange,
-        onBlur,
-        onFocus,
+            onChange,
+            onBlur,
+            onFocus,
+            
         },
+        suffix,
+        prefix,
         autoComplete,
         multiline,
+        meta: {
+            invalid
+        },
     } = props;
+
+
+    let invalidClassName = '';
+    if (invalid) {
+        invalidClassName = 'error'
+    }
+
+    let suf:React.ReactNode = null;
+    if (suffix != null) {
+        suf = <span className="suffix">{suffix}</span>
+    }
+
+    let pre:React.ReactNode = null;
+    if (prefix != null) {
+        pre = <span className="prefix">{prefix}</span>
+    }
 
     const control = multiline
         ? <textarea
             value={value}
             onChange={onChange}
             onBlur={onBlur}
-            onFocus={onFocus} />
+            onFocus={onFocus}
+            className={invalidClassName}/>
         : <input
             type='text'
             value={value}
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}
-            autoComplete={autoComplete} />;
+            autoComplete={autoComplete} 
+            className={invalidClassName}/>
 
     return <FieldWrapper fieldProps={props}>
-        {control}
+        {pre}{control}{suf}
     </FieldWrapper>;
 }
 
@@ -54,5 +80,8 @@ export function TextField(props: TextFieldProps) {
         onBlur={props.onBlur}
         multiline={props.multiline}
         help={props.help}
+        indicator={props.indicator}
+        suffix={props.suffix}
+        prefix={props.prefix}
     />;
 }

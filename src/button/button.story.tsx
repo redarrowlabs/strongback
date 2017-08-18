@@ -12,7 +12,7 @@ storiesOf('Button', module)
                 Hello World
             </Button>
             <Button
-                variant='primary'
+                variant='default'
                 onClick={action('click')}>
                 Cancel
             </Button>
@@ -46,7 +46,7 @@ storiesOf('Button', module)
             </Button>;
     })
     .add('loading', () => {
-        return <Button loading={true}>Saving</Button>;
+        return <Button loading={true}><div>Saving</div></Button>;
     })
     .add('loading behavior', () => {
         return <LoadingExample />;

@@ -53,6 +53,8 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 name='text'
                 label='Text'
                 help='You can define help text as well!'
+                indicator='required'
+                suffix='lbs'
                  />
             <TextField
                 name='area'
@@ -63,7 +65,9 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
             <NumberField
                 name='number'
                 label='Number'
-                help='Enter a number.' />
+                help='Enter a number that is a really good one. Like a million. Or two million. Or something even a billion.'
+                indicator='optional'
+                prefix="$" />
             <Select
                 onBlur={(e: any) => e.preventDefault()}
                 name='select'
@@ -113,7 +117,11 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                     { label: 'Tomato', value: 'tomato' },
                 ]} 
                 help='Pick any number of options.'/>
-            <DateField name='date' label='Date' help='When do you want it?' />
+            <DateField 
+                name='date' 
+                label='Date' 
+                help='When do you want it?' 
+                />
         </Form>;
     }
 

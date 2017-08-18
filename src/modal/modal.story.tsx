@@ -8,8 +8,8 @@ storiesOf('Modal', module)
     .add('open', () => {
         const header = <h1>Modals</h1>;
         const footer = <div>
-            <Button onClick={action('save')}>Save</Button>
-            <Button onClick={action('cancel')} variant='default'>Cancel</Button>
+            <Button onClick={action('save')} variant='primary'>Save</Button>
+            <Button onClick={action('cancel')}>Cancel</Button>
         </div>;
 
         return <div>

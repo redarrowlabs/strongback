@@ -1,7 +1,22 @@
+.c-button {
+    display: inline-block;
+    padding: .5em 1em;
+    background-color: var(--color-gray-100);
+    border: 1px solid var(--color-gray-300);
+    color: var(--color-gray-700);
+    text-decoration: none;
+    box-sizing: border-box;
+    box-shadow: none;
 
-.c-button{
+    transition: opacity 75ms ease,
+                background-color 75ms ease,
+                color 75ms ease,
+                border-color 75ms ease,
+                box-shadow 75ms ease;
+
     border-radius: .125rem;
     position:relative;
+
 }
 
 .c-button .loader {
@@ -16,6 +31,119 @@
 .c-button .loader + div {
     visibility: hidden;
 }
+
+/*States */
+
+    .c-button:disabled {
+        cursor: not-allowed;
+        opacity: .65;
+    }
+
+    .c-button:hover {
+        position: relative;  /*pops buttons above other buttons in button group */
+        outline: none;
+        cursor: pointer;
+        text-decoration: none;
+        border: 1px solid var(--color-gray-400);
+    }
+
+    .c-button:focus {
+        position: relative;  /*pops buttons above other buttons in button group */
+        outline: none;
+        border-color: var(--color-brand-primary-500);
+        box-shadow: 0 0 5px transparentize(--color-brand-primary-500, .5);
+    }
+
+    .c-button:active {
+        position: relative;   /*pops buttons above other buttons in button group */
+        background-image: none;
+        outline: 0;
+        text-decoration: none;
+        box-shadow: 0 0 5em 0 rgba(0,0,0, .025) inset,       /* fill */
+                0 .1em .1em 0 rgba(0,0,0, .075) inset;       /* shadow */
+    }
+
+
+    .c-button--primary {
+        background-color: var(--color-brand-primary);
+        border-color: var(--color-brand-primary);
+        color: #fff;
+    }
+
+        .c-button--primary:hover {
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 0 5em 0 rgba(0,0,0, .075) inset;       /* fill */
+            border-color: darken(--color-brand-primary, 7.5%);
+        }
+
+
+        .c-button--primary:active {
+            outline: 0;
+            text-decoration: none;
+            box-shadow: 0 0 5em 0 rgba(0,0,0, .15) inset,       /* fill */
+                        0 .1em .1em 0 rgba(0,0,0, .15) inset;   /* shadow */
+            border-color: darken(--color-brand-primary, 7.5%);
+        }
+
+    .c-button--info {
+        background-color: var(--color-ui-info);
+        border-color: var(--color-ui-info);
+        color: #fff;
+    }
+
+    .c-button--success {
+        background-color: var(--color-ui-success);
+        border-color: var(--color-ui-success);
+        color: #fff;
+    }
+
+    .c-button--warning {
+        background-color: var(--color-ui-warning);
+        border-color: var(--color-ui-warning);
+        color: #fff;
+    }
+
+
+    .c-button--link {
+        background-color: transparent;
+        border-color: transparent;
+        color: var(--color-brand-primary-700);
+    }
+
+        .c-button--link:focus,
+        .c-button--link:hover{
+            text-decoration: underline;
+            cursor: pointer;
+            color: var(--color-brand-primary-700);
+            border-color: transparent;
+            box-shadow: none;
+        }
+
+        .c-button--link:active{
+            outline: 0;
+            cursor: pointer;
+            color: var(--color-brand-primary-700);
+            border-color: transparent;
+            box-shadow: none;
+        }
+
+    .c-button--link--light {
+        background-color: #fff;
+    }
+
+
+    .c-button--link--danger {
+        color: var(--color-ui-error-text);
+    }
+
+        .c-button--link--danger:focus,
+        .c-button--link--danger:hover,
+        .c-button--link--danger:active{
+            color: var(--color-ui-error-text);
+        }
+
+
 
 .c-button--primary,
 .c-button--primary:disabled:hover{
@@ -38,16 +166,16 @@ Show not allowed cursor on disabled buttons.
     pointer-events: all !important;
 }
 
-.c-button--secondary,
-.c-button--secondary:disabled:hover{
+.c-button--default,
+.c-button--default:disabled:hover{
     transition: border-color 0.125s ease;
     background-color: white;
     color: black;
     border-color: var(--color-gray-400);
 }
 
-.c-button--secondary:hover,
-.c-button--secondary:not(:disabled):hover{
+.c-button--default:hover,
+.c-button--default:not(:disabled):hover{
     border-color: var(--color-brand-primary-500);
 }
 

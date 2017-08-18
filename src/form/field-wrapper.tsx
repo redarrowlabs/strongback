@@ -1,4 +1,8 @@
 import * as React from 'react';
+import * as classNames from 'classnames';
+
+export type FieldIndicator = 'optional' | 'required';
+
 
 export interface FieldWrapperProps {
     fieldProps: {
@@ -9,8 +13,10 @@ export interface FieldWrapperProps {
         },
         /** Text to display when hovering over the label. */
         help?: string;
+        indicator?: FieldIndicator;
     };
     mode?: 'no-wrap';
+    
 }
 
 /** Wraps a field with a label and error message area. */
@@ -21,30 +27,70 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
                 meta: { touched, error },
                 help,
                 label,
+                indicator
             },
             children,
             mode,
         } = this.props;
 
-        const err = touched && error;
+        const indicatorClass = getClasses(this.props);
+
+        let errorEl:React.ReactNode = null;
+        let labelClass = '';
+        if (touched && error) {
+            errorEl = <div className='error-message'>{error}</div>;
+            labelClass = 'error'
+        }
+
+        let indicatorEl:React.ReactNode = null;
+        if (indicator === 'optional') {
+            indicatorEl = <span>(optional)</span>
+        }
+
+        if (indicator === 'required') {
+            indicatorEl = <span>*</span>
+        }
+
+        let helpEl:React.ReactNode = null;
+
+        var helpTextLength = (help || '').length;
+        if (helpTextLength > 50) {
+            helpEl = <div><span className='help-icon'></span><div className='helper-text'>{help}</div></div>
+        }
+
+        else {
+            helpEl = <div className='helper-text'>{help}</div>
+        }
+        
 
         //For multiple inputs in children
         if (mode === 'no-wrap') {
             return <div>
-                <label title={help}>
-                    <div>{label}</div>
+                <label className={labelClass}>
+                    <div className={indicatorClass}>{label} {indicatorEl}</div>
                 </label>
                 {children}
-                <div>{err}</div>
+                {helpEl}
+                {errorEl}
+                
             </div>;
         }
 
         return <div>
-            <label title={help}>
-                <div>{label}</div>
+            <label className={labelClass}>
+                <div className={indicatorClass}>{label} {indicatorEl}</div>
                 {children}
+                
             </label>
-            <div>{err}</div>
+            {helpEl}
+            {errorEl}
         </div>;
     }
+}
+
+function getClasses(props: FieldWrapperProps) {
+    return classNames({
+        'optional': props.fieldProps.indicator === 'optional',
+        'required': props.fieldProps.indicator === 'required'
+    });
 }
