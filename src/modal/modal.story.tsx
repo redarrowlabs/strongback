@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { storiesOf, action, module } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { Modal, Button } from '../index';
 
@@ -7,8 +8,8 @@ storiesOf('Modal', module)
     .add('open', () => {
         const header = <h1>Modals</h1>;
         const footer = <div>
-            <Button onClick={action('save')}>Save</Button>
-            <Button onClick={action('cancel')} variant='default'>Cancel</Button>
+            <Button onClick={action('save')} variant='primary'>Save</Button>
+            <Button onClick={action('cancel')}>Cancel</Button>
         </div>;
 
         return <div>

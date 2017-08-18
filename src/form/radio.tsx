@@ -48,6 +48,7 @@ export class Radio extends React.Component<RadioProps, {}> {
             label={this.props.label}
             options={this.props.options}
             help={this.props.help}
+            indicator={this.props.indicator}
             />;
     }
 }

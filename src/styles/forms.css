@@ -1,0 +1,56 @@
+/* base form styling */
+label {
+  font-weight: 400;
+}
+
+    label .optional span {
+        text-transform: uppercase;
+        color: var(--color-gray-400);
+        font-weight: bold;
+        font-size: .6rem;
+    }
+
+    label .required span {
+        font-weight: bold;
+        color: var(--color-ui-error-text);
+    }
+
+input, textarea, select {
+    border-width: 1px;
+    border-radius: 3px;
+    padding: 4px 8px;
+    border-style: solid;
+    margin-bottom: 3px;
+    border-color: var(--color-gray-500);
+}
+
+    input.error {
+        border-color: var(--color-ui-error);
+    }
+
+    .suffix {
+        padding-left:5px;
+        color: var(--color-gray-500);
+    }
+
+    .prefix {
+        padding-right:5px;
+        color: var(--color-gray-500);
+    }
+
+.error-message {
+    color: var(--color-ui-error-text);
+    font-size: 0.8125em;
+}
+
+.helper-text {
+    color: var(--color-gray-500);
+    font-size: 0.8125em;
+}
+
+/* form level validation */
+.form-validation {
+    background: var(--color-gray-300);
+    padding: 10px;
+    border-left: 5px solid var(--color-ui-error-text);
+}

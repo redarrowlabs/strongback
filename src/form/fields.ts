@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {FieldIndicator} from './field-wrapper'
 
 export interface IField {
     name: string;
@@ -8,7 +9,13 @@ export interface IField {
     /** A help tooltip to display. */
     help?: string;
 
+    /** Marks this field as optional or required*/
+    indicator?: FieldIndicator;
+
     onBlur?: (e: any) => void;
+
+    prefix?: string;
+    suffix?: string;
 }
 
 export interface IFieldComponent<T> {
@@ -33,4 +40,7 @@ export interface IFieldComponent<T> {
         submitFailed: boolean;
     };
     help?: string;
+    indicator?: FieldIndicator;
+    prefix?: string;
+    suffix?: string;
 }

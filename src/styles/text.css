@@ -1,0 +1,17 @@
+.hd1 {
+    font-size: 2.25rem;
+}
+
+.hd2 {
+    font-size: 1.5rem;
+}
+
+.hd3 {
+    font-size: 1.25rem;
+}
+
+.no-underline-ever,
+.no-underline-ever:hover,
+.no-underline-ever:focus {
+    text-decoration: none;
+}

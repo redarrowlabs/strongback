@@ -44,7 +44,7 @@ var Button = (function (_super) {
             : null;
         return React.createElement("button", __assign({ className: buttonClass, type: type }, rest, { disabled: disabled }),
             loader,
-            children);
+            React.createElement("div", null, children));
     };
     return Button;
 }(React.Component));

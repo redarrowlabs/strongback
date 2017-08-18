@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { storiesOf, action, module } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { Button } from '../index';
 
@@ -11,7 +12,7 @@ storiesOf('Button', module)
                 Hello World
             </Button>
             <Button
-                variant='primary'
+                variant='default'
                 onClick={action('click')}>
                 Cancel
             </Button>

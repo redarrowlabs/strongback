@@ -1,5 +1,6 @@
 /// <reference types="react" />
 import * as React from 'react';
+export declare type FieldIndicator = 'optional' | 'required';
 export interface FieldWrapperProps {
     fieldProps: {
         label: string;
@@ -9,6 +10,7 @@ export interface FieldWrapperProps {
         };
         /** Text to display when hovering over the label. */
         help?: string;
+        indicator?: FieldIndicator;
     };
     mode?: 'no-wrap';
 }

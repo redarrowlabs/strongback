@@ -10,26 +10,51 @@ import { FieldWrapper } from './field-wrapper';
 
 export interface NumberFieldProps extends IFieldComponent<string> {
     label: string;
+    suffix?: string;
+    prefix?: string;
 }
 
 export function NumberFieldStateless(props: NumberFieldProps) {
     const {
         input: {
             value,
-        onChange,
-        onBlur,
-        onFocus,
+            onChange,
+            onBlur,
+            onFocus,
         },
+        meta: {
+            invalid
+        },
+        suffix,
+        prefix,
     } = props;
 
+    let invalidClassName = '';
+    if (invalid) {
+        invalidClassName = 'error'
+    }
+
+    let suf:React.ReactNode = null;
+    if (suffix != null) {
+        suf = <span className="suffix">{suffix}</span>
+    }
+
+    let pre:React.ReactNode = null;
+    if (prefix != null) {
+        pre = <span className="prefix">{prefix}</span>
+    }
+
     return <FieldWrapper fieldProps={props}>
+        {pre}
         <input
             type='text'
             value={value}
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}
+            className={invalidClassName}
         />
+        {suf}
     </FieldWrapper>;
 }
 
@@ -41,6 +66,9 @@ export function NumberField(props: IField) {
         label={props.label}
         onBlur={props.onBlur}
         help={props.help}
+        indicator={props.indicator}
+        suffix={props.suffix}
+        prefix={props.prefix}
     />;
 }
 

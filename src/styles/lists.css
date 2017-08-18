@@ -1,0 +1,19 @@
+.li1 + .li1{
+    margin-top: var(--size-step-1);
+}
+
+.li2 + .li2{
+    margin-top: var(--size-step-2);
+}
+
+.list2 > * + *{
+    margin-top: var(--size-step-2);
+}
+
+.li-b1 + .li-b1{
+    border-top: 1px solid;
+}
+
+.li-b--gray + .li-b--gray{
+    border-top-color: (var(--color-gray-500));
+}

@@ -32,7 +32,7 @@ export class Button extends React.Component<IButtonProps, {}> {
             {...rest}
             disabled={disabled}>
             {loader}
-            {children}
+            <div>{children}</div>
         </button>;
     }
 }
