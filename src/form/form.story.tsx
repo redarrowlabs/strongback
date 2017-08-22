@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { combineReducers, createStore } from 'redux';
 import { reducer as formReducer, SubmissionError, reduxForm } from 'redux-form';
 import { Provider, connect } from 'react-redux';
+import { padding } from '../deco';
 
 import {
     Button,
@@ -19,13 +20,19 @@ import {
 } from '../index';
 
 storiesOf('Form', module)
+    .addDecorator(padding)
     .add('Widgets', () => {
         return <Provider store={AppStore}>
             <div>
                 <SampleForm
                     onValidSubmit={action('submit')}
                     onInvalidSubmit={action('invalid')} />
-                <Button type='button' onClick={loadData}>Load Record</Button>
+                <Button
+                    type='button'
+                    onClick={loadData}
+                    classes={{ always: '', enabled: '', disabled: '', loading: '' }}
+                    loading={false}
+                >Load Record</Button>
             </div>
         </Provider>;
     });
@@ -55,7 +62,7 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 help='You can define help text as well!'
                 indicator='required'
                 suffix='lbs'
-                 />
+            />
             <TextField
                 name='area'
                 label='Text Area'
@@ -75,8 +82,8 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 options={[
                     { label: 'One', value: 'one' },
                     { label: 'Two', value: 'two' },
-                ]} 
-                help='Pick one of many options.'/>
+                ]}
+                help='Pick one of many options.' />
             <Select
                 onBlur={(e: any) => e.preventDefault()}
                 name='multiselect'
@@ -85,14 +92,14 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 options={[
                     { label: 'One', value: 'one' },
                     { label: 'Two', value: 'two' },
-                ]} 
-                help='Pick any of these many options.'/>
+                ]}
+                help='Pick any of these many options.' />
             <SearchNSelect
                 onBlur={(e: any) => e.preventDefault()}
                 name='search'
                 label={`Search n' Select`}
-                onSearch={this.searchRemote} 
-                help='This loads async.'/>
+                onSearch={this.searchRemote}
+                help='This loads async.' />
             <SearchNSelect
                 onBlur={(e: any) => e.preventDefault()}
                 multi={true}
@@ -106,8 +113,8 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                     { label: 'Hamburger', value: 'burg' },
                     { label: 'Brat', value: 'brat' },
                     { label: 'Veggie Patty', value: 'patty' },
-                ]} 
-                help='Pick one option.'/>
+                ]}
+                help='Pick one option.' />
             <Checkbox
                 name='checkbox'
                 label='Checkbox'
@@ -115,13 +122,13 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                     { label: 'Cheese', value: 'cheese' },
                     { label: 'Onion', value: 'onion' },
                     { label: 'Tomato', value: 'tomato' },
-                ]} 
-                help='Pick any number of options.'/>
-            <DateField 
-                name='date' 
-                label='Date' 
-                help='When do you want it?' 
-                />
+                ]}
+                help='Pick any number of options.' />
+            <DateField
+                name='date'
+                label='Date'
+                help='When do you want it?'
+            />
         </Form>;
     }
 

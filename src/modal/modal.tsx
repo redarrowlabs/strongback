@@ -17,15 +17,14 @@ export class Modal extends React.Component<IModalProps, {}> {
             footer,
         } = this.props;
 
-        //className="sb-modal"
-        //overlayClassName="sb-modal__overlay"
+        //TODO configurable classNames for header, body, footer.
 
         return <ReactModal
             isOpen={isOpen}
             shouldCloseOnOverlayClick={false}>
-            <div className='sb-modal__header'>{header}</div>
-            <div className='sb-modal__body'>{children}</div>
-            <div className='sb-modal__footer'>{footer}</div>
+            <div>{header}</div>
+            <div>{children}</div>
+            <div>{footer}</div>
         </ReactModal>;
     }
 }

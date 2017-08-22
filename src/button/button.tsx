@@ -2,50 +2,61 @@ import * as React from 'react';
 import { Loader } from '../loader/loader';
 import * as classNames from 'classnames';
 
-export type ButtonVariants = 'primary' | 'default' | 'info' | 'success' | 'warning' | 'danger';
-
+export type ButtonClasses = {
+    always: string;
+    enabled: string;
+    disabled: string;
+    loading: string;
+};
 export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
-    loading?: boolean;
-    variant?: ButtonVariants;
+    loading: boolean;
+    classes: ButtonClasses;
 }
 
-export class Button extends React.Component<IButtonProps, {}> {
-    constructor(props: IButtonProps) { super(props); }
-    render() {
-        const {
-            children,
-            loading = false,
-            variant,
-            type = 'button',
-            ...rest,
-        } = this.props;
+export function Button(props: IButtonProps) {
+    const {
+        children,
+        loading,
+        type = 'button',
+        classes,
+        ...rest,
+    } = props;
 
-        const buttonClass = getClasses(this.props);
-        const disabled = loading || rest.disabled;
-        const loader = loading
-            ? <Loader />
-            : null;
+    const buttonClass = getClasses(props);
 
-        return <button
-            className={buttonClass}
-            type={type}
-            {...rest}
-            disabled={disabled}>
-            {loader}
-            <div>{children}</div>
-        </button>;
-    }
+    const disabled = loading || rest.disabled;
+
+    const loader = loading
+        ? <Loader />
+        : null;
+
+    return <button
+        {...rest}
+        className={buttonClass}
+        type={type}
+        disabled={disabled}>
+        {loader}
+        <div>{children}</div>
+    </button>;
 }
 
 function getClasses(props: IButtonProps) {
+    const { classes } = props;
+    if (!classes) { return ''; }
+
+    const {
+        always,
+        disabled,
+        enabled,
+        loading
+    } = classes;
+
+    const isDisabled = props.loading || props.disabled;
+
     return classNames({
-        'c-button': true,
-        'c-button--primary': props.variant === 'primary',
-        'c-button--default': !props.variant || props.variant === 'default',
-        'c-button--info': props.variant === 'info',
-        'c-button--success': props.variant === 'success',
-        'c-button--warning': props.variant === 'warning',
-        'c-button--danger': props.variant === 'danger',
-        'disabled': !!(props.loading || props.disabled),
+        [always]: !!always,
+        [enabled]: !!enabled && !isDisabled,
+        [disabled]: !!disabled && isDisabled,
+        [loading]: !!loading && props.loading
     });
 }

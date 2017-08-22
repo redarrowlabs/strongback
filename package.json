@@ -10,8 +10,8 @@
   "typings": "bin/index",
   "scripts": {
     "build": "npm run build:ts && npm run build:css",
-    "build:css": "postcss src/styles.css --use postcss-import autoprefixer --dir ./bin",
-    "watch:css": "postcss src/styles.css --use postcss-import autoprefixer --dir ./bin --watch",
+    "build:css": "postcss src/third-party.css --use postcss-import autoprefixer --dir ./bin",
+    "watch:css": "postcss src/third-party.css --use postcss-import autoprefixer --dir ./bin --watch",
     "build:ts": "tsc",
     "storybook": "start-storybook -p 9001",
     "todo": "leasot --reporter markdown --tags hack --associate-parser .tsx,defaultParser src/**/*.tsx > TODO.md || exit 0",
@@ -27,7 +27,7 @@
     "react-redux": "^5.0.3",
     "react-s-alert": "^1.2.2",
     "react-select": "1.0.0-rc.2",
-    "react-widgets": "4.0.0-beta.3",
+    "react-widgets": "^4.0.0-rc.16",
     "redux-form": "^6.6.1"
   },
   "peerDependencies": {
@@ -35,8 +35,10 @@
     "react-dom": "^15.0.0"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.2.0",
-    "@storybook/react": "^3.2.5",
+    "@storybook/addon-actions": "^3.2.6",
+    "@storybook/addon-knobs": "^3.2.6",
+    "@storybook/addons": "^3.2.6",
+    "@storybook/react": "^3.2.6",
     "@types/classnames": "0.0.32",
     "@types/lodash": "^4.14.59",
     "@types/node": "^7.0.12",
@@ -46,6 +48,7 @@
     "@types/react-select": "^1.0.51",
     "@types/react-widgets": "^3.2.31",
     "@types/storybook__addon-actions": "^3.0.1",
+    "@types/storybook__addon-knobs": "^3.2.0",
     "@types/storybook__react": "^3.0.5",
     "babel-core": "^6.24.0",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -59,6 +62,7 @@
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "style-loader": "^0.16.1",
+    "tachyons": "^4.8.1",
     "ts-loader": "^2.0.3",
     "tslint": "^5.0.0",
     "typescript": "2.4.2"
