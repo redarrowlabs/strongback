@@ -16,9 +16,10 @@ export function RadioStateless(props: RadioStatelessProps) {
             onChange,
         },
         options,
+        tooltipProps,
     } = props;
 
-    return <FieldWrapper fieldProps={props} mode='no-wrap'>
+    return <FieldWrapper fieldProps={props} mode='no-wrap' tooltipProps={tooltipProps}>
         <SelectList
             data={options}
             value={value}
@@ -42,6 +43,13 @@ export class Radio extends React.Component<RadioProps, {}> {
     }
 
     render() {
+        const tooltipProps = this.props.tooltip
+        ? {
+            tooltip: this.props.tooltip, 
+            tooltipPosition: this.props.tooltipPosition, 
+            tooltipAlignment: this.props.tooltipAlignment
+        }
+        :null;
         return <Field
             name={this.props.name}
             component={RadioStateless}
@@ -49,6 +57,7 @@ export class Radio extends React.Component<RadioProps, {}> {
             options={this.props.options}
             help={this.props.help}
             indicator={this.props.indicator}
+            tooltipProps={tooltipProps}
             />;
     }
 }

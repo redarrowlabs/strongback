@@ -21,6 +21,7 @@ export function TextFieldStateless(props: TextFieldStatelessProps) {
         onFocus,
 
         },
+        tooltipProps,
         suffix,
         prefix,
         autoComplete,
@@ -59,7 +60,7 @@ export function TextFieldStateless(props: TextFieldStatelessProps) {
             autoComplete={autoComplete}
             className={inputClass} />
 
-    return <FieldWrapper fieldProps={props}>
+    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps}>
         {prefixEl}{control}{suffixEl}
     </FieldWrapper>;
 }
@@ -72,7 +73,17 @@ export interface TextFieldProps extends IField {
 
 }
 
+
+
 export function TextField(props: TextFieldProps) {
+    const tooltipProps = props.tooltip
+    ? {
+        tooltip: props.tooltip, 
+        tooltipPosition:props.tooltipPosition, 
+        tooltipAlignment:props.tooltipAlignment
+    }
+    :null;
+
     return <Field
         name={props.name}
         component={TextFieldStateless}
@@ -80,8 +91,10 @@ export function TextField(props: TextFieldProps) {
         label={props.label}
         onBlur={props.onBlur}
         multiline={props.multiline}
+        indicator={props.indicator}
         help={props.help}
         suffix={props.suffix}
         prefix={props.prefix}
+        tooltipProps={tooltipProps}
     />;
 }

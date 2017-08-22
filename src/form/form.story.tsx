@@ -53,8 +53,10 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 name='text'
                 label='Text'
                 help='You can define help text as well!'
-                indicator='required'
+                indicator='optional'
                 suffix='lbs'
+                tooltip='this is my tooltip text! its really cool'
+                tooltipPosition='bottom'
                  />
             <TextField
                 name='area'
@@ -66,7 +68,8 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 name='number'
                 label='Number'
                 help='Enter a number that is a really good one. Like a million. Or two million. Or something even a billion.'
-                indicator='optional'
+                indicator='required'
+                tooltip='this is my tooltip'
                 prefix="$" />
             <Select
                 onBlur={(e: any) => e.preventDefault()}

@@ -6,6 +6,7 @@ import 'react-s-alert/dist/s-alert-css-effects/flip.css';
 import 'react-select/dist/react-select.css';
 import 'react-widgets/dist/css/react-widgets.css';
 import './app.css';
+import '../src/tooltip/tooltipCustomTypeName.css';
 import '../bin/styles.css';
 
 const requireContext = require.context('../src', true, /.story.tsx$/);
