@@ -15,8 +15,8 @@ var react_widgets_1 = require("react-widgets");
 var redux_form_1 = require("redux-form");
 var field_wrapper_1 = require("./field-wrapper");
 function RadioStateless(props) {
-    var _a = props.input, value = _a.value, onChange = _a.onChange, options = props.options;
-    return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props, mode: 'no-wrap' },
+    var _a = props.input, value = _a.value, onChange = _a.onChange, options = props.options, tooltipProps = props.tooltipProps;
+    return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props, mode: 'no-wrap', tooltipProps: tooltipProps },
         React.createElement(react_widgets_1.SelectList, { data: options, value: value, onChange: onChange, valueField: 'value', textField: 'label' }));
 }
 exports.RadioStateless = RadioStateless;
@@ -29,7 +29,14 @@ var Radio = (function (_super) {
         return _super.call(this, props) || this;
     }
     Radio.prototype.render = function () {
-        return React.createElement(redux_form_1.Field, { name: this.props.name, component: RadioStateless, label: this.props.label, options: this.props.options, help: this.props.help, indicator: this.props.indicator });
+        var tooltipProps = this.props.tooltip
+            ? {
+                tooltip: this.props.tooltip,
+                tooltipPosition: this.props.tooltipPosition,
+                tooltipAlignment: this.props.tooltipAlignment
+            }
+            : null;
+        return React.createElement(redux_form_1.Field, { name: this.props.name, component: RadioStateless, label: this.props.label, options: this.props.options, help: this.props.help, indicator: this.props.indicator, tooltipProps: tooltipProps });
     };
     return Radio;
 }(React.Component));

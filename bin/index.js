@@ -7,6 +7,8 @@ var button_1 = require("./button/button");
 exports.Button = button_1.Button;
 var modal_1 = require("./modal/modal");
 exports.Modal = modal_1.Modal;
+var tooltip_1 = require("./tooltip/tooltip");
+exports.Tooltip = tooltip_1.Tooltip;
 __export(require("./form"));
 var local_date_view_1 = require("./date/local-date-view");
 exports.LocalDateView = local_date_view_1.LocalDateView;

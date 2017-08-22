@@ -4,27 +4,32 @@ var React = require("react");
 var redux_form_1 = require("redux-form");
 var field_wrapper_1 = require("./field-wrapper");
 function NumberFieldStateless(props) {
-    var _a = props.input, value = _a.value, onChange = _a.onChange, onBlur = _a.onBlur, onFocus = _a.onFocus, invalid = props.meta.invalid, suffix = props.suffix, prefix = props.prefix;
+    var _a = props.input, value = _a.value, onChange = _a.onChange, onBlur = _a.onBlur, onFocus = _a.onFocus, invalid = props.meta.invalid, tooltipProps = props.tooltipProps, suffix = props.suffix, prefix = props.prefix;
     var invalidClassName = '';
     if (invalid) {
         invalidClassName = 'error';
     }
-    var suf = null;
-    if (suffix != null) {
-        suf = React.createElement("span", { className: "suffix" }, suffix);
-    }
-    var pre = null;
-    if (prefix != null) {
-        pre = React.createElement("span", { className: "prefix" }, prefix);
-    }
-    return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props },
-        pre,
+    var suffixEl = suffix
+        ? React.createElement("span", { className: "suffix" }, suffix)
+        : null;
+    var prefixEl = prefix
+        ? React.createElement("span", { className: "prefix" }, prefix)
+        : null;
+    return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props, tooltipProps: tooltipProps },
+        prefixEl,
         React.createElement("input", { type: 'text', value: value, onChange: onChange, onBlur: onBlur, onFocus: onFocus, className: invalidClassName }),
-        suf);
+        suffixEl);
 }
 exports.NumberFieldStateless = NumberFieldStateless;
 function NumberField(props) {
-    return React.createElement(redux_form_1.Field, { name: props.name, component: NumberFieldStateless, normalize: normalize, label: props.label, onBlur: props.onBlur, help: props.help, indicator: props.indicator, suffix: props.suffix, prefix: props.prefix });
+    var tooltipProps = props.tooltip
+        ? {
+            tooltip: props.tooltip,
+            tooltipPosition: props.tooltipPosition,
+            tooltipAlignment: props.tooltipAlignment
+        }
+        : null;
+    return React.createElement(redux_form_1.Field, { name: props.name, component: NumberFieldStateless, normalize: normalize, label: props.label, onBlur: props.onBlur, help: props.help, indicator: props.indicator, suffix: props.suffix, prefix: props.prefix, tooltipProps: tooltipProps });
 }
 exports.NumberField = NumberField;
 /**

@@ -21,8 +21,8 @@ var DateFieldStateless = (function (_super) {
         return _this;
     }
     DateFieldStateless.prototype.render = function () {
-        var _a = this.props.input, value = _a.value, onBlur = _a.onBlur, onFocus = _a.onFocus;
-        return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: this.props },
+        var _a = this.props, _b = _a.input, value = _b.value, onBlur = _b.onBlur, onFocus = _b.onFocus, tooltipProps = _a.tooltipProps;
+        return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: this.props, tooltipProps: tooltipProps },
             React.createElement("input", { type: 'date', value: value, onChange: this.handleChange, onBlur: onBlur, onFocus: onFocus }));
     };
     DateFieldStateless.prototype.handleChange = function (e) {
@@ -40,7 +40,14 @@ var DateFieldStateless = (function (_super) {
 }(React.Component));
 exports.DateFieldStateless = DateFieldStateless;
 function DateField(props) {
-    return React.createElement(redux_form_1.Field, { name: props.name, component: DateFieldStateless, label: props.label, onBlur: props.onBlur, help: props.help });
+    var tooltipProps = props.tooltip
+        ? {
+            tooltip: props.tooltip,
+            tooltipPosition: props.tooltipPosition,
+            tooltipAlignment: props.tooltipAlignment
+        }
+        : null;
+    return React.createElement(redux_form_1.Field, { name: props.name, component: DateFieldStateless, label: props.label, onBlur: props.onBlur, help: props.help, tooltipProps: tooltipProps });
 }
 exports.DateField = DateField;
 //# sourceMappingURL=date.js.map
