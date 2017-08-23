@@ -1,11 +1,13 @@
 /// <reference types="react" />
 import * as React from 'react';
-export declare type ButtonVariants = 'primary' | 'default' | 'info' | 'success' | 'warning' | 'danger';
+export declare type ButtonClasses = {
+    always: string;
+    enabled: string;
+    disabled: string;
+    loading: string;
+};
 export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
-    loading?: boolean;
-    variant?: ButtonVariants;
+    loading: boolean;
+    classes: ButtonClasses;
 }
-export declare class Button extends React.Component<IButtonProps, {}> {
-    constructor(props: IButtonProps);
-    render(): JSX.Element;
-}
+export declare function Button(props: IButtonProps): JSX.Element;

@@ -19,12 +19,11 @@ var Modal = (function (_super) {
     }
     Modal.prototype.render = function () {
         var _a = this.props, isOpen = _a.isOpen, header = _a.header, children = _a.children, footer = _a.footer;
-        //className="sb-modal"
-        //overlayClassName="sb-modal__overlay"
+        //TODO configurable classNames for header, body, footer.
         return React.createElement(ReactModal, { isOpen: isOpen, shouldCloseOnOverlayClick: false },
-            React.createElement("div", { className: 'sb-modal__header' }, header),
-            React.createElement("div", { className: 'sb-modal__body' }, children),
-            React.createElement("div", { className: 'sb-modal__footer' }, footer));
+            React.createElement("div", null, header),
+            React.createElement("div", null, children),
+            React.createElement("div", null, footer));
     };
     return Modal;
 }(React.Component));
