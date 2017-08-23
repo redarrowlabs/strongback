@@ -96,7 +96,11 @@ export class Repeater extends React.Component<RepeaterProps, {}>{
 
         return <div>
             <div>{sections}</div>
-            <div><Button onClick={this.handleAdd}>Add</Button></div>
+            <div><Button
+                onClick={this.handleAdd}
+                classes={{ always: '', enabled: '', disabled: '', loading: '' }}
+                loading={false}
+            >Add</Button></div>
         </div>;
     }
 
@@ -158,8 +162,9 @@ class RepeaterSection extends React.Component<RepeaterSectionProps, {}>{
                 {this.props.children}
                 <div>
                     <Button
-                        variant='danger'
-                        onClick={() => onRemove(itemKey)}>
+                        onClick={() => onRemove(itemKey)}
+                        classes={{ always: '', enabled: '', disabled: '', loading: '' }}
+                        loading={false}>
                         Remove
                     </Button>
                 </div>

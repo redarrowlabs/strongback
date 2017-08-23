@@ -1,12 +1,12 @@
-@import './styles/vars';
+@import './sample-styles/vars.css';
 
 /* Functional classes */
-@import './styles/colors.css';
-@import './styles/lists.css';
-@import './styles/size.css';
-@import './styles/text.css';
-@import './styles/button.css';
-@import './styles/forms.css';
+@import './sample-styles/colors.css';
+@import './sample-styles/lists.css';
+@import './sample-styles/size.css';
+@import './sample-styles/text.css';
+@import './sample-styles/button.css';
+@import './sample-styles/forms.css';
 
 
 /* Example styling */
