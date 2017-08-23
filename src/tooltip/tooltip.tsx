@@ -14,6 +14,7 @@ export interface TooltipProps {
 export class Tooltip extends React.Component<TooltipProps, {}> {
     render() {
         const {
+            children,
             tooltip = '',
             tooltipPosition = 'top',
             tooltipAlignment = 'middle',
@@ -29,7 +30,7 @@ export class Tooltip extends React.Component<TooltipProps, {}> {
         const tooltipPlacement = `hint-${tooltipPosition}-${tooltipAlignment}${tooltipCustomTypeClass} hint-fade-d-short hint-persist`;
 
         return <span aria-label={tooltip} data-hint={tooltip} className={tooltipPlacement}>
-            <span></span>
+            {children}
         </span>;
     }
 }

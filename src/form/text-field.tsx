@@ -22,6 +22,7 @@ export function TextFieldStateless(props: TextFieldStatelessProps) {
 
         },
         tooltipProps,
+        infoIconProps,
         suffix,
         prefix,
         autoComplete,
@@ -60,7 +61,7 @@ export function TextFieldStateless(props: TextFieldStatelessProps) {
             autoComplete={autoComplete}
             className={inputClass} />
 
-    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps}>
+    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps} infoIconProps={infoIconProps}>
         {prefixEl}{control}{suffixEl}
     </FieldWrapper>;
 }
@@ -84,6 +85,13 @@ export function TextField(props: TextFieldProps) {
     }
     :null;
 
+    const infoIconProps = props.iconContent
+    ? {
+        iconContent:props.iconContent, 
+        iconCustomTypeName:props.iconCustomTypeName
+    }
+    :null;
+
     return <Field
         name={props.name}
         component={TextFieldStateless}
@@ -96,5 +104,6 @@ export function TextField(props: TextFieldProps) {
         suffix={props.suffix}
         prefix={props.prefix}
         tooltipProps={tooltipProps}
+        infoIconProps={infoIconProps}
     />;
 }

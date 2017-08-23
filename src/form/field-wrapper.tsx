@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { InfoIcon,InfoIconProps } from '../info-icon/info-icon';
 import { Tooltip,TooltipAlignment,TooltipPosition,TooltipProps } from '../tooltip/tooltip';
 import * as classNames from 'classnames';
 
@@ -19,6 +20,10 @@ export interface FieldWrapperProps {
         tooltipPosition?: TooltipPosition;
         tooltipAlignment?: TooltipAlignment;
     };
+    infoIconProps?: {
+        iconContent?: string;
+        iconCustomTypeName?:  string;
+    }
     
     mode?: 'no-wrap';
 }
@@ -34,6 +39,7 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
                 
             },
             tooltipProps,
+            infoIconProps,
             children,
             mode,
         } = this.props;
@@ -55,6 +61,7 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
                         label={label}
                         indicator={indicator}
                         tooltipProps={tooltipProps}
+                        infoIconProps={infoIconProps}
                     />
                          
                 </label>
@@ -69,7 +76,8 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
                 <FieldLabel
                     label={label}
                     indicator={indicator}
-                    tooltipProps={tooltipProps} />
+                    tooltipProps={tooltipProps}
+                    infoIconProps={infoIconProps} />
                 {children}
             </label>
             {helpEl}
@@ -82,6 +90,7 @@ interface FieldLabelProps {
     label: string;
     indicator: FieldIndicator | undefined;
     tooltipProps: TooltipProps | undefined;
+    infoIconProps: InfoIconProps | undefined;
 }
 
 /** The label of the field, including indicators. */
@@ -89,7 +98,8 @@ function FieldLabel(props: FieldLabelProps) {
     const { 
         label, 
         indicator,
-        tooltipProps
+        tooltipProps,
+        infoIconProps
      } = props;
 
     let indicatorEl: React.ReactNode = null;
@@ -107,8 +117,25 @@ function FieldLabel(props: FieldLabelProps) {
     });
 
     let tooltipEl: React.ReactNode = null;
-    if (tooltipProps != null) {
-        tooltipEl = <Tooltip tooltip={tooltipProps.tooltip} tooltipAlignment={tooltipProps.tooltipAlignment} tooltipPosition={tooltipProps.tooltipPosition} />
+    if (infoIconProps && tooltipProps != null) {
+        tooltipEl = <Tooltip 
+                        tooltip={tooltipProps.tooltip} 
+                        tooltipAlignment={tooltipProps.tooltipAlignment} 
+                        tooltipPosition={tooltipProps.tooltipPosition}>
+                        <InfoIcon iconContent={infoIconProps.iconContent} iconCustomTypeName={infoIconProps.iconCustomTypeName} />
+                    </Tooltip>
+    }
+
+    else if (tooltipProps != null) {
+        tooltipEl = <Tooltip 
+                        tooltip={tooltipProps.tooltip} 
+                        tooltipAlignment={tooltipProps.tooltipAlignment} 
+                        tooltipPosition={tooltipProps.tooltipPosition}>
+                    </Tooltip>
+    }
+
+    else if (infoIconProps != null) {
+        tooltipEl = <InfoIcon iconContent={infoIconProps.iconContent} iconCustomTypeName={infoIconProps.iconCustomTypeName} />
     }
 
     return <div className={indicatorClass}>

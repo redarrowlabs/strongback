@@ -18,6 +18,10 @@ export interface IField {
     /** Marks this field as optional or required*/
     indicator?: FieldIndicator;
 
+    /** Displays a tooltip*/
+    iconContent?: string;
+    iconCustomTypeName?:  string;
+
     onBlur?: (e: any) => void;
 
     prefix?: string;
@@ -50,6 +54,10 @@ export interface IFieldComponent<T> {
         tooltip?: string;
         tooltipPosition?: TooltipPosition;
         tooltipAlignment?: TooltipAlignment;
+    }
+    infoIconProps: {
+        iconContent?: string;
+        iconCustomTypeName?: string;
     }
     indicator?: FieldIndicator;
     prefix?: string;

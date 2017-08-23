@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { Tooltip } from '../tooltip/tooltip'
 
 import { Button } from '../index';
 
 storiesOf('Button', module)
     .add('ideal', () => {
         return <div>
-            <Button
-                onClick={action('click')}>
-                Hello World
-            </Button>
+            <Tooltip tooltipAlignment='middle' tooltipPosition='right' tooltip='this is a button tooltip'>
+                <Button
+                    onClick={action('click')}>
+                    Hello World
+                </Button>
+            </Tooltip>
             <Button
                 variant='default'
                 onClick={action('click')}>

@@ -18,10 +18,9 @@
   white-space: normal;
 }
 
-[data-hint] span:before {
-    content: '?';
+[data-hint] .round {
     color: #fff;
-    background: var(--color-brand-primary-500);
+    background: #555;
     padding: 1px 6px;
     border-radius: 50%;
     font-size: .7rem;

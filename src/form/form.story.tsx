@@ -15,7 +15,7 @@ import {
     Select,
     Radio,
     Checkbox,
-    DateField,
+    DateField
 } from '../index';
 
 storiesOf('Form', module)
@@ -57,12 +57,16 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 suffix='lbs'
                 tooltip='this is my tooltip text! its really cool'
                 tooltipPosition='bottom'
+                iconContent='?'
+                iconCustomTypeName='round'
                  />
             <TextField
                 name='area'
                 label='Text Area'
                 help='Enter lots of text.'
                 multiline={true}
+                iconContent='?'
+                iconCustomTypeName='round'
             />
             <NumberField
                 name='number'
