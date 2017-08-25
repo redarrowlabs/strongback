@@ -26,6 +26,7 @@ export function NumberFieldStateless(props: NumberFieldProps) {
             invalid
         },
         tooltipProps,
+        infoIconProps,
         suffix,
         prefix,
     } = props;
@@ -43,7 +44,7 @@ export function NumberFieldStateless(props: NumberFieldProps) {
         ? <span className="prefix">{prefix}</span>
         : null;
 
-    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps}>
+    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps} infoIconProps={infoIconProps}>
         {prefixEl}
         <input
             type='text'
@@ -65,6 +66,14 @@ export function NumberField(props: IField) {
         tooltipAlignment:props.tooltipAlignment
     }
     :null;
+
+    const infoIconProps = props.iconContent
+    ? {
+        iconContent:props.iconContent, 
+        iconCustomTypeName:props.iconCustomTypeName
+    }
+    :null;
+
     return <Field
         name={props.name}
         component={NumberFieldStateless}
@@ -76,6 +85,7 @@ export function NumberField(props: IField) {
         suffix={props.suffix}
         prefix={props.prefix}
         tooltipProps={tooltipProps}
+        infoIconProps={infoIconProps}
     />;
 }
 

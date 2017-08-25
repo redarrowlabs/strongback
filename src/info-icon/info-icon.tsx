@@ -1,11 +1,14 @@
 import * as React from 'react';
 
+
 export interface InfoIconProps {
     iconContent?: string;
-    iconCustomTypeName?:  string;
+    iconCustomTypeName?: string;
+    handleClick?(): void;
 }
 /** Wraps a field with a label and help text and error message area. */
-export class InfoIcon extends React.Component<InfoIconProps, {}> {
+export class InfoIcon extends React.Component<InfoIconProps, {}> {    
+
     render() {
         const {
             iconContent = '?',
@@ -13,13 +16,9 @@ export class InfoIcon extends React.Component<InfoIconProps, {}> {
             
         } = this.props;
 
-        let tooltipCustomTypeClass:React.ReactNode = null;
-        if (iconCustomTypeName != null) {
-            tooltipCustomTypeClass = iconCustomTypeName;
-        }
+        const iconClasses = `${iconCustomTypeName}`
 
-
-        return <span className={iconCustomTypeName}>
+        return <span className={iconClasses} onClick={this.props.handleClick}>
                 {iconContent}
         </span>;
     }

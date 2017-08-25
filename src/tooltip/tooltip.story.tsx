@@ -4,49 +4,61 @@ import { InfoIcon } from '../info-icon/info-icon';
 import { Button } from '../button/button';
 import { Tooltip } from '../index';
 
-export type TooltipPosition = 'top' | 'bottom' | 'left' | 'right';
-export type TooltipAlignment = 'middle' | 'top' | 'bottom' | 'left' | 'right';
-
-export interface TooltipProps {
-    tooltipProps: {
-        tooltip? : string;
-        tooltipPosition?: TooltipPosition;
-        tooltipAlignment?: TooltipAlignment;
-        tooltipCustomTypeName?: string;
-    };
-    infoIconProps?: {
-        iconContent?: string;
-        iconCustomTypeName?:  string;
-    }
-}
 
 storiesOf('Tooltip', module)
-    .add('example', () => {
+    .add('Tooltip on Info Icon', () => {
         /* just so the tooltip appears on the page of the storybook */
-
-        
-
         return <div style={{ padding: '100px', float: 'left'}}>
-            <h3>Tooltip on Info-Icon (bottom-right positioning)</h3>
             <Tooltip tooltip='This is my tooltip text' tooltipAlignment='middle' tooltipPosition='right'>
                 <InfoIcon iconContent='?' iconCustomTypeName='round' />
             </Tooltip>
-            <br />
-            <br />
-            <br />
-            <h3>Tooltip on Button (top-middle positioning)</h3>
-            <Tooltip tooltip='This tooltip has a custom color' tooltipAlignment='middle' tooltipPosition='top' tooltipCustomTypeName='info'>
-                 <Button>
-                    Hello World
-                </Button>
+        </div>
+    })
+    .add('Tooltip on Button', () => {
+        return <div style={{ padding: '100px', float: 'left'}}>
+        <Tooltip tooltip='This tooltip has a custom color' tooltipAlignment='middle' tooltipPosition='top' tooltipCustomTypeName='info'>
+                <Button>
+                Hello World
+            </Button>
+        </Tooltip>
+        </div>
+    })
+    .add('Tooltip on Text', () => {
+        return <div style={{ padding: '100px', float: 'left'}}>
+            <Tooltip tooltip='This tooltip has a custom color' tooltipAlignment='middle' tooltipPosition='right'>
+                Text
             </Tooltip>
-            <br />
-            <br />
-            <br />
-            <h3>Tooltip on Text</h3>
-            <Tooltip tooltip='This tooltip has a custom color' tooltipAlignment='middle' tooltipPosition='right' tooltipCustomTypeName='info'>
-                <p>Text</p>
-            </Tooltip>
-
         </div>;
+    })
+    .add('tooltip open on click example', () => {
+        return <div style={{ padding: '100px', float: 'left'}}>
+            <TooltipClickExample />
+
+            </div>;
     });
+
+    interface TooltipExampleState {
+        isOpen: boolean;
+    }
+    class TooltipClickExample extends React.Component<{},TooltipExampleState> {
+        constructor(props: any) {
+            super(props);
+            this.state = { isOpen: false };
+            this.handleClick = this.handleClick.bind(this)
+        }
+
+        handleClick() {
+            if (this.state.isOpen === false) {
+                this.setState({ isOpen: true });
+            } else {
+                this.setState({isOpen: false});
+            }
+            
+        }
+
+        render() {
+            return <Tooltip tooltip='This is my tooltip text' tooltipAlignment='middle' tooltipPosition='right' isOpen={this.state.isOpen}>
+                <InfoIcon iconContent='?' iconCustomTypeName='round' handleClick={this.handleClick} />
+            </Tooltip>;
+        }
+    }

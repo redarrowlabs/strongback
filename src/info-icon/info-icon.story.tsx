@@ -14,6 +14,6 @@ storiesOf('InfoIcon', module)
         /* just so the tooltip appears on the page of the storybook */
         return <div style={{ padding: '100px', float: 'left'}}>
             
-            <InfoIcon iconContent='?' />
+            <InfoIcon iconContent='?' iconCustomTypeName='round' />
         </div>;
     });

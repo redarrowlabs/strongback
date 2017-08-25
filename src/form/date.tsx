@@ -20,10 +20,11 @@ export class DateFieldStateless extends React.Component<DateFieldStatelessProps,
                 onBlur,
                 onFocus,
             },
-            tooltipProps
+            tooltipProps,
+            infoIconProps
         } = this.props;
 
-        return <FieldWrapper fieldProps={this.props}  tooltipProps={tooltipProps}>
+        return <FieldWrapper fieldProps={this.props} tooltipProps={tooltipProps} infoIconProps={infoIconProps}>
             <input
                 type='date'
                 value={value}
@@ -59,6 +60,13 @@ export function DateField(props: IField) {
         tooltipAlignment:props.tooltipAlignment
     }
     :null;
+
+    const infoIconProps = props.iconContent
+    ? {
+        iconContent:props.iconContent, 
+        iconCustomTypeName:props.iconCustomTypeName
+    }
+    :null;
     return <Field
         name={props.name}
         component={DateFieldStateless}
@@ -66,5 +74,6 @@ export function DateField(props: IField) {
         onBlur={props.onBlur}
         help={props.help}
         tooltipProps={tooltipProps}
+        infoIconProps={infoIconProps}
     />;
 }

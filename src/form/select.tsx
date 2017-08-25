@@ -20,11 +20,12 @@ export function SelectStateless(props: SelectStatelessProps) {
         onFocus,
         },
         tooltipProps,
+        infoIconProps,
         options,
         multi,
     } = props;
 
-    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps}>
+    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps} infoIconProps={infoIconProps}>
         <ReactSelect
             options={options}
             value={value}
@@ -67,6 +68,13 @@ export class Select extends React.Component<SelectProps, {}> {
             tooltipAlignment:this.props.tooltipAlignment
         }
         :null;
+
+        const infoIconProps = this.props.iconContent
+        ? {
+            iconContent: this.props.iconContent, 
+            iconCustomTypeName: this.props.iconCustomTypeName
+        }
+        :null;
         return <Field
             name={this.props.name}
             component={SelectStateless}
@@ -78,6 +86,7 @@ export class Select extends React.Component<SelectProps, {}> {
             indicator={this.props.indicator}
             tooltip={this.props.tooltip}
             tooltipProps={tooltipProps}
+            infoIconProps={infoIconProps}
         />;
     }
 }

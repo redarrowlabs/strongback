@@ -63,3 +63,12 @@ hr {
   border-right: 0;
   border-top: 0;
   margin: 1em 0; }
+
+  .round {
+    color: #fff;
+    background: #555;
+    padding: 1px 6px;
+    border-radius: 50%;
+    font-size: .7rem;
+    cursor: pointer;
+}

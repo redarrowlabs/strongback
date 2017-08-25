@@ -26,10 +26,11 @@ export function SearchNSelectStateless(props: SearchNSelectStatelessProps) {
         onSearch,
         isLoading,
         tooltipProps,
+        infoIconProps,
         multi
     } = props;
 
-    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps}>
+    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps}  infoIconProps={infoIconProps}>
         <ReactSelect
             options={options}
             value={value}
@@ -98,6 +99,13 @@ export class SearchNSelect extends React.Component<SearchNSelectProps, SearchNSe
             tooltipAlignment: this.props.tooltipAlignment
         }
         :null;
+        const infoIconProps = this.props.iconContent
+        ? {
+            iconContent: this.props.iconContent, 
+            iconCustomTypeName: this.props.iconCustomTypeName
+        }
+        :null;
+
         return <Field
             name={this.props.name}
             multi={this.props.multi}
@@ -110,6 +118,7 @@ export class SearchNSelect extends React.Component<SearchNSelectProps, SearchNSe
             help={this.props.help}
             indicator={this.props.indicator}
             tooltipProps={tooltipProps}
+            infoIconProps={infoIconProps}
         />;
     }
 

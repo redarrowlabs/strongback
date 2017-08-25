@@ -65,8 +65,6 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 label='Text Area'
                 help='Enter lots of text.'
                 multiline={true}
-                iconContent='?'
-                iconCustomTypeName='round'
             />
             <NumberField
                 name='number'

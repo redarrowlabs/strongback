@@ -17,9 +17,10 @@ export function CheckboxStateless(props: CheckboxStatelessProps) {
         },
         options,
         tooltipProps,
+        infoIconProps,
     } = props;
 
-    return <FieldWrapper fieldProps={props} mode='no-wrap' tooltipProps={tooltipProps}>
+    return <FieldWrapper fieldProps={props} mode='no-wrap' tooltipProps={tooltipProps} infoIconProps={infoIconProps}>
         <SelectList
             data={options}
             value={value}
@@ -52,6 +53,13 @@ export class Checkbox extends React.Component<CheckboxProps, {}> {
         }
         :null;
         
+        const infoIconProps = this.props.iconContent
+        ? {
+            iconContent: this.props.iconContent, 
+            iconCustomTypeName: this.props.iconCustomTypeName
+        }
+        :null;
+
         return <Field
             name={this.props.name}
             component={CheckboxStateless}
@@ -60,6 +68,7 @@ export class Checkbox extends React.Component<CheckboxProps, {}> {
             help={this.props.help}
             indicator={this.props.indicator}
             tooltipProps={tooltipProps}
+            infoIconProps={infoIconProps}
         />;
     }
 }

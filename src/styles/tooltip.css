@@ -18,14 +18,6 @@
   white-space: normal;
 }
 
-[data-hint] .round {
-    color: #fff;
-    background: #555;
-    padding: 1px 6px;
-    border-radius: 50%;
-    font-size: .7rem;
-}
-
 [data-hint]:after, [data-hint]:before {
   display: inline-block;
   pointer-events: none;
@@ -120,9 +112,6 @@
 [class*="hint-left-bottom"]:after, [class*="hint-right-bottom"]:after {
   bottom: 0; }
 
-.hint-persist:before, .hint-persist:after {
-  visibility: visible; }
-
 @media only screen and (max-width: 768px) {
   [class*="hint-"][class*="-mobile"]:after, [class*="hint-"][class*="-mobile"]:before {
     display: none; } }
@@ -186,3 +175,8 @@
   margin-right: 10px;
   margin-left: -10px;
   opacity: 1; }
+
+  .hint-persist:before, .hint-persist:after {
+  visibility: visible; 
+  opacity: 1;
+}

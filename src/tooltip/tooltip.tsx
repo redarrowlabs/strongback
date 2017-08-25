@@ -8,28 +8,41 @@ export interface TooltipProps {
     tooltipPosition?: TooltipPosition;
     tooltipAlignment?: TooltipAlignment;
     tooltipCustomTypeName?: string;
+    isOpen?: boolean;
+    
 }
 
 /** Wraps a field with a label and help text and error message area. */
 export class Tooltip extends React.Component<TooltipProps, {}> {
+    
     render() {
         const {
             children,
             tooltip = '',
             tooltipPosition = 'top',
             tooltipAlignment = 'middle',
-            tooltipCustomTypeName = ''
+            tooltipCustomTypeName = '',
+            isOpen = false
+            
             
         } = this.props;
 
-        let tooltipCustomTypeClass:React.ReactNode = null;
-        if (tooltipCustomTypeName != null) {
-            tooltipCustomTypeClass = '-t-' + tooltipCustomTypeName;
+        if (isOpen === true){
+            var toggleClass = 'hint-persist';
         }
 
-        const tooltipPlacement = `hint-${tooltipPosition}-${tooltipAlignment}${tooltipCustomTypeClass} hint-fade-d-short hint-persist`;
+        else {
+            var toggleClass = '';
+        }
 
-        return <span aria-label={tooltip} data-hint={tooltip} className={tooltipPlacement}>
+        let tooltipCustomTypeClass:React.ReactNode = '';
+        if (tooltipCustomTypeName != '') {
+            tooltipCustomTypeClass = '-t-' + tooltipCustomTypeName;
+        };
+
+        const tooltipClassNames = `hint-${tooltipPosition}-${tooltipAlignment}${tooltipCustomTypeClass} hint-fade-d-short ${toggleClass}`;
+
+        return <span aria-label={tooltip} data-hint={tooltip} className={tooltipClassNames}>
             {children}
         </span>;
     }
