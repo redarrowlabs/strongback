@@ -17,6 +17,10 @@ export interface FieldWrapperProps {
         tooltipPosition?: TooltipPosition;
         tooltipAlignment?: TooltipAlignment;
     };
+    infoIconProps?: {
+        iconContent?: string;
+        iconCustomTypeName?: string;
+    };
     mode?: 'no-wrap';
 }
 /** Wraps a field with a label and help text and error message area. */

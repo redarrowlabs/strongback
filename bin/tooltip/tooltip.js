@@ -18,14 +18,20 @@ var Tooltip = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Tooltip.prototype.render = function () {
-        var _a = this.props, _b = _a.tooltip, tooltip = _b === void 0 ? '' : _b, _c = _a.tooltipPosition, tooltipPosition = _c === void 0 ? 'top' : _c, _d = _a.tooltipAlignment, tooltipAlignment = _d === void 0 ? 'middle' : _d, _e = _a.tooltipCustomTypeName, tooltipCustomTypeName = _e === void 0 ? '' : _e;
-        var tooltipCustomTypeClass = null;
-        if (tooltipCustomTypeName != null) {
+        var _a = this.props, children = _a.children, _b = _a.tooltip, tooltip = _b === void 0 ? '' : _b, _c = _a.tooltipPosition, tooltipPosition = _c === void 0 ? 'top' : _c, _d = _a.tooltipAlignment, tooltipAlignment = _d === void 0 ? 'middle' : _d, _e = _a.tooltipCustomTypeName, tooltipCustomTypeName = _e === void 0 ? '' : _e, _f = _a.isOpen, isOpen = _f === void 0 ? false : _f;
+        if (isOpen === true) {
+            var toggleClass = 'hint-persist';
+        }
+        else {
+            var toggleClass = '';
+        }
+        var tooltipCustomTypeClass = '';
+        if (tooltipCustomTypeName != '') {
             tooltipCustomTypeClass = '-t-' + tooltipCustomTypeName;
         }
-        var tooltipPlacement = "hint-" + tooltipPosition + "-" + tooltipAlignment + tooltipCustomTypeClass + " hint-fade-d-short hint-persist";
-        return React.createElement("span", { "aria-label": tooltip, "data-hint": tooltip, className: tooltipPlacement },
-            React.createElement("span", null));
+        ;
+        var tooltipClassNames = "hint-" + tooltipPosition + "-" + tooltipAlignment + tooltipCustomTypeClass + " hint-fade-d-short " + toggleClass;
+        return React.createElement("span", { "aria-label": tooltip, "data-hint": tooltip, className: tooltipClassNames }, children);
     };
     return Tooltip;
 }(React.Component));

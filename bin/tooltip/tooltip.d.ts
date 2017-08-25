@@ -7,6 +7,7 @@ export interface TooltipProps {
     tooltipPosition?: TooltipPosition;
     tooltipAlignment?: TooltipAlignment;
     tooltipCustomTypeName?: string;
+    isOpen?: boolean;
 }
 /** Wraps a field with a label and help text and error message area. */
 export declare class Tooltip extends React.Component<TooltipProps, {}> {

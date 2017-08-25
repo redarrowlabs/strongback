@@ -52,8 +52,8 @@ var lodash_1 = require("lodash");
 var field_wrapper_1 = require("./field-wrapper");
 var react_select_util_1 = require("./react-select-util");
 function SearchNSelectStateless(props) {
-    var _a = props.input, value = _a.value, onChange = _a.onChange, onBlur = _a.onBlur, onFocus = _a.onFocus, options = props.options, onSearch = props.onSearch, isLoading = props.isLoading, tooltipProps = props.tooltipProps, multi = props.multi;
-    return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props, tooltipProps: tooltipProps },
+    var _a = props.input, value = _a.value, onChange = _a.onChange, onBlur = _a.onBlur, onFocus = _a.onFocus, options = props.options, onSearch = props.onSearch, isLoading = props.isLoading, tooltipProps = props.tooltipProps, infoIconProps = props.infoIconProps, multi = props.multi;
+    return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props, tooltipProps: tooltipProps, infoIconProps: infoIconProps },
         React.createElement(ReactSelect, { options: options, value: value, multi: multi, onChange: onChangeUnique(onChange), onBlur: function (e) { return onBlur(e); }, onFocus: onFocus, onInputChange: onSearch, filterOptions: identity, isLoading: isLoading }));
 }
 exports.SearchNSelectStateless = SearchNSelectStateless;
@@ -98,7 +98,13 @@ var SearchNSelect = (function (_super) {
                 tooltipAlignment: this.props.tooltipAlignment
             }
             : null;
-        return React.createElement(redux_form_1.Field, { name: this.props.name, multi: this.props.multi, component: SearchNSelectStateless, label: this.props.label, onSearch: this.debouncedSearch, options: this.state.options, isLoading: this.state.isLoading, onBlur: this.props.onBlur, help: this.props.help, indicator: this.props.indicator, tooltipProps: tooltipProps });
+        var infoIconProps = this.props.iconContent
+            ? {
+                iconContent: this.props.iconContent,
+                iconCustomTypeName: this.props.iconCustomTypeName
+            }
+            : null;
+        return React.createElement(redux_form_1.Field, { name: this.props.name, multi: this.props.multi, component: SearchNSelectStateless, label: this.props.label, onSearch: this.debouncedSearch, options: this.state.options, isLoading: this.state.isLoading, onBlur: this.props.onBlur, help: this.props.help, indicator: this.props.indicator, tooltipProps: tooltipProps, infoIconProps: infoIconProps });
     };
     SearchNSelect.prototype.debouncedSearch = function (_) {
         return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {

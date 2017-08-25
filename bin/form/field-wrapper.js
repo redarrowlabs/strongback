@@ -11,6 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var React = require("react");
+var info_icon_1 = require("../info-icon/info-icon");
 var tooltip_1 = require("../tooltip/tooltip");
 var classNames = require("classnames");
 /** Wraps a field with a label and help text and error message area. */
@@ -20,7 +21,7 @@ var FieldWrapper = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     FieldWrapper.prototype.render = function () {
-        var _a = this.props, _b = _a.fieldProps, _c = _b.meta, touched = _c.touched, error = _c.error, help = _b.help, label = _b.label, indicator = _b.indicator, tooltipProps = _a.tooltipProps, children = _a.children, mode = _a.mode;
+        var _a = this.props, _b = _a.fieldProps, _c = _b.meta, touched = _c.touched, error = _c.error, help = _b.help, label = _b.label, indicator = _b.indicator, tooltipProps = _a.tooltipProps, infoIconProps = _a.infoIconProps, children = _a.children, mode = _a.mode;
         var labelClass = classNames({
             'error': touched && (error !== '')
         });
@@ -32,14 +33,14 @@ var FieldWrapper = (function (_super) {
         if (mode === 'no-wrap') {
             return React.createElement("div", { className: 'c-form-field' },
                 React.createElement("label", { className: labelClass },
-                    React.createElement(FieldLabel, { label: label, indicator: indicator, tooltipProps: tooltipProps })),
+                    React.createElement(FieldLabel, { label: label, indicator: indicator, tooltipProps: tooltipProps, infoIconProps: infoIconProps })),
                 children,
                 helpEl,
                 React.createElement(FieldError, { error: error, touched: touched }));
         }
         return React.createElement("div", { className: 'c-form-field' },
             React.createElement("label", { className: labelClass },
-                React.createElement(FieldLabel, { label: label, indicator: indicator, tooltipProps: tooltipProps }),
+                React.createElement(FieldLabel, { label: label, indicator: indicator, tooltipProps: tooltipProps, infoIconProps: infoIconProps }),
                 children),
             helpEl,
             React.createElement(FieldError, { error: error, touched: touched }));
@@ -49,7 +50,7 @@ var FieldWrapper = (function (_super) {
 exports.FieldWrapper = FieldWrapper;
 /** The label of the field, including indicators. */
 function FieldLabel(props) {
-    var label = props.label, indicator = props.indicator, tooltipProps = props.tooltipProps;
+    var label = props.label, indicator = props.indicator, tooltipProps = props.tooltipProps, infoIconProps = props.infoIconProps;
     var indicatorEl = null;
     if (indicator === 'optional') {
         indicatorEl = React.createElement("span", { className: 'indicator' }, "(optional)");
@@ -62,8 +63,15 @@ function FieldLabel(props) {
         'required': props.indicator === 'required'
     });
     var tooltipEl = null;
-    if (tooltipProps != null) {
+    if (infoIconProps && tooltipProps != null) {
+        tooltipEl = React.createElement(tooltip_1.Tooltip, { tooltip: tooltipProps.tooltip, tooltipAlignment: tooltipProps.tooltipAlignment, tooltipPosition: tooltipProps.tooltipPosition },
+            React.createElement(info_icon_1.InfoIcon, { iconContent: infoIconProps.iconContent, iconCustomTypeName: infoIconProps.iconCustomTypeName }));
+    }
+    else if (tooltipProps != null) {
         tooltipEl = React.createElement(tooltip_1.Tooltip, { tooltip: tooltipProps.tooltip, tooltipAlignment: tooltipProps.tooltipAlignment, tooltipPosition: tooltipProps.tooltipPosition });
+    }
+    else if (infoIconProps != null) {
+        tooltipEl = React.createElement(info_icon_1.InfoIcon, { iconContent: infoIconProps.iconContent, iconCustomTypeName: infoIconProps.iconCustomTypeName });
     }
     return React.createElement("div", { className: indicatorClass },
         label,

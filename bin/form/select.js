@@ -16,8 +16,8 @@ var redux_form_1 = require("redux-form");
 var field_wrapper_1 = require("./field-wrapper");
 var react_select_util_1 = require("./react-select-util");
 function SelectStateless(props) {
-    var _a = props.input, value = _a.value, onChange = _a.onChange, onBlur = _a.onBlur, onFocus = _a.onFocus, tooltipProps = props.tooltipProps, options = props.options, multi = props.multi;
-    return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props, tooltipProps: tooltipProps },
+    var _a = props.input, value = _a.value, onChange = _a.onChange, onBlur = _a.onBlur, onFocus = _a.onFocus, tooltipProps = props.tooltipProps, infoIconProps = props.infoIconProps, options = props.options, multi = props.multi;
+    return React.createElement(field_wrapper_1.FieldWrapper, { fieldProps: props, tooltipProps: tooltipProps, infoIconProps: infoIconProps },
         React.createElement(ReactSelect, { options: options, value: value, multi: multi, onChange: function (v) { return onChange(valueOrDefault(v)); }, onBlur: function (e) { return onBlur(e); }, onFocus: onFocus }));
 }
 exports.SelectStateless = SelectStateless;
@@ -46,7 +46,13 @@ var Select = (function (_super) {
                 tooltipAlignment: this.props.tooltipAlignment
             }
             : null;
-        return React.createElement(redux_form_1.Field, { name: this.props.name, component: SelectStateless, label: this.props.label, options: this.props.options, multi: this.props.multi, onBlur: this.props.onBlur, help: this.props.help, indicator: this.props.indicator, tooltip: this.props.tooltip, tooltipProps: tooltipProps });
+        var infoIconProps = this.props.iconContent
+            ? {
+                iconContent: this.props.iconContent,
+                iconCustomTypeName: this.props.iconCustomTypeName
+            }
+            : null;
+        return React.createElement(redux_form_1.Field, { name: this.props.name, component: SelectStateless, label: this.props.label, options: this.props.options, multi: this.props.multi, onBlur: this.props.onBlur, help: this.props.help, indicator: this.props.indicator, tooltip: this.props.tooltip, tooltipProps: tooltipProps, infoIconProps: infoIconProps });
     };
     return Select;
 }(React.Component));
