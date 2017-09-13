@@ -21,8 +21,6 @@ export class Modal extends React.Component<IModalProps, {}> {
             overlayClassName
         } = this.props;
 
-        //TODO configurable classNames for header, body, footer.
-
         return <ReactModal
             isOpen={isOpen}
             shouldCloseOnOverlayClick={false}
