@@ -5,4 +5,3 @@
 | src/form/form.story.tsx | 191 | this is mighty complicated, with no typing...
 | src/form/number-field.tsx | 6 | Number fields are not supported well in redux-form and may never be
 | src/form/repeater.tsx | 10 | there's a weird issue where redux-forms
-| src/modal/modal.tsx | 20 | configurable classNames for header, body, footer.
