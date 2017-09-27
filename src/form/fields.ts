@@ -1,16 +1,26 @@
 import * as React from 'react';
-import {FieldIndicator} from './field-wrapper'
+import { FieldIndicator } from './field-wrapper'
+import { TooltipAlignment, TooltipPosition } from '../tooltip';
 
 export interface IField {
     name: string;
 
     label: string;
 
-    /** A help tooltip to display. */
+    /**Displays Help text*/
     help?: string;
+
+    /**Displays a tooltip text*/
+    tooltip?: string;
+    tooltipPosition?: TooltipPosition;
+    tooltipAlignment?: TooltipAlignment;
 
     /** Marks this field as optional or required*/
     indicator?: FieldIndicator;
+
+    /** Displays a tooltip*/
+    iconContent?: string;
+    iconCustomTypeName?: string;
 
     onBlur?: (e: any) => void;
 
@@ -40,6 +50,15 @@ export interface IFieldComponent<T> {
         submitFailed: boolean;
     };
     help?: string;
+    tooltipProps: {
+        tooltip?: string;
+        tooltipPosition?: TooltipPosition;
+        tooltipAlignment?: TooltipAlignment;
+    }
+    infoIconProps: {
+        iconContent?: string;
+        iconCustomTypeName?: string;
+    }
     indicator?: FieldIndicator;
     prefix?: string;
     suffix?: string;

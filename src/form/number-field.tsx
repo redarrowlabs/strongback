@@ -25,6 +25,8 @@ export function NumberFieldStateless(props: NumberFieldProps) {
         meta: {
             invalid
         },
+        tooltipProps,
+        infoIconProps,
         suffix,
         prefix,
     } = props;
@@ -34,18 +36,16 @@ export function NumberFieldStateless(props: NumberFieldProps) {
         invalidClassName = 'error'
     }
 
-    let suf:React.ReactNode = null;
-    if (suffix != null) {
-        suf = <span className="suffix">{suffix}</span>
-    }
+    let suffixEl = suffix
+        ? <span className="suffix">{suffix}</span>
+        : null;
 
-    let pre:React.ReactNode = null;
-    if (prefix != null) {
-        pre = <span className="prefix">{prefix}</span>
-    }
+    let prefixEl = prefix
+        ? <span className="prefix">{prefix}</span>
+        : null;
 
-    return <FieldWrapper fieldProps={props}>
-        {pre}
+    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps} infoIconProps={infoIconProps}>
+        {prefixEl}
         <input
             type='text'
             value={value}
@@ -54,11 +54,26 @@ export function NumberFieldStateless(props: NumberFieldProps) {
             onFocus={onFocus}
             className={invalidClassName}
         />
-        {suf}
+        {suffixEl}
     </FieldWrapper>;
 }
 
 export function NumberField(props: IField) {
+    const tooltipProps = props.tooltip
+    ? {
+        tooltip: props.tooltip, 
+        tooltipPosition:props.tooltipPosition, 
+        tooltipAlignment:props.tooltipAlignment
+    }
+    :null;
+
+    const infoIconProps = props.iconContent
+    ? {
+        iconContent:props.iconContent, 
+        iconCustomTypeName:props.iconCustomTypeName
+    }
+    :null;
+
     return <Field
         name={props.name}
         component={NumberFieldStateless}
@@ -69,6 +84,8 @@ export function NumberField(props: IField) {
         indicator={props.indicator}
         suffix={props.suffix}
         prefix={props.prefix}
+        tooltipProps={tooltipProps}
+        infoIconProps={infoIconProps}
     />;
 }
 

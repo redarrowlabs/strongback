@@ -1,0 +1,16 @@
+
+[class*="hint-"][class*="-t-info"][class*="hint-bottom"]:before {
+  border-bottom-color: #44C2F9; }
+
+[class*="hint-"][class*="-t-info"][class*="hint-top"]:before {
+  border-top-color: #44C2F9; }
+
+[class*="hint-"][class*="-t-info"][class*="hint-right"]:before {
+  border-right-color: #44C2F9; }
+
+[class*="hint-"][class*="-t-info"][class*="hint-left"]:before {
+  border-left-color: #44C2F9; }
+
+[class*="hint-"][class*="-t-info"]:after {
+  background: #44C2F9;
+    color: #000 }

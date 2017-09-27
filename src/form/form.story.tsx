@@ -39,7 +39,7 @@ storiesOf('Form', module)
 
 interface SampleFormProps extends IStrongbackForm {
     onValidSubmit(values: SampleFormValues): void;
-    onInvalidSubmit(values: SampleFormValues, errors: Object): void;
+    onInvalidSubmit(values: SampleFormValues, errors: object): void;
 }
 
 interface SampleFormValues {
@@ -60,9 +60,13 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 name='text'
                 label='Text'
                 help='You can define help text as well!'
-                indicator='required'
+                indicator='optional'
                 suffix='lbs'
-            />
+                tooltip='this is my tooltip text! its really cool'
+                tooltipPosition='bottom'
+                iconContent='?'
+                iconCustomTypeName='round'
+                 />
             <TextField
                 name='area'
                 label='Text Area'
@@ -73,8 +77,9 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 name='number'
                 label='Number'
                 help='Enter a number that is a really good one. Like a million. Or two million. Or something even a billion.'
-                indicator='optional'
-                prefix="$" />
+                indicator='required'
+                tooltip='this is my tooltip'
+                prefix='$' />
             <Select
                 onBlur={(e: any) => e.preventDefault()}
                 name='select'
@@ -137,7 +142,7 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
         await delay(randomBetween(200, 2000));
 
         //Parse server errors or perform local validation.
-        let errors: any = {};
+        const errors: any = {};
         if (values.text && values.text === values.text.toLocaleUpperCase()) {
             errors.text = 'No yelling';
         }
@@ -191,10 +196,10 @@ const stateToProps = (state: any) => ({
 //TODO this is mighty complicated, with no typing...
 //Connect the stateless form to the Store and redux-forms internals.
 const SampleForm = connect(
-    stateToProps
+    stateToProps,
 )(reduxForm({
     form: 'strongback-example',
-    enableReinitialize: true
+    enableReinitialize: true,
 })(SampleFormStateless)) as React.ComponentClass<any>;
 
 /**
@@ -217,14 +222,14 @@ function makeStore() {
 
 const LOAD_DATA_SUCCESS = 'redarrowlabs/LOAD_DATA_SUCCESS';
 
-function dataReducer(state = initialData, action: any) {
-    switch (action.type) {
+function dataReducer(state = initialData, anAction: any) {
+    switch (anAction.type) {
         case LOAD_DATA_SUCCESS:
             return {
-                text: action.data.text,
-                number: action.data.number,
-                select: action.data.select,
-                multiselect: action.data.multiselect
+                text: anAction.data.text,
+                number: anAction.data.number,
+                select: anAction.data.select,
+                multiselect: anAction.data.multiselect,
             };
         default:
             return state;
@@ -242,10 +247,10 @@ async function loadData() {
 }
 
 /** True if an object as no keys.  */
-function isEmpty(obj: Object) { return Object.keys(obj).length === 0; }
+function isEmpty(obj: object) { return Object.keys(obj).length === 0; }
 
 /** Promise that resolves after a set amount of time */
-function delay(ms: number) { return new Promise<{}>(res => setTimeout(res, ms)); }
+function delay(ms: number) { return new Promise<{}>((res) => setTimeout(res, ms)); }
 
 /** Random int between min and max */
 function randomBetween(min: number, max: number) {

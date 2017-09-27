@@ -1,20 +1,24 @@
-/* base form styling */
+/* ----------------------- */
+/* label form styling */
+/* ----------------------- */
 label {
   font-weight: 400;
 }
 
-    label .optional span {
+    label .optional .indicator {
         text-transform: uppercase;
         color: var(--color-gray-400);
         font-weight: bold;
         font-size: .6rem;
     }
-
-    label .required span {
+    label .required .indicator {
         font-weight: bold;
         color: var(--color-ui-error-text);
     }
 
+/* ----------------------- */
+/*input styling */
+/* ----------------------- */
 input, textarea, select {
     border-width: 1px;
     border-radius: 3px;

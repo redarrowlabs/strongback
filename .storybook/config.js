@@ -9,6 +9,9 @@ import 'tachyons/css/tachyons.css';
 // Import these in a brand package to make it look right!
 import 'react-select/dist/react-select.css';
 import 'react-widgets/dist/css/react-widgets.css';
+import './app.css';
+import '../src/tooltip/tooltipCustomTypeName.css';
+import '../bin/styles.css';
 
 const requireContext = require.context('../src', true, /.story.tsx$/);
 

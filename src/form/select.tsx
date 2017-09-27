@@ -19,11 +19,13 @@ export function SelectStateless(props: SelectStatelessProps) {
         onBlur,
         onFocus,
         },
+        tooltipProps,
+        infoIconProps,
         options,
         multi,
     } = props;
 
-    return <FieldWrapper fieldProps={props}>
+    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps} infoIconProps={infoIconProps}>
         <ReactSelect
             options={options}
             value={value}
@@ -59,6 +61,20 @@ export class Select extends React.Component<SelectProps, {}> {
     }
 
     render() {
+        const tooltipProps = this.props.tooltip
+        ? {
+            tooltip: this.props.tooltip, 
+            tooltipPosition:this.props.tooltipPosition, 
+            tooltipAlignment:this.props.tooltipAlignment
+        }
+        :null;
+
+        const infoIconProps = this.props.iconContent
+        ? {
+            iconContent: this.props.iconContent, 
+            iconCustomTypeName: this.props.iconCustomTypeName
+        }
+        :null;
         return <Field
             name={this.props.name}
             component={SelectStateless}
@@ -68,6 +84,9 @@ export class Select extends React.Component<SelectProps, {}> {
             onBlur={this.props.onBlur}
             help={this.props.help}
             indicator={this.props.indicator}
+            tooltip={this.props.tooltip}
+            tooltipProps={tooltipProps}
+            infoIconProps={infoIconProps}
         />;
     }
 }

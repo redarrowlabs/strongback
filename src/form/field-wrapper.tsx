@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { InfoIcon, InfoIconProps } from '../info-icon';
+import { Tooltip, TooltipAlignment, TooltipPosition, TooltipProps } from '../tooltip';
 import * as classNames from 'classnames';
 
 export type FieldIndicator = 'optional' | 'required';
@@ -10,24 +12,34 @@ export interface FieldWrapperProps {
             touched: boolean;
             error: string;
         },
-        /** Text to display when hovering over the label. */
         help?: string;
         indicator?: FieldIndicator;
     };
+    tooltipProps: {
+        tooltip?: string;
+        tooltipPosition?: TooltipPosition;
+        tooltipAlignment?: TooltipAlignment;
+    };
+    infoIconProps?: {
+        iconContent?: string;
+        iconCustomTypeName?: string;
+    }
+
     mode?: 'no-wrap';
-
 }
-
-/** Wraps a field with a label and error message area. */
+/** Wraps a field with a label and help text and error message area. */
 export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
     render() {
         const {
             fieldProps: {
                 meta: { touched, error },
-                help,
-                label,
-                indicator
+            help,
+            label,
+            indicator,
+
             },
+            tooltipProps,
+            infoIconProps,
             children,
             mode,
         } = this.props;
@@ -36,28 +48,39 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
             'error': touched && (error !== '')
         });
 
+        let helpEl: React.ReactNode = null;
+        if (help != null) {
+            helpEl = <div className='c-form-field--help-text'>{help}</div>
+        }
         //For multiple inputs in children
         if (mode === 'no-wrap') {
-            return <div>
+            return <div className='c-form-field'>
                 <label className={labelClass}>
+
                     <FieldLabel
                         label={label}
-                        indicator={indicator} />
+                        indicator={indicator}
+                        tooltipProps={tooltipProps}
+                        infoIconProps={infoIconProps}
+                    />
+
                 </label>
                 {children}
-                <HelpArea text={help} />
+                {helpEl}
                 <FieldError error={error} touched={touched} />
             </div>;
         }
 
-        return <div>
+        return <div className='c-form-field'>
             <label className={labelClass}>
                 <FieldLabel
                     label={label}
-                    indicator={indicator} />
+                    indicator={indicator}
+                    tooltipProps={tooltipProps}
+                    infoIconProps={infoIconProps} />
                 {children}
             </label>
-            <HelpArea text={help} />
+            {helpEl}
             <FieldError error={error} touched={touched} />
         </div>;
     }
@@ -66,19 +89,26 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
 interface FieldLabelProps {
     label: string;
     indicator: FieldIndicator | undefined;
+    tooltipProps: TooltipProps | undefined;
+    infoIconProps: InfoIconProps | undefined;
 }
 
 /** The label of the field, including indicators. */
 function FieldLabel(props: FieldLabelProps) {
-    const { label, indicator } = props;
+    const {
+        label,
+        indicator,
+        tooltipProps,
+        infoIconProps
+     } = props;
 
     let indicatorEl: React.ReactNode = null;
     if (indicator === 'optional') {
-        indicatorEl = <span>(optional)</span>
+        indicatorEl = <span className='indicator'>(optional)</span>
     }
 
     if (indicator === 'required') {
-        indicatorEl = <span>*</span>
+        indicatorEl = <span className='indicator'>*</span>
     }
 
     const indicatorClass = classNames({
@@ -86,8 +116,30 @@ function FieldLabel(props: FieldLabelProps) {
         'required': props.indicator === 'required'
     });
 
+    let tooltipEl: React.ReactNode = null;
+    if (infoIconProps && tooltipProps != null) {
+        tooltipEl = <Tooltip
+            tooltip={tooltipProps.tooltip}
+            tooltipAlignment={tooltipProps.tooltipAlignment}
+            tooltipPosition={tooltipProps.tooltipPosition}>
+            <InfoIcon iconContent={infoIconProps.iconContent} iconCustomTypeName={infoIconProps.iconCustomTypeName} />
+        </Tooltip>
+    }
+
+    else if (tooltipProps != null) {
+        tooltipEl = <Tooltip
+            tooltip={tooltipProps.tooltip}
+            tooltipAlignment={tooltipProps.tooltipAlignment}
+            tooltipPosition={tooltipProps.tooltipPosition}>
+        </Tooltip>
+    }
+
+    else if (infoIconProps != null) {
+        tooltipEl = <InfoIcon iconContent={infoIconProps.iconContent} iconCustomTypeName={infoIconProps.iconCustomTypeName} />
+    }
+
     return <div className={indicatorClass}>
-        {label} {indicatorEl}
+        {label} {indicatorEl} {tooltipEl}
     </div>;
 }
 
@@ -100,28 +152,8 @@ interface FieldErrorProps {
 function FieldError(props: FieldErrorProps) {
     const { touched, error } = props;
     if (touched && error) {
-        return <div className='error-message'>{error}</div>;
+        return <div className='c-form-field--error-message'>{error}</div>;
     }
 
     return null;
-}
-
-interface HelpAreaProps {
-    text: string | undefined;
-}
-
-/** An element that shows some helper text or an info tip. */
-function HelpArea(props: HelpAreaProps) {
-    const { text } = props;
-
-    var helpTextLength = (text || '').length;
-
-    if (helpTextLength > 50) {
-        return <div>
-            <span className='help-icon'></span>
-            <div className='helper-text'>{text}</div>
-        </div>
-    }
-
-    return <div className='helper-text'>{text}</div>
 }

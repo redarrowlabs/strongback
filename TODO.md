@@ -5,6 +5,6 @@
 | src/date/instant-date-view.tsx | 26 | js-joda should support locales soonish,
 | src/date/local-date-time-view.tsx | 27 | js-joda should support locales soonish,
 | src/date/local-time-view.tsx | 27 | js-joda should support locales soonish,
-| src/form/form.story.tsx | 191 | this is mighty complicated, with no typing...
+| src/form/form.story.tsx | 196 | this is mighty complicated, with no typing...
 | src/form/number-field.tsx | 6 | Number fields are not supported well in redux-form and may never be
 | src/form/repeater.tsx | 10 | there's a weird issue where redux-forms
