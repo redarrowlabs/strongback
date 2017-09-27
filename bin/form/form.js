@@ -33,8 +33,8 @@ var Form = (function (_super) {
             React.createElement("form", { onSubmit: handleSubmit(onSubmit) },
                 React.createElement("div", null, this.props.children),
                 React.createElement("div", null,
-                    React.createElement(button_1.Button, { type: 'submit', loading: submitting }, "Submit"),
-                    React.createElement(button_1.Button, { type: 'button', variant: 'default', disabled: pristine || submitting, onClick: reset }, "Reset"))));
+                    React.createElement(button_1.Button, { classes: { always: '', enabled: '', disabled: '', loading: '' }, type: 'submit', loading: submitting }, "Submit"),
+                    React.createElement(button_1.Button, { type: 'button', disabled: pristine || submitting, onClick: reset, loading: false, classes: { always: '', enabled: '', disabled: '', loading: '' } }, "Reset"))));
     };
     return Form;
 }(React.Component));

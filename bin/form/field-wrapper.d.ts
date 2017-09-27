@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import * as React from 'react';
-import { TooltipAlignment, TooltipPosition } from '../tooltip/tooltip';
+import { TooltipAlignment, TooltipPosition } from '../tooltip';
 export declare type FieldIndicator = 'optional' | 'required';
 export interface FieldWrapperProps {
     fieldProps: {

@@ -19,15 +19,23 @@ import {
 } from '../index';
 
 import { Repeater } from './repeater';
+import { padding } from '../deco';
 
 storiesOf('Form', module)
+    .addDecorator(padding)
     .add('Repeatable Widgets', () => {
         return <Provider store={AppStore}>
             <div>
                 <RepeatableForm
                     onValidSubmit={action('submit')}
                     onInvalidSubmit={action('invalid')} />
-                <Button type='button' onClick={loadRepeatableData}>Load Record</Button>
+                <Button
+                    type='button'
+                    onClick={loadRepeatableData}
+                    classes={{ always: '', enabled: '', disabled: '', loading: '' }}
+                    loading={false}>
+                    Load Record
+                </Button>
             </div>
         </Provider>;
     });

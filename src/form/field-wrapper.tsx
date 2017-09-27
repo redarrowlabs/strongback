@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { InfoIcon,InfoIconProps } from '../info-icon/info-icon';
-import { Tooltip,TooltipAlignment,TooltipPosition,TooltipProps } from '../tooltip/tooltip';
+import { InfoIcon, InfoIconProps } from '../info-icon';
+import { Tooltip, TooltipAlignment, TooltipPosition, TooltipProps } from '../tooltip';
 import * as classNames from 'classnames';
 
 export type FieldIndicator = 'optional' | 'required';
@@ -16,15 +16,15 @@ export interface FieldWrapperProps {
         indicator?: FieldIndicator;
     };
     tooltipProps: {
-        tooltip? : string;
+        tooltip?: string;
         tooltipPosition?: TooltipPosition;
         tooltipAlignment?: TooltipAlignment;
     };
     infoIconProps?: {
         iconContent?: string;
-        iconCustomTypeName?:  string;
+        iconCustomTypeName?: string;
     }
-    
+
     mode?: 'no-wrap';
 }
 /** Wraps a field with a label and help text and error message area. */
@@ -33,10 +33,10 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
         const {
             fieldProps: {
                 meta: { touched, error },
-                help,
-                label,
-                indicator,
-                
+            help,
+            label,
+            indicator,
+
             },
             tooltipProps,
             infoIconProps,
@@ -48,7 +48,7 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
             'error': touched && (error !== '')
         });
 
-        let helpEl:React.ReactNode = null;
+        let helpEl: React.ReactNode = null;
         if (help != null) {
             helpEl = <div className='c-form-field--help-text'>{help}</div>
         }
@@ -56,14 +56,14 @@ export class FieldWrapper extends React.Component<FieldWrapperProps, {}> {
         if (mode === 'no-wrap') {
             return <div className='c-form-field'>
                 <label className={labelClass}>
-    
+
                     <FieldLabel
                         label={label}
                         indicator={indicator}
                         tooltipProps={tooltipProps}
                         infoIconProps={infoIconProps}
                     />
-                         
+
                 </label>
                 {children}
                 {helpEl}
@@ -95,8 +95,8 @@ interface FieldLabelProps {
 
 /** The label of the field, including indicators. */
 function FieldLabel(props: FieldLabelProps) {
-    const { 
-        label, 
+    const {
+        label,
         indicator,
         tooltipProps,
         infoIconProps
@@ -118,20 +118,20 @@ function FieldLabel(props: FieldLabelProps) {
 
     let tooltipEl: React.ReactNode = null;
     if (infoIconProps && tooltipProps != null) {
-        tooltipEl = <Tooltip 
-                        tooltip={tooltipProps.tooltip} 
-                        tooltipAlignment={tooltipProps.tooltipAlignment} 
-                        tooltipPosition={tooltipProps.tooltipPosition}>
-                        <InfoIcon iconContent={infoIconProps.iconContent} iconCustomTypeName={infoIconProps.iconCustomTypeName} />
-                    </Tooltip>
+        tooltipEl = <Tooltip
+            tooltip={tooltipProps.tooltip}
+            tooltipAlignment={tooltipProps.tooltipAlignment}
+            tooltipPosition={tooltipProps.tooltipPosition}>
+            <InfoIcon iconContent={infoIconProps.iconContent} iconCustomTypeName={infoIconProps.iconCustomTypeName} />
+        </Tooltip>
     }
 
     else if (tooltipProps != null) {
-        tooltipEl = <Tooltip 
-                        tooltip={tooltipProps.tooltip} 
-                        tooltipAlignment={tooltipProps.tooltipAlignment} 
-                        tooltipPosition={tooltipProps.tooltipPosition}>
-                    </Tooltip>
+        tooltipEl = <Tooltip
+            tooltip={tooltipProps.tooltip}
+            tooltipAlignment={tooltipProps.tooltipAlignment}
+            tooltipPosition={tooltipProps.tooltipPosition}>
+        </Tooltip>
     }
 
     else if (infoIconProps != null) {

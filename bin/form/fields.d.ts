@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import * as React from 'react';
 import { FieldIndicator } from './field-wrapper';
-import { TooltipAlignment, TooltipPosition } from '../tooltip/tooltip';
+import { TooltipAlignment, TooltipPosition } from '../tooltip';
 export interface IField {
     name: string;
     label: string;

@@ -45,10 +45,19 @@ export class Form extends React.Component<IStrongbackForm, {}> {
                     {this.props.children}
                 </div>
                 <div>
-                    <Button type='submit' loading={submitting}>
+                    <Button
+
+                        classes={{ always: '', enabled: '', disabled: '', loading: '' }}
+                        type='submit'
+                        loading={submitting}>
                         Submit
                 </Button>
-                    <Button type='button' variant='default' disabled={pristine || submitting} onClick={reset}>
+                    <Button
+                        type='button'
+                        disabled={pristine || submitting}
+                        onClick={reset}
+                        loading={false}
+                        classes={{ always: '', enabled: '', disabled: '', loading: '' }}>
                         Reset
                 </Button>
                 </div>

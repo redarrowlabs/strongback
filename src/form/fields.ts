@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {FieldIndicator} from './field-wrapper'
-import { TooltipAlignment,TooltipPosition } from '../tooltip/tooltip';
+import { FieldIndicator } from './field-wrapper'
+import { TooltipAlignment, TooltipPosition } from '../tooltip';
 
 export interface IField {
     name: string;
@@ -20,7 +20,7 @@ export interface IField {
 
     /** Displays a tooltip*/
     iconContent?: string;
-    iconCustomTypeName?:  string;
+    iconCustomTypeName?: string;
 
     onBlur?: (e: any) => void;
 

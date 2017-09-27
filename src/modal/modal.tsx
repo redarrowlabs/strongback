@@ -5,6 +5,8 @@ export interface IModalProps {
     isOpen: boolean;
     header: JSX.Element;
     footer: JSX.Element;
+    contentClassName: string;
+    overlayClassName: string;
 }
 
 export class Modal extends React.Component<IModalProps, {}> {
@@ -15,17 +17,18 @@ export class Modal extends React.Component<IModalProps, {}> {
             header,
             children,
             footer,
+            contentClassName,
+            overlayClassName
         } = this.props;
-
-        //className="sb-modal"
-        //overlayClassName="sb-modal__overlay"
 
         return <ReactModal
             isOpen={isOpen}
-            shouldCloseOnOverlayClick={false}>
-            <div className='sb-modal__header'>{header}</div>
-            <div className='sb-modal__body'>{children}</div>
-            <div className='sb-modal__footer'>{footer}</div>
+            shouldCloseOnOverlayClick={false}
+            className={contentClassName}
+            overlayClassName={overlayClassName}>
+            <div>{header}</div>
+            <div>{children}</div>
+            <div>{footer}</div>
         </ReactModal>;
     }
 }

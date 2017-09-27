@@ -1,28 +1,17 @@
 # strongback-react
 Strongback is an implementation of the Red Arrow Labs pattern library.
 
-The goal: an opinionated, "Don't Make Me Think", batteries-included front-end 
-toolkit focused on Developer Experience.
+The goal: an opinionated, "Don't Make Me Think", batteries-included front-end toolkit focused on Developer Experience.
 
 The use case: enterprise applications, built by teams of developers who
 have varying amounts of front-end experience.
 
 # Usage
-## Knowledge
-These tools are highly recommended for your app. (but not strictly required)
-- [TypeScript](https://www.typescriptlang.org) - A typed, compiled JavaScript variant.
-- [React](https://facebook.github.io/react/) - Declarative view library. Puts markup in your code.
-- [Redux](https://github.com/reactjs/redux) - Unidirectional, testable state management library.
-- [Webpack](https://webpack.github.io/docs/) - JavaScript bundler, pulling your imported code into one distributable file.
 
 ## Install
 `npm install --save @redarrowlabs/strongback-react`
 ## Import
 `import { Button } from '@redarrowlabs/strongback-react';`
-
-or
-
-`const { Button } = require('@redarrowlabs/strongback-react');`
 
 TypeScript declarations are included, so intellisense should work
 out of the box. 
@@ -42,11 +31,3 @@ or browse the sources at `/src/[package]/[package].story.tsx`
 1. Send a PR!
 1. `npm version [patch | minor | major]` to bump and tag.
 1. `npm publish` (Must be logged in as RAL)
-
-# 🙋 Strongback?
-A strongback lifts a rocket from horizontal to vertical, and supplies it with 
-power and chilled rocket fuel until it's time to launch.
-
-[Picture](http://www.spacex.com/sites/spacex/files/crs-3_staticfire.jpg)
-
-See also [Ignition](https://github.com/redarrowlabs/ignition)

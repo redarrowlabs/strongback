@@ -32,7 +32,7 @@ var Repeater = (function (_super) {
         return React.createElement("div", null,
             React.createElement("div", null, sections),
             React.createElement("div", null,
-                React.createElement(button_1.Button, { onClick: this.handleAdd }, "Add")));
+                React.createElement(button_1.Button, { onClick: this.handleAdd, classes: { always: '', enabled: '', disabled: '', loading: '' }, loading: false }, "Add")));
     };
     Repeater.prototype.handleAdd = function () {
         var _a = this.props, handler = _a.handler, collectionKey = _a.collectionKey;
@@ -76,7 +76,7 @@ var RepeaterSection = (function (_super) {
             React.createElement(redux_form_1.FormSection, { name: collectionKey + "." + itemKey },
                 this.props.children,
                 React.createElement("div", null,
-                    React.createElement(button_1.Button, { variant: 'danger', onClick: function () { return onRemove(itemKey); } }, "Remove"))));
+                    React.createElement(button_1.Button, { onClick: function () { return onRemove(itemKey); }, classes: { always: '', enabled: '', disabled: '', loading: '' }, loading: false }, "Remove"))));
     };
     return RepeaterSection;
 }(React.Component));

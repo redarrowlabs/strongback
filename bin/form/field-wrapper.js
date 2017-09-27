@@ -11,8 +11,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var React = require("react");
-var info_icon_1 = require("../info-icon/info-icon");
-var tooltip_1 = require("../tooltip/tooltip");
+var info_icon_1 = require("../info-icon");
+var tooltip_1 = require("../tooltip");
 var classNames = require("classnames");
 /** Wraps a field with a label and help text and error message area. */
 var FieldWrapper = (function (_super) {

@@ -4,17 +4,17 @@ export type TooltipPosition = 'top' | 'bottom' | 'left' | 'right';
 export type TooltipAlignment = 'middle' | 'top' | 'bottom' | 'left' | 'right';
 
 export interface TooltipProps {
-    tooltip? : string;
+    tooltip?: string;
     tooltipPosition?: TooltipPosition;
     tooltipAlignment?: TooltipAlignment;
     tooltipCustomTypeName?: string;
     isOpen?: boolean;
-    
+
 }
 
 /** Wraps a field with a label and help text and error message area. */
 export class Tooltip extends React.Component<TooltipProps, {}> {
-    
+
     render() {
         const {
             children,
@@ -22,23 +22,15 @@ export class Tooltip extends React.Component<TooltipProps, {}> {
             tooltipPosition = 'top',
             tooltipAlignment = 'middle',
             tooltipCustomTypeName = '',
-            isOpen = false
-            
-            
+            isOpen = false,
         } = this.props;
 
-        if (isOpen === true){
-            var toggleClass = 'hint-persist';
-        }
+        const toggleClass = isOpen ? 'hint-persist' : '';
 
-        else {
-            var toggleClass = '';
-        }
-
-        let tooltipCustomTypeClass:React.ReactNode = '';
-        if (tooltipCustomTypeName != '') {
+        let tooltipCustomTypeClass: React.ReactNode = '';
+        if (tooltipCustomTypeName !== '') {
             tooltipCustomTypeClass = '-t-' + tooltipCustomTypeName;
-        };
+        }
 
         const tooltipClassNames = `hint-${tooltipPosition}-${tooltipAlignment}${tooltipCustomTypeClass} hint-fade-d-short ${toggleClass}`;
 

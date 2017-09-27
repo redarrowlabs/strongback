@@ -4,6 +4,8 @@ export interface IModalProps {
     isOpen: boolean;
     header: JSX.Element;
     footer: JSX.Element;
+    contentClassName: string;
+    overlayClassName: string;
 }
 export declare class Modal extends React.Component<IModalProps, {}> {
     constructor(props: IModalProps);

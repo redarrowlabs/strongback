@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { combineReducers, createStore } from 'redux';
 import { reducer as formReducer, SubmissionError, reduxForm } from 'redux-form';
 import { Provider, connect } from 'react-redux';
+import { padding } from '../deco';
 
 import {
     Button,
@@ -15,24 +16,30 @@ import {
     Select,
     Radio,
     Checkbox,
-    DateField
+    DateField,
 } from '../index';
 
 storiesOf('Form', module)
+    .addDecorator(padding)
     .add('Widgets', () => {
         return <Provider store={AppStore}>
             <div>
                 <SampleForm
                     onValidSubmit={action('submit')}
                     onInvalidSubmit={action('invalid')} />
-                <Button type='button' onClick={loadData}>Load Record</Button>
+                <Button
+                    type='button'
+                    onClick={loadData}
+                    classes={{ always: '', enabled: '', disabled: '', loading: '' }}
+                    loading={false}
+                >Load Record</Button>
             </div>
         </Provider>;
     });
 
 interface SampleFormProps extends IStrongbackForm {
     onValidSubmit(values: SampleFormValues): void;
-    onInvalidSubmit(values: SampleFormValues, errors: Object): void;
+    onInvalidSubmit(values: SampleFormValues, errors: object): void;
 }
 
 interface SampleFormValues {
@@ -72,7 +79,7 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 help='Enter a number that is a really good one. Like a million. Or two million. Or something even a billion.'
                 indicator='required'
                 tooltip='this is my tooltip'
-                prefix="$" />
+                prefix='$' />
             <Select
                 onBlur={(e: any) => e.preventDefault()}
                 name='select'
@@ -80,8 +87,8 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 options={[
                     { label: 'One', value: 'one' },
                     { label: 'Two', value: 'two' },
-                ]} 
-                help='Pick one of many options.'/>
+                ]}
+                help='Pick one of many options.' />
             <Select
                 onBlur={(e: any) => e.preventDefault()}
                 name='multiselect'
@@ -90,14 +97,14 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                 options={[
                     { label: 'One', value: 'one' },
                     { label: 'Two', value: 'two' },
-                ]} 
-                help='Pick any of these many options.'/>
+                ]}
+                help='Pick any of these many options.' />
             <SearchNSelect
                 onBlur={(e: any) => e.preventDefault()}
                 name='search'
                 label={`Search n' Select`}
-                onSearch={this.searchRemote} 
-                help='This loads async.'/>
+                onSearch={this.searchRemote}
+                help='This loads async.' />
             <SearchNSelect
                 onBlur={(e: any) => e.preventDefault()}
                 multi={true}
@@ -111,8 +118,8 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                     { label: 'Hamburger', value: 'burg' },
                     { label: 'Brat', value: 'brat' },
                     { label: 'Veggie Patty', value: 'patty' },
-                ]} 
-                help='Pick one option.'/>
+                ]}
+                help='Pick one option.' />
             <Checkbox
                 name='checkbox'
                 label='Checkbox'
@@ -120,13 +127,13 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
                     { label: 'Cheese', value: 'cheese' },
                     { label: 'Onion', value: 'onion' },
                     { label: 'Tomato', value: 'tomato' },
-                ]} 
-                help='Pick any number of options.'/>
-            <DateField 
-                name='date' 
-                label='Date' 
-                help='When do you want it?' 
-                />
+                ]}
+                help='Pick any number of options.' />
+            <DateField
+                name='date'
+                label='Date'
+                help='When do you want it?'
+            />
         </Form>;
     }
 
@@ -135,7 +142,7 @@ class SampleFormStateless extends React.Component<SampleFormProps, {}> {
         await delay(randomBetween(200, 2000));
 
         //Parse server errors or perform local validation.
-        let errors: any = {};
+        const errors: any = {};
         if (values.text && values.text === values.text.toLocaleUpperCase()) {
             errors.text = 'No yelling';
         }
@@ -189,10 +196,10 @@ const stateToProps = (state: any) => ({
 //TODO this is mighty complicated, with no typing...
 //Connect the stateless form to the Store and redux-forms internals.
 const SampleForm = connect(
-    stateToProps
+    stateToProps,
 )(reduxForm({
     form: 'strongback-example',
-    enableReinitialize: true
+    enableReinitialize: true,
 })(SampleFormStateless)) as React.ComponentClass<any>;
 
 /**
@@ -215,14 +222,14 @@ function makeStore() {
 
 const LOAD_DATA_SUCCESS = 'redarrowlabs/LOAD_DATA_SUCCESS';
 
-function dataReducer(state = initialData, action: any) {
-    switch (action.type) {
+function dataReducer(state = initialData, anAction: any) {
+    switch (anAction.type) {
         case LOAD_DATA_SUCCESS:
             return {
-                text: action.data.text,
-                number: action.data.number,
-                select: action.data.select,
-                multiselect: action.data.multiselect
+                text: anAction.data.text,
+                number: anAction.data.number,
+                select: anAction.data.select,
+                multiselect: anAction.data.multiselect,
             };
         default:
             return state;
@@ -240,10 +247,10 @@ async function loadData() {
 }
 
 /** True if an object as no keys.  */
-function isEmpty(obj: Object) { return Object.keys(obj).length === 0; }
+function isEmpty(obj: object) { return Object.keys(obj).length === 0; }
 
 /** Promise that resolves after a set amount of time */
-function delay(ms: number) { return new Promise<{}>(res => setTimeout(res, ms)); }
+function delay(ms: number) { return new Promise<{}>((res) => setTimeout(res, ms)); }
 
 /** Random int between min and max */
 function randomBetween(min: number, max: number) {
