@@ -1,16 +1,19 @@
 console.log('configuring storybook');
 import { configure } from '@storybook/react';
 
+// Styles that make this storybook look right //
+import './app.css';
+import './styles.css';
+
+// Third party styles //
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/flip.css';
-
 import 'tachyons/css/tachyons.css';
 
-// Import these in a brand package to make it look right!
 import 'react-select/dist/react-select.css';
 import 'react-widgets/dist/css/react-widgets.css';
-import './app.css';
-import '../src/tooltip/tooltipCustomTypeName.css';
+
+// Import these in a brand package to make it work right!
 import '../bin/styles.css';
 
 const requireContext = require.context('../src', true, /.story.tsx$/);

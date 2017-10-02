@@ -10,27 +10,27 @@ export interface SearchNSelectStatelessProps extends IFieldComponent<any> {
     label: string;
     options: any[];
     isLoading: boolean;
-    onSearch(search: string): void;
     multi?: boolean;
+    onSearch(search: string): void;
 }
 
 export function SearchNSelectStateless(props: SearchNSelectStatelessProps) {
     const {
         input: {
             value,
-        onChange,
-        onBlur,
-        onFocus,
+            onChange,
+            onBlur,
+            onFocus,
         },
         options,
         onSearch,
         isLoading,
         tooltipProps,
         infoIconProps,
-        multi
+        multi,
     } = props;
 
-    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps}  infoIconProps={infoIconProps}>
+    return <FieldWrapper fieldProps={props} tooltipProps={tooltipProps} infoIconProps={infoIconProps}>
         <ReactSelect
             options={options}
             value={value}
@@ -56,9 +56,8 @@ function onChangeUnique(onChange: (value: any) => void) {
             onChange(asObjects);
             return;
         }
-
         onChange(x);
-    }
+    };
 }
 
 function unique<T>(arr: T[]) {
@@ -66,8 +65,8 @@ function unique<T>(arr: T[]) {
 }
 
 export interface SearchNSelectProps extends IField {
-    onSearch(search: string): Promise<any>;
     multi?: boolean;
+    onSearch(search: string): Promise<any>;
 }
 
 export interface SearchNSelectState {
@@ -93,18 +92,18 @@ export class SearchNSelect extends React.Component<SearchNSelectProps, SearchNSe
 
     render() {
         const tooltipProps = this.props.tooltip
-        ? {
-            tooltip: this.props.tooltip, 
-            tooltipPosition: this.props.tooltipPosition, 
-            tooltipAlignment: this.props.tooltipAlignment
-        }
-        :null;
+            ? {
+                tooltip: this.props.tooltip,
+                tooltipPosition: this.props.tooltipPosition,
+                tooltipAlignment: this.props.tooltipAlignment,
+            }
+            : null;
         const infoIconProps = this.props.iconContent
-        ? {
-            iconContent: this.props.iconContent, 
-            iconCustomTypeName: this.props.iconCustomTypeName
-        }
-        :null;
+            ? {
+                iconContent: this.props.iconContent,
+                iconCustomTypeName: this.props.iconCustomTypeName,
+            }
+            : null;
 
         return <Field
             name={this.props.name}

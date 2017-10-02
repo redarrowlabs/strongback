@@ -15,7 +15,8 @@ storiesOf('Tooltip', module)
     })
     .add('Tooltip on Button', () => {
         return <div style={{ padding: '100px', float: 'left' }}>
-            <Tooltip tooltip='This tooltip has a custom color' tooltipAlignment='middle' tooltipPosition='top' tooltipCustomTypeName='info'>
+            <Tooltip tooltip='This tooltip has a custom color'
+            tooltipAlignment='middle' tooltipPosition='top' tooltipCustomTypeName='info'>
                 <Button
                     loading={false}
                     classes={{ always: '', disabled: '', enabled: '', loading: '' }}>
@@ -58,7 +59,8 @@ class TooltipClickExample extends React.Component<{}, TooltipExampleState> {
     }
 
     render() {
-        return <Tooltip tooltip='This is my tooltip text' tooltipAlignment='middle' tooltipPosition='right' isOpen={this.state.isOpen}>
+        return <Tooltip tooltip='This is my tooltip text'
+        tooltipAlignment='middle' tooltipPosition='right' isOpen={this.state.isOpen}>
             <InfoIcon iconContent='?' iconCustomTypeName='round' handleClick={this.handleClick} />
         </Tooltip>;
     }
