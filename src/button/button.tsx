@@ -2,12 +2,13 @@ import * as React from 'react';
 import { Loader } from '../loader/loader';
 import * as classNames from 'classnames';
 
-export type ButtonClasses = {
+export interface ButtonClasses {
     always: string;
     enabled: string;
     disabled: string;
     loading: string;
-};
+}
+
 export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
     loading: boolean;
     classes: ButtonClasses;
@@ -48,7 +49,7 @@ function getClasses(props: IButtonProps) {
         always,
         disabled,
         enabled,
-        loading
+        loading,
     } = classes;
 
     const isDisabled = props.loading || props.disabled;
@@ -57,6 +58,6 @@ function getClasses(props: IButtonProps) {
         [always]: !!always,
         [enabled]: !!enabled && !isDisabled,
         [disabled]: !!disabled && isDisabled,
-        [loading]: !!loading && props.loading
+        [loading]: !!loading && props.loading,
     });
 }

@@ -1,6 +1,6 @@
 {
   "name": "@redarrowlabs/strongback-react",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Strong UI components, for React",
   "license": "MIT",
   "repository": {
@@ -10,8 +10,8 @@
   "typings": "bin/index",
   "scripts": {
     "build": "npm run build:ts",
-    "build:css": "postcss src/third-party.css --use postcss-import autoprefixer --dir ./bin",
-    "watch:css": "postcss src/third-party.css --use postcss-import autoprefixer --dir ./bin --watch",
+    "build:css": "postcss src/styles.css --use postcss-import autoprefixer --dir ./bin",
+    "watch:css": "postcss src/styles.css --use postcss-import autoprefixer --dir ./bin --watch",
     "build:ts": "tsc",
     "storybook": "start-storybook -p 9001",
     "todo": "leasot --reporter markdown --tags hack --associate-parser .tsx,defaultParser src/**/*.tsx > TODO.md || exit 0",

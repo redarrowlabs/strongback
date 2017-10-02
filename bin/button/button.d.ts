@@ -1,11 +1,11 @@
 /// <reference types="react" />
 import * as React from 'react';
-export declare type ButtonClasses = {
+export interface ButtonClasses {
     always: string;
     enabled: string;
     disabled: string;
     loading: string;
-};
+}
 export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
     loading: boolean;
     classes: ButtonClasses;
