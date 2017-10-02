@@ -24,7 +24,7 @@ var Tooltip = (function (_super) {
         if (tooltipCustomTypeName !== '') {
             tooltipCustomTypeClass = '-t-' + tooltipCustomTypeName;
         }
-        var tooltipClassNames = "hint-" + tooltipPosition + "-" + tooltipAlignment + tooltipCustomTypeClass + " hint-fade-d-short " + toggleClass;
+        var tooltipClassNames = "hint-" + tooltipPosition + "-" + tooltipAlignment + tooltipCustomTypeClass + "\n        hint-fade-d-short " + toggleClass;
         return React.createElement("span", { "aria-label": tooltip, "data-hint": tooltip, className: tooltipClassNames }, children);
     };
     return Tooltip;

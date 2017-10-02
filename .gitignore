@@ -3,3 +3,4 @@ node_modules
 *.story.js
 *.story.js.map
 *.story.d.ts
+npm-debug.log

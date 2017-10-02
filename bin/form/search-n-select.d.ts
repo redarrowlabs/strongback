@@ -5,13 +5,13 @@ export interface SearchNSelectStatelessProps extends IFieldComponent<any> {
     label: string;
     options: any[];
     isLoading: boolean;
-    onSearch(search: string): void;
     multi?: boolean;
+    onSearch(search: string): void;
 }
 export declare function SearchNSelectStateless(props: SearchNSelectStatelessProps): JSX.Element;
 export interface SearchNSelectProps extends IField {
-    onSearch(search: string): Promise<any>;
     multi?: boolean;
+    onSearch(search: string): Promise<any>;
 }
 export interface SearchNSelectState {
     options: any[];

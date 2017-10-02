@@ -31,7 +31,8 @@ export class Tooltip extends React.Component<TooltipProps, {}> {
             tooltipCustomTypeClass = '-t-' + tooltipCustomTypeName;
         }
 
-        const tooltipClassNames = `hint-${tooltipPosition}-${tooltipAlignment}${tooltipCustomTypeClass} hint-fade-d-short ${toggleClass}`;
+        const tooltipClassNames = `hint-${tooltipPosition}-${tooltipAlignment}${tooltipCustomTypeClass}
+        hint-fade-d-short ${toggleClass}`;
 
         return <span aria-label={tooltip} data-hint={tooltip} className={tooltipClassNames}>
             {children}

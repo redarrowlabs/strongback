@@ -62,19 +62,19 @@ export class Select extends React.Component<SelectProps, {}> {
 
     render() {
         const tooltipProps = this.props.tooltip
-        ? {
-            tooltip: this.props.tooltip, 
-            tooltipPosition:this.props.tooltipPosition, 
-            tooltipAlignment:this.props.tooltipAlignment
-        }
-        :null;
+            ? {
+                tooltip: this.props.tooltip,
+                tooltipPosition: this.props.tooltipPosition,
+                tooltipAlignment: this.props.tooltipAlignment,
+            }
+            : null;
 
         const infoIconProps = this.props.iconContent
-        ? {
-            iconContent: this.props.iconContent, 
-            iconCustomTypeName: this.props.iconCustomTypeName
-        }
-        :null;
+            ? {
+                iconContent: this.props.iconContent,
+                iconCustomTypeName: this.props.iconCustomTypeName,
+            }
+            : null;
         return <Field
             name={this.props.name}
             component={SelectStateless}

@@ -1,7 +1,4 @@
-/* 
-TODO - Remove these styles and place 
-them in a brand package, not strongback
-*/
+/** these styles are required for the component to work 
+Anything else should be defined in the brand package **/
 
 @import './tooltip/tooltip.css';
-@import './tooltip/tooltipCustomTypeName.css';
