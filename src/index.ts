@@ -1,7 +1,7 @@
 export { Button } from './button/button';
 export { Modal } from './modal/modal';
 
-export * from './form';
+export * from './control';
 export * from './date';
 export * from './tooltip';
 export * from './info-icon';

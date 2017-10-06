@@ -7,7 +7,7 @@ var button_1 = require("./button/button");
 exports.Button = button_1.Button;
 var modal_1 = require("./modal/modal");
 exports.Modal = modal_1.Modal;
-__export(require("./form"));
+__export(require("./control"));
 __export(require("./date"));
 __export(require("./tooltip"));
 __export(require("./info-icon"));
